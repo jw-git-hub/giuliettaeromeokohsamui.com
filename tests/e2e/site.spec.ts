@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { BUILT_LOCALES, NARROWEST, VIEWPORTS, htmlLang, pagePath } from './locales';
+import { BUILT_LOCALES, LOW_SCREEN, NARROWEST, PHONE_FIRST_SCREENS, VIEWPORTS, htmlLang, pagePath } from './locales';
 
 // Приёмка из DESIGN.md, раздел 9 — то, что можно проверить автоматически.
 
@@ -145,6 +145,14 @@ for (const locale of BUILT_LOCALES) {
       dateLabels.forEach((label) => expect(label).toMatch(/20\d\d/));
     });
 
+    test('кнопка брони первого экрана видна на телефоне без прокрутки', async ({ page }) => {
+      for (const viewport of PHONE_FIRST_SCREENS) {
+        await page.setViewportSize(viewport);
+        await page.goto(pagePath(locale));
+        await expect(page.locator('.hero__actions .button').first()).toBeInViewport({ ratio: 1 });
+      }
+    });
+
     test('нижняя панель: на первом экране её нет, видна в тексте, прячется у формы, не закрывает подвал', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.phone);
       await page.goto(pagePath(locale));
@@ -161,9 +169,9 @@ for (const locale of BUILT_LOCALES) {
       const footerBottom = await page.locator('.site-footer').evaluate((footer) => footer.getBoundingClientRect().bottom);
       const barTop = await bar.evaluate((element) => element.getBoundingClientRect().top);
       expect(footerBottom).toBeLessThanOrEqual(barTop + 1);
-      // Прыжок наверх без прокрутки (ссылка в шапке) на маленьком экране, где кнопка первого экрана
+      // Прыжок наверх без прокрутки (ссылка в шапке) на низком экране, где кнопка первого экрана
       // остаётся ниже края: панель всё равно прячется.
-      await page.setViewportSize(VIEWPORTS.small);
+      await page.setViewportSize(LOW_SCREEN);
       await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
       await expect(bar).not.toHaveAttribute('data-visible', '');
     });

@@ -12,6 +12,18 @@ export const VIEWPORTS = {
   desktop: { width: 1440, height: 900 },
 } as const;
 
+/** Телефоны с открытыми панелями браузера: то, что гость видит, не прокручивая страницу. */
+export const PHONE_FIRST_SCREENS = [
+  { width: 360, height: 640 },
+  // iPhone SE в Safari
+  { width: 375, height: 553 },
+  // iPhone 14 в Safari
+  { width: 390, height: 664 },
+] as const;
+
+/** Низкий экран (телефон боком в узком окне): кнопка первого экрана остаётся ниже края. */
+export const LOW_SCREEN = { width: 390, height: 320 } as const;
+
 /** Обложка складного телефона — уже этого экранов в ходу нет. */
 export const NARROWEST = { width: 280, height: 653 } as const;
 

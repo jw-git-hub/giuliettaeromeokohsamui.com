@@ -113,7 +113,10 @@
   /* главное фото */
   --hero-photo-max: 520px;
   --hero-photo-max-desktop: 560px;
-  --hero-photo-svh: 46svh;
+  /* телефон: фото занимает то, что осталось от экрана после шапки, названия и кнопок;
+     на низком экране (телефон боком) — не меньше 40 % высоты */
+  --hero-photo-svh: max(40svh, calc(100svh - var(--hero-rest-height)));
+  --hero-rest-height: 21rem;
   --hero-quote-max: 30rem;
   --hero-fade-circle: 90%;   /* до этого радиуса квадрат фото непрозрачен — круг окна виден целиком */
   --hero-fade-x: 5%;
