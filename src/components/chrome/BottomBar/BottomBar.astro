@@ -5,7 +5,7 @@ import type { Dictionary } from '@/i18n';
 import './BottomBar.css';
 
 // Нижняя панель на телефоне. Показом управляет src/scripts/bottom-bar.ts:
-// панель видна, пока на экране нет ни кнопки Book Now первого экрана, ни формы брони.
+// панель появляется, когда кнопка Book Now первого экрана ушла вверх за край, и прячется у формы брони.
 interface Props {
   t: Dictionary;
 }

@@ -33,7 +33,7 @@ const { showsQuoteTranslation } = getLocaleInfo(locale);
         {showsQuoteTranslation && <p class="hero__quote-translation">{t.hero.quoteTranslation}</p>}
       </blockquote>
       <div class="hero__actions">
-        <Button variant="primary" href={`#${ANCHORS.reservations}`} goal="book-hero" data-bar-hide="full">
+        <Button variant="primary" href={`#${ANCHORS.reservations}`} goal="book-hero" data-bar-hide="until-passed">
           {t.hero.bookNow}
         </Button>
         <Button variant="secondary" href={`#${ANCHORS.fullMenu}`} goal="menu-hero">

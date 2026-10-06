@@ -145,10 +145,13 @@ for (const locale of BUILT_LOCALES) {
       dateLabels.forEach((label) => expect(label).toMatch(/20\d\d/));
     });
 
-    test('нижняя панель: видна в тексте, прячется у формы, не закрывает подвал', async ({ page }) => {
+    test('нижняя панель: на первом экране её нет, видна в тексте, прячется у формы, не закрывает подвал', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.phone);
       await page.goto(pagePath(locale));
       const bar = page.locator('[data-bottom-bar]');
+      await expect(bar).toHaveAttribute('data-enhanced', '');
+      await expect(bar).not.toHaveAttribute('data-visible', '');
+      await expect(bar).toBeHidden();
       await jumpTo(page, '#story');
       await expect(bar).toHaveAttribute('data-visible', '');
       await jumpTo(page, '.reservation-form');
@@ -158,6 +161,11 @@ for (const locale of BUILT_LOCALES) {
       const footerBottom = await page.locator('.site-footer').evaluate((footer) => footer.getBoundingClientRect().bottom);
       const barTop = await bar.evaluate((element) => element.getBoundingClientRect().top);
       expect(footerBottom).toBeLessThanOrEqual(barTop + 1);
+      // Прыжок наверх без прокрутки (ссылка в шапке) на маленьком экране, где кнопка первого экрана
+      // остаётся ниже края: панель всё равно прячется.
+      await page.setViewportSize(VIEWPORTS.small);
+      await page.evaluate(() => window.scrollTo({ top: 0, behavior: 'instant' }));
+      await expect(bar).not.toHaveAttribute('data-visible', '');
     });
 
     test('меню на телефоне: открывается, показывает разделы и языки, ведёт к разделу и закрывается', async ({ page }) => {

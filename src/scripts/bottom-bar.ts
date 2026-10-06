@@ -1,47 +1,51 @@
-// Нижняя панель видна, пока на экране нет ни кнопки Book Now первого экрана, ни формы брони:
-// так на экране всегда ровно одно действие «забронировать», и панель не закрывает форму.
-// data-bar-hide="full" — цель считается видимой, только когда видна целиком (кнопка);
-// data-bar-hide — когда видна любая её часть (форма выше экрана телефона).
+// Нижняя панель появляется, когда гость пролистал первый экран: кнопка Book Now ушла вверх за край.
+// Пока до кнопки не дошли или она на экране, панель скрыта — первый экран остаётся чистым.
+// У формы брони панель тоже прячется: на экране всегда ровно одно действие «забронировать».
+// data-bar-hide="until-passed" — цель держит панель скрытой, пока её не прокрутили выше экрана (кнопка);
+// data-bar-hide — пока видна любая её часть (форма выше экрана телефона).
 
 const BAR_SELECTOR = '[data-bottom-bar]';
 const HIDE_TARGET_SELECTOR = '[data-bar-hide]';
 const HIDE_MODE_ATTRIBUTE = 'data-bar-hide';
-const FULL_MODE = 'full';
+const UNTIL_PASSED_MODE = 'until-passed';
 const VISIBLE_ATTRIBUTE = 'data-visible';
 const ENHANCED_ATTRIBUTE = 'data-enhanced';
-const PARTLY_VISIBLE = 0;
-const FULLY_VISIBLE = 1;
-const ROUNDING_TOLERANCE = 0.01;
+// Область наблюдения продлена далеко вниз за экран: цель «в области», пока она на экране или ниже него,
+// и выходит из неё, только уйдя вверх. Так прыжок по ссылке мимо цели не остаётся незамеченным.
+const SCREEN_AND_BELOW = '0px 0px 100000px 0px';
 
 function setBarVisible(bar: HTMLElement, isVisible: boolean): void {
   bar.toggleAttribute(VISIBLE_ATTRIBUTE, isVisible);
   bar.inert = !isVisible;
 }
 
-function isOnScreen(entry: IntersectionObserverEntry): boolean {
-  const needsFullView = entry.target.getAttribute(HIDE_MODE_ATTRIBUTE) === FULL_MODE;
-  if (!needsFullView) return entry.isIntersecting;
-  return entry.intersectionRatio >= FULLY_VISIBLE - ROUNDING_TOLERANCE;
+function hidesUntilPassed(target: Element): boolean {
+  return target.getAttribute(HIDE_MODE_ATTRIBUTE) === UNTIL_PASSED_MODE;
 }
 
 function watchHideTargets(bar: HTMLElement): void {
-  const targetsOnScreen = new Set<Element>();
+  const targetsHoldingBar = new Set<Element>();
   const updateBar = (entries: IntersectionObserverEntry[]): void => {
     entries.forEach((entry) => {
-      if (isOnScreen(entry)) targetsOnScreen.add(entry.target);
-      else targetsOnScreen.delete(entry.target);
+      if (entry.isIntersecting) targetsHoldingBar.add(entry.target);
+      else targetsHoldingBar.delete(entry.target);
     });
-    setBarVisible(bar, targetsOnScreen.size === 0);
+    setBarVisible(bar, targetsHoldingBar.size === 0);
   };
-  const observer = new IntersectionObserver(updateBar, { threshold: [PARTLY_VISIBLE, FULLY_VISIBLE] });
-  document.querySelectorAll(HIDE_TARGET_SELECTOR).forEach((target) => observer.observe(target));
+  const onScreen = new IntersectionObserver(updateBar);
+  const notYetPassed = new IntersectionObserver(updateBar, { rootMargin: SCREEN_AND_BELOW });
+  document.querySelectorAll(HIDE_TARGET_SELECTOR).forEach((target) => {
+    const observer = hidesUntilPassed(target) ? notYetPassed : onScreen;
+    observer.observe(target);
+  });
 }
 
 function initBottomBar(): void {
   const bar = document.querySelector<HTMLElement>(BAR_SELECTOR);
   if (!bar || !('IntersectionObserver' in window)) return;
   bar.setAttribute(ENHANCED_ATTRIBUTE, '');
-  setBarVisible(bar, true);
+  // Скрыта, пока наблюдатели не скажут иначе: на первом экране панель не мелькает.
+  setBarVisible(bar, false);
   watchHideTargets(bar);
 }
 
