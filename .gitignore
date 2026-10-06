@@ -9,3 +9,11 @@ playwright-report/
 !.env.development
 !.env.demo
 .DS_Store
+
+# Служебные файлы: правила, дизайн, журнал, заметки к показу и снимок прежнего сайта.
+# Лежат только на диске — репозиторий открытый, к самому сайту они не относятся.
+CLAUDE.md
+DESIGN.md
+JOURNAL.md
+PRESENTATION.md
+original/
