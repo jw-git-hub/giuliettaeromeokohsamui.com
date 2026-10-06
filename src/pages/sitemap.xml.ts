@@ -3,6 +3,10 @@ import { BUILD_LOCALES } from '@/i18n';
 import { alternateLinks, canonicalUrl } from '@/i18n/urls';
 
 // Общая карта сайта: по записи на каждую опубликованную языковую версию, со ссылками на остальные.
+// Дата изменения — день сборки: сайт статический, новая выкладка и есть изменение страниц.
+const ISO_DATE_LENGTH = 'YYYY-MM-DD'.length;
+const buildDate = new Date().toISOString().slice(0, ISO_DATE_LENGTH);
+
 function toAlternateTags(): string {
   return alternateLinks()
     .map((link) => `    <xhtml:link rel="alternate" hreflang="${link.hreflang}" href="${link.href}"/>`)
@@ -10,7 +14,7 @@ function toAlternateTags(): string {
 }
 
 function toUrlEntry(location: string): string {
-  return ['  <url>', `    <loc>${location}</loc>`, toAlternateTags(), '  </url>'].join('\n');
+  return ['  <url>', `    <loc>${location}</loc>`, `    <lastmod>${buildDate}</lastmod>`, toAlternateTags(), '  </url>'].join('\n');
 }
 
 export const GET: APIRoute = () => {

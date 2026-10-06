@@ -2,6 +2,7 @@
 // описания и заголовки разделов — из перевода языка.
 import menuSource from '@content/menu.json';
 import { DEFAULT_LOCALE, getLocaleInfo, type LocaleCode } from '@/i18n';
+import { typesetStrings } from '@/i18n/typography';
 
 export interface MenuItem {
   id: string;
@@ -64,7 +65,7 @@ function loadTranslation(locale: LocaleCode): MenuTranslation | undefined {
   if (translation === undefined && isTrial) return undefined;
   if (translation === undefined) throw new Error(`Нет перевода меню для языка «${locale}»`);
   assertCompleteTranslation(translation);
-  return translation;
+  return typesetStrings(locale, translation);
 }
 
 function toGroup(group: SourceGroup, translation?: MenuTranslation): MenuGroup {

@@ -58,9 +58,32 @@ export const BOOKING_RULES = {
   closedWeekdays: [1, 2],
 } as const;
 
+export interface OpeningHours {
+  days: readonly string[];
+  opens: string;
+  closes: string;
+}
+
 /** Часы для разметки поиска: среда–воскресенье, 18:00–22:00. */
-export const OPENING_HOURS = {
+export const OPENING_HOURS: OpeningHours = {
   days: ['Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
   opens: '18:00',
   closes: '22:00',
+};
+
+/** La Dolce Vita: «Daily | 7:30 AM – 5:00 PM». */
+export const LA_DOLCE_VITA_HOURS: OpeningHours = {
+  days: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+  opens: '07:30',
+  closes: '17:00',
+};
+
+/** Адрес из texts.md по частям — для разметки поиска. Ничего не добавлено: части, склеенные обратно
+    («улица, район, провинция индекс»), дают строку адреса со страницы — это проверяет сборка.
+    Страны в оригинале нет, поэтому нет и здесь. */
+export const ADDRESS_PARTS = {
+  streetAddress: '83, Bophut, 46 Moo 2, Bo Put',
+  addressLocality: 'Ko Samui District',
+  addressRegion: 'Surat Thani',
+  postalCode: '84320',
 } as const;

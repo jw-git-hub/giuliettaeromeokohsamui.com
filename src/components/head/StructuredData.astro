@@ -1,15 +1,21 @@
 ---
-import { buildRestaurantSchema } from '@/data/structured-data';
+import { heroVariants } from '@/data/images';
+import { buildFallback } from '@/data/picture';
+import { buildSiteSchema } from '@/data/structured-data';
 import type { Dictionary, LocaleCode } from '@/i18n';
 
 interface Props {
   locale: LocaleCode;
   t: Dictionary;
+  /** Полный адрес картинки для мессенджеров. */
   imageUrl: string;
 }
 
 const { locale, t, imageUrl } = Astro.props;
-const schemaJson = JSON.stringify(buildRestaurantSchema(locale, t, imageUrl));
+// Своё фото ресторана — тот же файл, что уже стоит на первом экране запасным JPEG: нового файла не появляется.
+const heroPhoto = await buildFallback(heroVariants[heroVariants.length - 1]);
+const heroPhotoUrl = new URL(heroPhoto.src, Astro.site).href;
+const schemaJson = JSON.stringify(buildSiteSchema(locale, t, [heroPhotoUrl, imageUrl]));
 ---
 
 <script is:inline type="application/ld+json" set:html={schemaJson} />

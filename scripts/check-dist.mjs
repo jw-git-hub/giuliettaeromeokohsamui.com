@@ -3,7 +3,8 @@
 // 2. На странице нет слов сверх словаря, меню и общих данных — ни в тексте, ни в подписях,
 //    ни в стилях; нет знаков валют.
 // 3. Меню: разделы, группы, позиции, цены и буквы V — как в content/menu.json.
-// 4. В <head> и в разметке для поиска — только разрешённые поля: ни оценок, ни координат, ни цен.
+// 4. В <head> и в разметке для поиска — только разрешённые поля: ни оценок, ни координат, ни цен;
+//    адрес в разметке, разбитый на части, совпадает с адресом на странице.
 // 5. Черновик языка может быть только в сборке, закрытой от поиска.
 // 6. Внутренние файлы и пометки в dist не попали.
 import { existsSync, readdirSync } from 'node:fs';
@@ -148,7 +149,7 @@ function readMenuFromPage(root) {
     hasVMark: node.querySelector(V_MARK_SELECTOR) !== null,
   });
   const toGroup = (node) => ({
-    title: node.querySelector('.menu-section__group-title')?.text.trim() ?? null,
+    title: node.querySelector('.menu-section__group-title') ? collapseSpaces(node.querySelector('.menu-section__group-title').text) : null,
     items: node.querySelectorAll('.menu-item').map(toItem),
   });
   return root.querySelectorAll('.menu-section').map((node) => ({
@@ -183,6 +184,15 @@ function findForbiddenData(root) {
   ];
 }
 
+/** Адрес в разметке для поиска разбит на части; склеенные обратно, они обязаны дать адрес со страницы. */
+function findAddressMismatch(root, dictionary) {
+  const schemaNodes = root.querySelectorAll(SCHEMA_SELECTOR).flatMap((node) => JSON.parse(node.text)['@graph'] ?? []);
+  const address = schemaNodes.find((node) => node.address)?.address ?? {};
+  const joined = `${address.streetAddress}, ${address.addressLocality}, ${address.addressRegion} ${address.postalCode}`;
+  if (joined === dictionary.reservations.address) return [];
+  return [`адрес в разметке для поиска «${joined}» не совпадает с адресом на странице «${dictionary.reservations.address}»`];
+}
+
 function findDraftLeak(root, locale) {
   const isDraft = registry.locales[locale].status !== PUBLISHED;
   const isClosedFromSearch = root.querySelector('meta[name="robots"]')?.getAttribute('content')?.includes('noindex');
@@ -200,6 +210,7 @@ function checkLocale(locale) {
     ...findUnknownAttributes(root, known),
     ...findMenuMismatch(root, locale),
     ...findForbiddenData(root),
+    ...findAddressMismatch(root, dictionary),
     ...findDraftLeak(root, locale),
   ].map((problem) => `[${locale}] ${problem}`);
 }

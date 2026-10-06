@@ -1,6 +1,7 @@
 import english from './dictionaries/en.json';
 import registry from './registry.json';
 import { assertSameShape, mergeOverReference } from './shape';
+import { typesetStrings } from './typography';
 
 export type Dictionary = typeof english;
 export type LocaleCode = keyof typeof registry.locales;
@@ -42,10 +43,19 @@ function loadRawDictionary(locale: LocaleCode): unknown {
 
 export function getDictionary(locale: LocaleCode): Dictionary {
   if (locale === DEFAULT_LOCALE) return english;
+  return withTypography(locale, loadCheckedDictionary(locale));
+}
+
+function loadCheckedDictionary(locale: LocaleCode): Dictionary {
   const rawDictionary = loadRawDictionary(locale);
   if (getLocaleInfo(locale).status === TRIAL_STATUS) {
     return mergeOverReference(english, rawDictionary, locale);
   }
   assertSameShape(english, rawDictionary, locale);
   return rawDictionary as Dictionary;
+}
+
+/** Типографика языка — для текста страницы; заголовок и описание для поиска остаются как в файле. */
+function withTypography(locale: LocaleCode, dictionary: Dictionary): Dictionary {
+  return { ...typesetStrings(locale, dictionary), meta: dictionary.meta };
 }
