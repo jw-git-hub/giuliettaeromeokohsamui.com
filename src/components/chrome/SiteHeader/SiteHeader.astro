@@ -10,8 +10,8 @@ import { localeUrl } from '@/i18n/urls';
 import './SiteHeader.css';
 
 // Шапка. Компьютер (от 1024 px): название, разделы, языки и бронь.
-// Телефон и планшет: название и кнопка «Menu» — она открывает меню на весь экран (MobileMenu).
-// Без скриптов кнопка ведёт к списку разделов в подвале.
+// Телефон и планшет: слева языки, при прокрутке их сменяет название; справа кнопка «Menu» —
+// она открывает меню на весь экран (MobileMenu). Без скриптов кнопка ведёт к списку разделов в подвале.
 interface Props {
   locale: LocaleCode;
   t: Dictionary;
@@ -26,12 +26,12 @@ const { locale, t } = Astro.props;
     <nav class="site-header__nav">
       <SectionLinks t={t} class="site-header__links" />
     </nav>
-    <div class="site-header__actions">
+    <div class="site-header__languages">
       <LangSwitcher current={locale} t={t} />
-      <Button variant="primary" size="header" href={`#${ANCHORS.reservations}`} goal="book-header">
-        {t.hero.bookNow}
-      </Button>
     </div>
+    <Button class="site-header__book" variant="primary" size="header" href={`#${ANCHORS.reservations}`} goal="book-header">
+      {t.hero.bookNow}
+    </Button>
     <a class="site-header__menu" href={`#${ANCHORS.footerNav}`} data-mobile-menu-open>
       <span>{t.menu.label}</span>
       <Icon name="menu" />

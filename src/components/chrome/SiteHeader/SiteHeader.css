@@ -17,15 +17,18 @@
   }
 }
 
+/* Телефон и планшет: слева языки или название (в одной ячейке), справа кнопка «Menu». */
 .site-header__inner {
-  display: flex;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
   gap: var(--sp-3);
   align-items: center;
-  justify-content: space-between;
   height: 100%;
 }
 
 .site-header__name {
+  grid-area: 1 / 1;
+  justify-self: start;
   font-family: var(--font-display);
   font-size: var(--fs-header-name);
   line-height: 1;
@@ -34,7 +37,8 @@
 }
 
 .site-header__nav,
-.site-header__actions {
+.site-header__languages,
+.site-header__book {
   display: none;
 }
 
@@ -52,21 +56,43 @@
   text-transform: var(--label-case);
 }
 
-/* На телефоне название в шапке появляется, когда крупное название первого экрана
-   уходит вверх: два названия одно под другим на первом экране не нужны. */
+/* На телефоне языки и название в шапку вместе не помещаются. Вверху страницы, пока крупное
+   название первого экрана на виду, слева стоят языки; при прокрутке они гаснут, и на их месте
+   проявляется название. Где браузер не умеет анимацию по прокрутке, в шапке всегда название,
+   а языки остаются в меню. */
 @media (max-width: 1023.98px) {
   @supports (animation-timeline: scroll()) {
+    .site-header__languages {
+      display: block;
+      grid-area: 1 / 1;
+      justify-self: start;
+      margin-left: calc(-1 * var(--sp-2));
+      animation: site-header-swap-out linear both;
+      animation-timeline: scroll(root);
+      animation-range: var(--header-languages-from) var(--header-languages-to);
+    }
+
     .site-header__name {
-      animation: site-header-name-appear linear both;
+      animation: site-header-swap-in linear both;
       animation-timeline: scroll(root);
       animation-range: var(--header-name-from) var(--header-name-to);
     }
   }
 }
 
+/* Компьютер: название, разделы по центру, языки и бронь справа. */
 @media (width >= 1024px) {
+  .site-header__inner {
+    grid-template-columns: auto minmax(0, 1fr) auto auto;
+  }
+
+  .site-header__name {
+    grid-area: auto;
+  }
+
   .site-header__nav {
     display: block;
+    justify-self: center;
   }
 
   .site-header__links {
@@ -90,10 +116,14 @@
     color: var(--gold);
   }
 
-  .site-header__actions {
-    display: flex;
-    gap: var(--sp-3);
-    align-items: center;
+  .site-header__languages {
+    display: block;
+    grid-column: 3;
+  }
+
+  .site-header__book {
+    display: inline-flex;
+    grid-column: 4;
   }
 
   .site-header__menu {
@@ -122,7 +152,8 @@
   }
 }
 
-@keyframes site-header-name-appear {
+/* Смена языков названием при прокрутке: скрытое не видно и не нажимается. */
+@keyframes site-header-swap-in {
   from {
     opacity: 0;
     visibility: hidden;
@@ -131,5 +162,17 @@
   to {
     opacity: 1;
     visibility: visible;
+  }
+}
+
+@keyframes site-header-swap-out {
+  from {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  to {
+    opacity: 0;
+    visibility: hidden;
   }
 }

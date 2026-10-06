@@ -79,7 +79,7 @@ html:has(.mobile-menu[open]) {
 
 /* У подписей языков широкая область нажатия: сдвигаем ряд, чтобы первая буква встала по левому краю. */
 .mobile-menu__bottom .lang-switcher {
-  margin-left: calc(-1 * var(--sp-3));
+  margin-left: calc(-1 * var(--sp-2));
 }
 
 .mobile-menu__book {
