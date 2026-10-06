@@ -4,6 +4,8 @@ import registry from '../../src/i18n/registry.json' with { type: 'json' };
 export type LocaleCode = keyof typeof registry.locales;
 
 export const VIEWPORTS = {
+  // Самый узкий экран в ходу: iPhone SE первого поколения и маленькие Android.
+  small: { width: 320, height: 568 },
   phone: { width: 390, height: 844 },
   tablet: { width: 820, height: 1180 },
   laptop: { width: 1024, height: 768 },

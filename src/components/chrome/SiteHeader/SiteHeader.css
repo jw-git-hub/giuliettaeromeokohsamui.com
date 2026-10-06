@@ -7,10 +7,23 @@
   background: var(--surface);
 }
 
+/* Встроенный браузер Telegram на iPhone рисует страницу и под своей свёрнутой панелью, а шапка
+   прилипает ниже неё: в щели над шапкой просвечивал бы текст страницы. Фон шапки продлён вверх
+   сплошным цветом; в обычных браузерах эта полоса за верхним краем экрана и не видна. */
+.site-header::before {
+  content: "";
+  position: absolute;
+  inset: auto 0 100%;
+  height: var(--header-bleed);
+  background: var(--surface);
+  pointer-events: none;
+}
+
 /* Над первым экраном шапка прозрачная, после прокрутки — с фоном. Без скрипта:
    где браузер не умеет анимацию по прокрутке, шапка просто всегда с фоном. */
 @supports (animation-timeline: scroll()) {
-  .site-header {
+  .site-header,
+  .site-header::before {
     animation: site-header-solidify linear both;
     animation-timeline: scroll(root);
     animation-range: 0 var(--header-height);

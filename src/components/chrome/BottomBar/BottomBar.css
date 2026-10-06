@@ -5,7 +5,8 @@
   z-index: 30;
   display: flex;
   gap: var(--sp-2);
-  padding: var(--bar-pad-y) var(--bar-pad-x) calc(var(--bar-pad-y) + env(safe-area-inset-bottom));
+  padding: var(--bar-pad-y) max(var(--bar-pad-x), env(safe-area-inset-right)) calc(var(--bar-pad-y) + env(safe-area-inset-bottom))
+    max(var(--bar-pad-x), env(safe-area-inset-left));
   border-top: 1px solid var(--line);
   background: var(--surface);
   transition:
@@ -39,7 +40,12 @@
 /* Запись через max-width: отрицание диапазона старые Safari не понимают и пропустили бы правило. */
 @media (max-width: 767.98px) {
   body {
-    padding-bottom: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + 1px + env(safe-area-inset-bottom));
+    padding-bottom: var(--bar-height);
+  }
+
+  /* И запас для обхода клавишей Tab: ссылка в фокусе не остаётся под панелью. */
+  html {
+    scroll-padding-bottom: var(--bar-height);
   }
 }
 

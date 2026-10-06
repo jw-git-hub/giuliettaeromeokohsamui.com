@@ -3,7 +3,10 @@
   max-width: none;
   height: 100%;
   max-height: none;
-  padding: 0 max(var(--gutter), env(safe-area-inset-right)) var(--sp-5) max(var(--gutter), env(safe-area-inset-left));
+
+  /* Поля учитывают вырез камеры и полоску внизу экрана iPhone: меню открыто на весь экран. */
+  padding: env(safe-area-inset-top) max(var(--gutter), env(safe-area-inset-right)) max(var(--sp-5), env(safe-area-inset-bottom))
+    max(var(--gutter), env(safe-area-inset-left));
   border: 0;
   background: var(--bg);
   color: var(--text);

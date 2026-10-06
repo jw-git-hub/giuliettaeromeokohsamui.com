@@ -55,3 +55,54 @@
   translate: 0 -50%;
   pointer-events: none;
 }
+
+/* Список выбора в цветах и шрифтах сайта — там, где браузер это умеет: Chrome и браузеры на его
+   основе, в том числе на Android. В Safari на iPhone и в Firefox список остаётся системным:
+   его рисует сам телефон, и сайту он не подчиняется. Поле на странице выглядит одинаково везде. */
+@supports (appearance: base-select) {
+  .form-field__select .form-field__control,
+  .form-field__select .form-field__control::picker(select) {
+    appearance: base-select;
+  }
+
+  /* В этом режиме поле — строка из текста и стрелки: текст остаётся по центру высоты, как раньше. */
+  .form-field__select .form-field__control {
+    align-items: center;
+  }
+
+  /* Стрелку рисуем свою — см. выше. */
+  .form-field__select .form-field__control::picker-icon {
+    display: none;
+  }
+
+  .form-field__select .form-field__control::picker(select) {
+    margin-block: var(--sp-1);
+    padding-block: var(--sp-1);
+    border: 1px solid var(--line-strong);
+    border-radius: var(--radius);
+    background: var(--surface);
+    color: var(--text);
+  }
+
+  .form-field__control option {
+    min-height: var(--tap-min);
+    padding: var(--sp-2) var(--sp-3);
+    background: transparent;
+    color: var(--text);
+    cursor: pointer;
+  }
+
+  .form-field__control option:is(:hover, :focus-visible) {
+    background: var(--gold-wash);
+    outline: none;
+  }
+
+  .form-field__control option:checked {
+    color: var(--gold);
+  }
+
+  /* Выбранную строку отмечает цвет; системная галочка не нужна. */
+  .form-field__control option::checkmark {
+    display: none;
+  }
+}

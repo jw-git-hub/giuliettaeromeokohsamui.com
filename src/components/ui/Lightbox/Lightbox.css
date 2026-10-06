@@ -3,7 +3,10 @@
   max-width: none;
   height: 100%;
   max-height: none;
-  padding: var(--sp-3);
+
+  /* Поля учитывают вырез камеры и скруглённые углы iPhone, в том числе в повёрнутом телефоне. */
+  padding: max(var(--sp-3), env(safe-area-inset-top)) max(var(--sp-3), env(safe-area-inset-right))
+    max(var(--sp-3), env(safe-area-inset-bottom)) max(var(--sp-3), env(safe-area-inset-left));
   border: 0;
   background: transparent;
   color: var(--text);
@@ -70,8 +73,8 @@ html:has(.lightbox[open]) {
 
 .lightbox__button--close {
   position: absolute;
-  top: var(--sp-3);
-  right: var(--sp-3);
+  top: max(var(--sp-3), env(safe-area-inset-top));
+  right: max(var(--sp-3), env(safe-area-inset-right));
 }
 
 .lightbox__button--previous {

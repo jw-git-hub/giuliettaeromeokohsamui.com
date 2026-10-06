@@ -10,6 +10,11 @@ export default defineConfig({
   fullyParallel: true,
   reporter: 'list',
   use: { baseURL: `http://localhost:${PORT}` },
+  // Два движка: Chromium (Chrome, Android, Edge) и WebKit — на нём работает Safari на iPhone и Mac.
+  projects: [
+    { name: 'chromium', use: { browserName: 'chromium' } },
+    { name: 'safari', use: { browserName: 'webkit' } },
+  ],
   webServer: {
     command: `node scripts/serve-dist.mjs ${PORT}`,
     url: `http://localhost:${PORT}/`,

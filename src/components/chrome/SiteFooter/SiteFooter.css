@@ -70,13 +70,17 @@
   color: var(--gold);
 }
 
-.site-footer .opening-hours,
 .site-footer__contacts {
+  gap: 0;
   white-space: nowrap;
 }
 
-.site-footer__contacts {
-  gap: 0;
+/* На самых узких телефонах (320–359 px) строка часов шире экрана: там ей можно переноситься,
+   иначе страницу можно было бы утянуть вбок. */
+@media (width >= 360px) {
+  .site-footer .opening-hours {
+    white-space: nowrap;
+  }
 }
 
 /* Адрес в одну строку там, где он помещается; на телефоне переносится по ширине экрана. */

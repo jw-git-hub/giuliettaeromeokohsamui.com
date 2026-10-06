@@ -15,14 +15,16 @@ for (const locale of BUILT_LOCALES) {
   }
 }
 
-test('с клавиатуры: первая остановка — ссылка «к содержанию», фокус виден', async ({ page }) => {
+test('с клавиатуры: первая остановка — ссылка «к содержанию», фокус виден', async ({ page, browserName }) => {
+  // Safari по клавише Tab ходит только по полям форм; по ссылкам — Option+Tab (настройка системы по умолчанию).
+  const tabKey = browserName === 'webkit' ? 'Alt+Tab' : 'Tab';
   await page.setViewportSize(VIEWPORTS.desktop);
   await page.goto('/');
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(tabKey);
   const focused = page.locator(':focus');
   await expect(focused).toHaveClass(/skip-link/);
   await expect(focused).toBeInViewport();
-  await page.keyboard.press('Tab');
+  await page.keyboard.press(tabKey);
   const outline = await page.locator(':focus').evaluate((element) => getComputedStyle(element).outlineStyle);
   expect(outline).toBe('solid');
 });

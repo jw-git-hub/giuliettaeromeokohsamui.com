@@ -77,6 +77,7 @@
   --field-height: 52px;
   --tap-min: 44px;
   --header-height: 56px;          /* телефон и планшет; на компьютере — 72 px, см. ниже */
+  --header-bleed: 120px;          /* на сколько фон шапки продлён вверх, за край экрана */
   /* Телефон: вверху страницы в шапке стоят языки; при прокрутке они гаснут (первая пара отметок),
      и на их месте проявляется название (вторая пара). */
   --header-languages-from: 60px;
@@ -84,6 +85,8 @@
   --header-name-from: 140px;
   --header-name-to: 220px;
   --bar-pad-y: 10px;
+  /* высота нижней панели телефона: кнопка, поля, линия сверху и безопасная зона экрана */
+  --bar-height: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + 1px + env(safe-area-inset-bottom));
   --bar-pad-x: 16px;
   --icon-size: 18px;
   --focus-width: 2px;

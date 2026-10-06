@@ -70,10 +70,10 @@ At the heart of the restaurant is Italian Head Chef Mrs Paola Ferrari, whose coo
 
 | Площадка | Оценка | Звёзды | Подпись | Кнопка |
 |---|---|---|---|---|
-| Google | 4.8 | ★★★★★ | 531 reviews | Google Reviews |
-| Tripadvisor | 4.8 | ★★★★★ | 1,178 reviews | Tripadvisor Reviews |
+| Google | 4.8 | ★★★★★ | 592 reviews | Google Reviews |
+| Tripadvisor | 4.8 | ★★★★★ | 1,193 reviews | Tripadvisor Reviews |
 
-Цифры вписаны в страницу руками, сами не обновляются.
+Цифры вписаны в страницу руками, сами не обновляются. Обновлены 06.10.2026 по самим площадкам (решение заказчика): в оригинале стояло 531 и 1,178, оценки те же — 4.8.
 
 ## 6. Галерея
 

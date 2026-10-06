@@ -84,6 +84,26 @@ for (const locale of BUILT_LOCALES) {
       expect(new URL(page.url()).pathname).toBe(pagePath(locale));
     });
 
+    test('жирности текста — только те, что есть в файлах шрифтов (scripts/make-fonts.mjs)', async ({ page }) => {
+      await page.goto(pagePath(locale));
+      const unexpected = await page.evaluate(
+        ({ displayFamily, displayWeights, textWeights }) => {
+          const withText = Array.from(document.querySelectorAll<HTMLElement>('body *')).filter((element) =>
+            Array.from(element.childNodes).some((node) => node.nodeType === Node.TEXT_NODE && node.textContent?.trim()),
+          );
+          const used = withText.map((element) => {
+            const style = getComputedStyle(element);
+            return { isDisplay: style.fontFamily.startsWith(`"${displayFamily}"`), weight: style.fontWeight, tag: element.className || element.tagName };
+          });
+          return used
+            .filter(({ isDisplay, weight }) => !(isDisplay ? displayWeights : textWeights).includes(weight))
+            .map(({ tag, weight }) => `${tag}: ${weight}`);
+        },
+        { displayFamily: 'Bodoni Moda Variable', displayWeights: ['400'], textWeights: ['400', '600'] },
+      );
+      expect([...new Set(unexpected)]).toEqual([]);
+    });
+
     test('гостей можно выбрать от 1 до 8; год в списке дат — григорианский', async ({ page }) => {
       await page.goto(pagePath(locale));
       const guests = await page.locator('#booking-guests option:not([value=""])').allTextContents();

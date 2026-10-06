@@ -8,6 +8,10 @@ html {
   color-scheme: dark;
   font-synthesis: none;
   scroll-behavior: smooth;
+
+  /* Липкая шапка закрывает верх экрана. Браузер об этом не знает: без запаса заголовок после перехода
+     по якорю и поле, на которое пришли клавишей Tab, оказались бы под ней. */
+  scroll-padding-top: calc(var(--header-height) + var(--sp-4));
   /* stylelint-disable-next-line property-no-vendor-prefix -- iPhone понимает только запись с префиксом */
   -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
@@ -70,10 +74,6 @@ textarea {
   outline-offset: var(--focus-offset);
 }
 
-/* Переход по якорю не прячет заголовок под липкой шапкой. */
-[id] {
-  scroll-margin-top: calc(var(--header-height) + var(--sp-4));
-}
 
 .container {
   width: 100%;
@@ -88,7 +88,7 @@ textarea {
   padding-block: var(--section-y);
 
   /* Переход по якорю ставит заголовок секции близко к верху экрана, а не под всем её отступом. */
-  scroll-margin-top: calc(var(--header-height) + var(--sp-5) - var(--section-y));
+  scroll-margin-top: calc(var(--sp-5) - var(--sp-4) - var(--section-y));
 }
 
 .skip-link {
