@@ -38,6 +38,15 @@
   line-height: 1.5;
 }
 
+/* Самые узкие телефоны: плитка уже длинного слова («с морепродуктами» держится вместе неразрывным
+   пробелом), и текст наезжал бы на соседнюю плитку. Здесь слово переносится по слогам. */
+@media (max-width: 359.98px) {
+  .menu-categories__text {
+    overflow-wrap: break-word;
+    hyphens: auto;
+  }
+}
+
 @media (width >= 768px) {
   .menu-categories__grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));

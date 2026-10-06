@@ -49,6 +49,17 @@ for (const locale of BUILT_LOCALES) {
       });
     }
 
+    test('на самом узком экране текст не выходит за свой блок и не наезжает на соседний', async ({ page }) => {
+      await page.setViewportSize(VIEWPORTS.small);
+      await page.goto(pagePath(locale));
+      const overflowing = await page.evaluate(() =>
+        Array.from(document.querySelectorAll<HTMLElement>('main :is(p, h1, h2, h3, h4, li, dt, dd), footer :is(p, li, dt, dd)'))
+          .filter((element) => element.offsetParent !== null && element.scrollWidth > element.clientWidth + 1)
+          .map((element) => `${element.className || element.tagName}: ${element.textContent?.trim().slice(0, 40)}`),
+      );
+      expect(overflowing).toEqual([]);
+    });
+
     test('область нажатия у кнопок и ссылок-действий не меньше 44 px', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.phone);
       await page.goto(pagePath(locale));

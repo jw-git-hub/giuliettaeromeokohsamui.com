@@ -1,6 +1,8 @@
 // Текст файла llms.txt — короткая карта сайта для ИИ-ассистентов: кто это, где, когда открыто,
 // как забронировать, что в меню. Собирается из английского словаря, меню и ссылок ресторана:
-// ни одной фразы, которой нет на странице. Цены — как на странице, без знака валюты.
+// ни одной фразы, которой нет на странице (это проверяет сборка). Цен и буквы «V» здесь нет:
+// на странице они стоят без валюты и без расшифровки, а ИИ-ассистент додумал бы и то и другое сам.
+// Вернуть их можно, когда владелица ответит, в какой валюте цены и что значит «V».
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -18,7 +20,6 @@ import shared from '@/i18n/shared.json';
 import { canonicalUrl } from '@/i18n/urls';
 
 const MARKER_PATTERN = /\{\/?\w+\}/g;
-const V_MARK = 'V';
 const BLOCK_SEPARATOR = '\n\n';
 
 type FamilyCard = Dictionary['family']['dolce'];
@@ -47,8 +48,7 @@ function contactLines(t: Dictionary): string[] {
 }
 
 function menuItemLine(item: MenuItem): string {
-  const name = item.hasVMark ? `${item.name} (${V_MARK})` : item.name;
-  return `- ${name}, ${item.price}: ${item.description}`;
+  return `- ${item.name}: ${item.description}`;
 }
 
 function menuGroupBlock(group: MenuGroup): string {

@@ -15,7 +15,9 @@ const { locale, t, imageUrl } = Astro.props;
 // Своё фото ресторана — тот же файл, что уже стоит на первом экране запасным JPEG: нового файла не появляется.
 const heroPhoto = await buildFallback(heroVariants[heroVariants.length - 1]);
 const heroPhotoUrl = new URL(heroPhoto.src, Astro.site).href;
-const schemaJson = JSON.stringify(buildSiteSchema(locale, t, [heroPhotoUrl, imageUrl]));
+// Неразрывные пробелы русской типографики нужны только тексту на экране: в данных для поиска — обычные.
+const NBSP = /\u00A0/g;
+const schemaJson = JSON.stringify(buildSiteSchema(locale, t, [heroPhotoUrl, imageUrl])).replace(NBSP, ' ');
 ---
 
 <script is:inline type="application/ld+json" set:html={schemaJson} />

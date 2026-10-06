@@ -4,7 +4,7 @@
 // 3. У каждого фото заданы ширина и высота; главное фото одно, грузится сразу и с высоким приоритетом,
 //    остальные — лениво.
 // 4. Ссылка на стили стоит в начале страницы, раньше разметки для поиска.
-// 5. Шрифты, которые грузятся заранее, существуют и описаны в @font-face.
+// 5. Шрифты, которые грузятся заранее, существуют и описаны в @font-face; все файлы из url() в стилях на месте.
 // 6. Стили записаны так, что их понимают старые iPhone (Safari до 16.4).
 import { existsSync, readdirSync } from 'node:fs';
 import { parse } from 'node-html-parser';
@@ -20,7 +20,8 @@ const TEXT_FILE = /\.(html|css|js|txt|xml)$/;
 const STYLESHEET_LIMIT_BYTES = 6144;
 const STYLESHEET_MARK = 'rel="stylesheet"';
 const SCHEMA_MARK = 'application/ld+json';
-const MODERN_MEDIA_SYNTAX = /@media[^{]*(\(\s*(width|height)\s*[<>]|not\s*\()/;
+const MODERN_MEDIA_SYNTAX = /@media[^{]*([<>]|not\s*\()/;
+const CSS_URL = /url\(\s*["']?([^"')]+)["']?\s*\)/g;
 
 const registry = readJson('src/i18n/registry.json');
 
@@ -100,16 +101,38 @@ function findHeadOrderProblems(html) {
   ];
 }
 
+/** Файлы, названные в стилях через url(): шрифты из @font-face на странице и всё, что есть в файлах стилей. */
+function findMissingCssFiles(css, where) {
+  return [...css.matchAll(CSS_URL)]
+    .map((match) => match[1])
+    .filter((url) => url.includes(ASSETS_URL_PART) && !existsSync(toDistPath(url)))
+    .map((url) => `${where}: в стилях назван файл, которого нет: ${url}`);
+}
+
+function findStylesheetProblems() {
+  const stylesheets = readdirSync(ASSETS_DIR).filter((file) => file.endsWith('.css'));
+  return stylesheets.flatMap((file) => findMissingCssFiles(readText(`${ASSETS_DIR}/${file}`), file));
+}
+
 function findFontProblems(root) {
   const fontFaceCss = root.querySelectorAll('style').map((node) => node.text).join('');
-  return root.querySelectorAll('link[rel="preload"][as="font"]').flatMap((link) => {
+  const preloads = root.querySelectorAll('link[rel="preload"][as="font"]');
+  return [
+    ...(preloads.length > 0 ? [] : ['ни один шрифт не грузится заранее — текст первого экрана будет перерисовываться']),
+    ...findMissingCssFiles(fontFaceCss, '@font-face'),
+    ...preloads.flatMap(findPreloadProblems(fontFaceCss)),
+  ];
+}
+
+function findPreloadProblems(fontFaceCss) {
+  return (link) => {
     const url = link.getAttribute('href');
     return [
       ...(existsSync(toDistPath(url)) ? [] : [`заранее грузится шрифт, которого нет: ${url}`]),
       ...(fontFaceCss.includes(url) ? [] : [`заранее грузится шрифт, которого нет в @font-face: ${url}`]),
       ...(link.hasAttribute('crossorigin') ? [] : [`у шрифта ${url} нет crossorigin — браузер скачает его дважды`]),
     ];
-  });
+  };
 }
 
 function findLegacyCssProblems() {
@@ -133,6 +156,6 @@ async function checkPage(locale) {
 
 const builtLocales = Object.keys(registry.locales).filter((locale) => existsSync(pagePath(locale)));
 const pageProblems = (await Promise.all(builtLocales.map(checkPage))).flat();
-const problems = [...pageProblems, ...findOrphans(), ...findLegacyCssProblems()];
+const problems = [...pageProblems, ...findOrphans(), ...findStylesheetProblems(), ...findLegacyCssProblems()];
 if (problems.length > 0) fail('Собранный сайт не прошёл проверку скорости и чистоты', problems);
 pass(`скорость и чистота проверены: ${builtLocales.join(', ')} — лишних файлов нет, фото и шрифты на месте, стили в начале страницы`);

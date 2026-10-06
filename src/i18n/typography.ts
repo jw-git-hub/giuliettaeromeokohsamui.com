@@ -8,7 +8,8 @@ const NBSP = ' ';
 const RUSSIAN_SHORT_WORDS = ['в', 'во', 'на', 'с', 'со', 'к', 'ко', 'о', 'об', 'у', 'и', 'а', 'но', 'за', 'из', 'от', 'до', 'по', 'не', 'ни', 'для', 'без', 'при', 'или'];
 const AFTER_SHORT_WORD = new RegExp(`(?<![\\p{L}\\p{N}])(${RUSSIAN_SHORT_WORDS.join('|')}) `, 'giu');
 const BEFORE_DASH = / (?=[—–])/g;
-const BETWEEN_NUMBER_AND_WORD = /(?<=\d) (?=\p{L})/gu;
+// Только перед русским словом: «72 часа», но не английский адрес «46 Moo 2» внутри русской страницы.
+const BETWEEN_NUMBER_AND_WORD = /(?<=\d) (?=\p{Script=Cyrillic})/gu;
 
 function typesetRussian(text: string): string {
   return text.replace(AFTER_SHORT_WORD, `$1${NBSP}`).replace(BEFORE_DASH, NBSP).replace(BETWEEN_NUMBER_AND_WORD, NBSP);

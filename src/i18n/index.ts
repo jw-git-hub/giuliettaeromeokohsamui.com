@@ -55,7 +55,8 @@ function loadCheckedDictionary(locale: LocaleCode): Dictionary {
   return rawDictionary as Dictionary;
 }
 
-/** Типографика языка — для текста страницы; заголовок и описание для поиска остаются как в файле. */
+/** Типографика языка — для текста страницы; заголовок и описание для поиска остаются как в файле
+    (из разметки для поиска неразрывные пробелы убирает StructuredData.astro). */
 function withTypography(locale: LocaleCode, dictionary: Dictionary): Dictionary {
   return { ...typesetStrings(locale, dictionary), meta: dictionary.meta };
 }

@@ -7,6 +7,7 @@
 //    адрес в разметке, разбитый на части, совпадает с адресом на странице.
 // 5. Черновик языка может быть только в сборке, закрытой от поиска.
 // 6. Внутренние файлы и пометки в dist не попали.
+// 7. В llms.txt (карта сайта для ИИ) нет слов сверх английского словаря и меню.
 import { existsSync, readdirSync } from 'node:fs';
 import { parse } from 'node-html-parser';
 import { mergeOverReference } from '../src/i18n/shape.ts';
@@ -35,6 +36,8 @@ const CSS_CONTENT = /content:\s*"([^"]*)"/g;
 const SCHEMA_SELECTOR = 'script[type="application/ld+json"]';
 const PREVIEW_LENGTH = 200;
 const INTERNAL_MARKERS = ['_about', 'corrections', 'sourcePage', '<!--'];
+const LLMS_FILE = `${DIST}/llms.txt`;
+const MARKDOWN_LINK_TARGET = /\]\([^)]*\)/g;
 
 const registry = readJson('src/i18n/registry.json');
 const english = readJson('src/i18n/dictionaries/en.json');
@@ -225,6 +228,14 @@ function findCssText() {
     .map((value) => `в стилях есть текст: content "${value}"`);
 }
 
+/** Карта сайта для ИИ собирается из тех же текстов: слов сверх английского словаря и меню в ней быть не должно. */
+function findLlmsExtraWords() {
+  if (!existsSync(LLMS_FILE)) return ['в dist нет llms.txt'];
+  const text = readText(LLMS_FILE).replace(MARKDOWN_LINK_TARGET, ' ');
+  const rest = collapseSpaces(removeKnown(text, knownStrings(registry.defaultLocale, english)));
+  return HAS_WORD_OR_CURRENCY.test(rest) ? [`в llms.txt есть текст вне словаря: «${rest.slice(0, PREVIEW_LENGTH)}»`] : [];
+}
+
 function findInternalLeak(locales) {
   const markers = locales.flatMap((locale) =>
     INTERNAL_MARKERS.filter((marker) => readText(pagePath(locale)).includes(marker)).map((marker) => `${locale}: ${marker}`),
@@ -234,6 +245,6 @@ function findInternalLeak(locales) {
 }
 
 const builtLocales = Object.keys(registry.locales).filter((locale) => existsSync(pagePath(locale)));
-const problems = [...builtLocales.flatMap(checkLocale), ...findCssText(), ...findInternalLeak(builtLocales)];
+const problems = [...builtLocales.flatMap(checkLocale), ...findCssText(), ...findLlmsExtraWords(), ...findInternalLeak(builtLocales)];
 if (problems.length > 0) fail('Собранные страницы не прошли проверку', problems);
 pass(`собранные страницы проверены: ${builtLocales.join(', ')} — тексты на своих местах, лишнего нет, меню совпадает с menu.json`);
