@@ -1,9 +1,10 @@
+/* Телефон и планшет: столбик по центру — цифра, площадка, звёзды, число отзывов, ссылка. */
 .rating {
   position: relative;
   display: grid;
-  grid-template-columns: auto 1fr;
   gap: var(--sp-1) var(--sp-3);
-  align-items: center;
+  place-items: center;
+  text-align: center;
 }
 
 .rating__score {
@@ -26,6 +27,7 @@
 
   display: flex;
   gap: var(--sp-1);
+  justify-content: center;
   margin-block: var(--sp-1);
   color: var(--gold);
 }
@@ -37,14 +39,26 @@
   line-height: 1.3;
 }
 
-.rating__link {
-  grid-column: 1 / -1;
-  justify-self: start;
-}
-
 /* Весь блок оценки нажимается как его ссылка. */
 .rating__link::after {
   position: absolute;
   inset: 0;
   content: "";
+}
+
+/* Компьютер: цифра слева, площадка, звёзды и число отзывов справа от неё, ссылка — ниже. */
+@media (width >= 1024px) {
+  .rating {
+    grid-template-columns: auto 1fr;
+    justify-items: start;
+    text-align: start;
+  }
+
+  .rating__stars {
+    justify-content: start;
+  }
+
+  .rating__link {
+    grid-column: 1 / -1;
+  }
 }

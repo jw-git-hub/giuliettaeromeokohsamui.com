@@ -7,6 +7,7 @@ import Rating from './Rating.astro';
 import './Reviews.css';
 
 // Тёмная секция, как все. Цифры вписаны руками, сами не обновляются.
+// Телефон и планшет: всё по центру, две оценки в ряд. Компьютер: слева заголовок и текст, справа оценки.
 interface Props {
   t: Dictionary;
 }
@@ -16,7 +17,7 @@ const { reviews } = Astro.props.t;
 
 <section class="section reviews" id={ANCHORS.reviews}>
   <div class="container reviews__inner">
-    <div>
+    <div class="reviews__intro">
       <SectionHeading label={reviews.label} title={reviews.title} />
       <p class="prose">{reviews.text}</p>
     </div>

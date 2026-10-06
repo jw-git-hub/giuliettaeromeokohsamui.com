@@ -7,10 +7,24 @@
   gap: var(--sp-5);
 }
 
+/* Телефон и планшет: короткий блок стоит по центру, как первый экран над ним (правка John, 06.10.2026). */
+.reviews__intro {
+  text-align: center;
+}
+
+.reviews__intro .prose {
+  margin-inline: auto;
+}
+
+/* Две оценки в ряд — и на самом узком экране: внутри каждой всё стоит столбиком. */
 .reviews__ratings {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--sp-5) var(--sp-6);
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--sp-3);
+
+  /* На планшете оценки не разъезжаются к краям: ряд не шире колонки текста. */
+  width: min(100%, var(--story-column));
+  margin-inline: auto;
 }
 
 /* Компьютер: слева заголовок и текст, справа оценки. */
@@ -19,5 +33,20 @@
     grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--sp-6);
     align-items: center;
+  }
+
+  .reviews__intro {
+    text-align: start;
+  }
+
+  .reviews__intro .prose {
+    margin-inline: 0;
+  }
+
+  .reviews__ratings {
+    display: flex;
+    gap: var(--sp-6);
+    width: auto;
+    margin-inline: 0;
   }
 }
