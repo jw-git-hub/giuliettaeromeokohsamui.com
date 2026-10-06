@@ -50,7 +50,12 @@ export default defineConfig({
   },
   vite: {
     // Старые Safari (до 16.4) не понимают запись @media (width >= …): сборка переводит её в min-width.
-    build: { cssTarget: ['chrome100', 'firefox100', 'safari14', 'ios14'] },
+    build: {
+      cssTarget: ['chrome100', 'firefox100', 'safari14', 'ios14'],
+      // Мелкие файлы не встраиваются в страницу: шрифт со знаком бата (1 КБ) иначе попадал бы
+      // в начало каждой страницы перед стилями, хотя нужен только в меню.
+      assetsInlineLimit: 0,
+    },
     define: {
       __BUILD_LOCALES__: JSON.stringify(buildLocales),
       __IS_DEMO__: JSON.stringify(isDemo),
