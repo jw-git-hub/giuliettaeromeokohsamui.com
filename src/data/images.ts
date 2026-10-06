@@ -22,7 +22,6 @@ import gallery12 from '@/assets/img/gallery-12-gourmet-pizza.jpg';
 import heroLantern from '@/assets/img/hero-lantern.jpg';
 import logoLaDolceVita from '@/assets/img/logo-la-dolce-vita.jpg';
 import logoLaPasta from '@/assets/img/logo-la-pasta.jpg';
-import whatsappQr from '@/assets/img/whatsapp-qr.png';
 import type { PictureVariant } from './picture';
 
 const DESKTOP_MEDIA = '(min-width: 1024px)';
@@ -111,6 +110,3 @@ export const familyLogos = {
   dolce: toLogo(logoLaDolceVita),
   pasta: toLogo(logoLaPasta),
 };
-
-/** QR не пережимаем: это чёрно-белая сетка, от сжатия он перестанет читаться. */
-export const whatsappQrImage = whatsappQr;

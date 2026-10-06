@@ -9,23 +9,21 @@
     align-items: center;
   }
 
-  /* QR в цветах сайта: кремовая карточка, тёмные клетки. Сам файл не меняется:
-     белый фон картинки умножается на крем карточки, чёрные клетки остаются тёмными —
-     так код по-прежнему читается камерой. Карточка квадратная и обрезает подпись,
-     впечатанную в картинку снизу: те же слова стоят рядом текстом. */
+  /* QR в цветах сайта: кремовая карточка со скруглёнными углами, клетки — цвета фона страницы.
+     Тёмное на светлом и широкое светлое поле вокруг — так код читает любая камера. */
   .whatsapp-qr__link {
     flex: none;
     width: var(--qr-width);
     aspect-ratio: 1;
     overflow: hidden;
-    border-radius: var(--radius);
+    border-radius: var(--radius-field);
     background: var(--text);
-    isolation: isolate;
   }
 
   .whatsapp-qr__image {
     width: 100%;
-    mix-blend-mode: multiply;
+    height: 100%;
+    fill: var(--bg);
   }
 
   .whatsapp-qr__link:hover,

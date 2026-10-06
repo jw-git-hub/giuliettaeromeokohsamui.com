@@ -1,16 +1,18 @@
 ---
 import { EXTERNAL_LINK } from '@/config/links';
 import { WHATSAPP_URL } from '@/config/restaurant';
-import { whatsappQrImage } from '@/data/images';
+import { buildQrCode } from '@/data/qr-code';
 import type { Dictionary } from '@/i18n';
 import './WhatsAppQr.css';
 
 // QR нужен тем, кто сидит за компьютером: на телефоне скрыт.
+// Код рисуется из ссылки на WhatsApp (src/data/qr-code.ts): тёмные клетки на кремовой карточке.
 interface Props {
   t: Dictionary;
 }
 
 const { qr } = Astro.props.t.reservations;
+const code = buildQrCode(WHATSAPP_URL);
 ---
 
 <aside class="whatsapp-qr" aria-label={qr.ariaLabel}>
@@ -21,15 +23,15 @@ const { qr } = Astro.props.t.reservations;
     data-goal="whatsapp-qr"
     {...EXTERNAL_LINK}
   >
-    <img
+    <svg
       class="whatsapp-qr__image"
-      src={whatsappQrImage.src}
-      width={whatsappQrImage.width}
-      height={whatsappQrImage.height}
-      alt={qr.alt}
-      loading="lazy"
-      decoding="async"
-    />
+      viewBox={`0 0 ${code.size} ${code.size}`}
+      role="img"
+      aria-label={qr.alt}
+      shape-rendering="crispEdges"
+    >
+      <path d={code.path}></path>
+    </svg>
   </a>
   <div>
     <h3 class="whatsapp-qr__title">{qr.title}</h3>

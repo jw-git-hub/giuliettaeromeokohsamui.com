@@ -6,7 +6,9 @@
 // 4. Ссылка на стили стоит в начале страницы, раньше разметки для поиска.
 // 5. Шрифты, которые грузятся заранее, существуют и описаны в @font-face; все файлы из url() в стилях на месте.
 // 6. Стили записаны так, что их понимают старые iPhone (Safari до 16.4).
+// 7. QR-код на странице читается сканером и ведёт туда же, куда его ссылка, — на WhatsApp ресторана.
 import { existsSync, readdirSync } from 'node:fs';
+import jsQR from 'jsqr';
 import { parse } from 'node-html-parser';
 import sharp from 'sharp';
 import { fail, pass, readJson, readText } from './lib/content.mjs';
@@ -20,6 +22,10 @@ const TEXT_FILE = /\.(html|css|js|txt|xml)$/;
 const STYLESHEET_LIMIT_BYTES = 6144;
 const STYLESHEET_MARK = 'rel="stylesheet"';
 const SCHEMA_MARK = 'application/ld+json';
+const QR_SELECTOR = '.whatsapp-qr__image';
+const QR_LINK_SELECTOR = '.whatsapp-qr__link';
+const QR_SCAN_SIZE = 600;
+const QR_PAPER = '#fff';
 const MODERN_MEDIA_SYNTAX = /@media[^{]*([<>]|not\s*\()/;
 const CSS_URL = /url\(\s*["']?([^"')]+)["']?\s*\)/g;
 
@@ -140,6 +146,22 @@ function findLegacyCssProblems() {
     .map((file) => `${file}: условие @media записано по-новому — старые iPhone его не поймут (cssTarget в astro.config.ts)`);
 }
 
+/** Рисует QR со страницы тёмным по светлому и читает его, как сканер. */
+async function scanQrCode(svgMarkup) {
+  const svg = svgMarkup.replace('<svg', '<svg xmlns="http://www.w3.org/2000/svg"');
+  const picture = sharp(Buffer.from(svg)).resize(QR_SCAN_SIZE, QR_SCAN_SIZE).flatten({ background: QR_PAPER });
+  const { data, info } = await picture.ensureAlpha().raw().toBuffer({ resolveWithObject: true });
+  return jsQR(new Uint8ClampedArray(data), info.width, info.height)?.data ?? null;
+}
+
+async function findQrProblems(root) {
+  const qrCode = root.querySelector(QR_SELECTOR);
+  if (!qrCode) return ['на странице нет QR-кода'];
+  const expected = root.querySelector(QR_LINK_SELECTOR).getAttribute('href');
+  const scanned = await scanQrCode(qrCode.outerHTML);
+  return scanned === expected ? [] : [`QR-код читается как «${scanned}», а должен вести на ${expected}`];
+}
+
 async function checkPage(locale) {
   const html = readText(pagePath(locale));
   const root = parse(html);
@@ -149,6 +171,7 @@ async function checkPage(locale) {
     ...findImageProblems(root),
     ...findHeadOrderProblems(html),
     ...findFontProblems(root),
+    ...(await findQrProblems(root)),
   ];
   return problems.map((problem) => `[${locale}] ${problem}`);
 }

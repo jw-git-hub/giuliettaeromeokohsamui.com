@@ -93,7 +93,7 @@ function reservationBindings(t, shared) {
     binding('соцсети', '.contact-list__social .button__label', [shared.social.instagram, shared.social.facebook]),
     binding('QR: заголовок', '.whatsapp-qr__title', [reservations.qr.title]),
     binding('QR: текст', '.whatsapp-qr__text', [reservations.qr.text]),
-    binding('QR: подпись картинки', '.whatsapp-qr__image', [reservations.qr.alt], 'alt'),
+    binding('QR: подпись картинки', '.whatsapp-qr__image', [reservations.qr.alt], 'aria-label'),
   ];
 }
 

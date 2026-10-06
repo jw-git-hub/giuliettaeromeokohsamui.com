@@ -104,7 +104,7 @@
   --facade-max-desktop: 600px;
   --logo-size: 96px;
   --logo-size-desktop: 128px;
-  --qr-width: 150px;
+  --qr-width: 176px;
   --zoom-max-width: 900px;
   /* рамка увеличенного фото: одна высота для фото любых пропорций, место под подпись и точки остаётся */
   --zoom-frame-height: min(calc(100svh - 3 * var(--sp-6)), 120vw);
