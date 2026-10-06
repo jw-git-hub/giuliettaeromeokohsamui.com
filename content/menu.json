@@ -1,0 +1,176 @@
+{
+  "_about": "Меню ресторана, набранное 06.10.2026 с трёх картинок сайта (original/img/menu-page-1-starters.jpg, menu-page-2-pasta-meat.jpg, menu-page-3-pizza-dessert.jpg). Названия, описания и цены — как на картинках; исправлены только опечатки, все исправления перечислены в corrections. Описания на картинках стоят в скобках — здесь без скобок. v: true — у позиции на картинке стоит буква V. Расшифровки V и знака валюты на картинках нет: не добавлять, пока не подтвердит владелица. navLabel — короткая подпись для навигации по меню. На картинках крупных заголовков три — Starters, Homemade fresh pasta, Our Pizza Gourmet 72h natural leavening; Meat (стр. 2) и Dessert (стр. 3) набраны мелко, как подзаголовки, — здесь они вынесены в отдельные разделы по смыслу.",
+  "sections": [
+    {
+      "id": "starters",
+      "title": "Starters",
+      "navLabel": "Starters",
+      "sourcePage": 1,
+      "groups": [
+        {
+          "id": "starters-main",
+          "title": null,
+          "items": [
+            { "name": "Bruschette con Pomodorini e Basilico", "description": "Sourdough bread, fresh tomatoes", "price": 290, "v": true },
+            { "name": "Giulietta e Romeo Board x 2", "description": "24 month aged Parmigiano, Parma ham, Burrata, Anchovy fillet, mix Vegetables", "price": 990, "v": false }
+          ]
+        },
+        {
+          "id": "starters-cheese",
+          "title": "Cheese",
+          "items": [
+            { "name": "Burrata di Andria", "description": "Burrata cheese, tomatoes", "price": 590, "v": true },
+            { "name": "Burrata di Andria con Tartufo di Norcia", "description": "Burrata cheese, tomatoes, fresh truffle", "price": 890, "v": true },
+            { "name": "Caprese Platter", "description": "Mozzarella Fiordilatte, roasted and fresh tomatoes, olives, dried fruits", "price": 590, "v": true },
+            { "name": "Cheese Board x 2", "description": "Parmigiano, Gorgonzola, Pecorino, Asiago, Olives, Sun-dried Tomato, dried fruit", "price": 890, "v": true },
+            { "name": "Scamorza al forno con Tartufo di Norcia", "description": "Baked scamorza cheese, fresh truffle", "price": 890, "v": true },
+            { "name": "Feta alla Mediterranea", "description": "Feta cheese, cherry tomatoes, capers, olives", "price": 690, "v": true }
+          ]
+        },
+        {
+          "id": "starters-ham",
+          "title": "Ham",
+          "items": [
+            { "name": "Culatello di Zibello", "description": "Culatello Parma ham", "price": 690, "v": false }
+          ]
+        },
+        {
+          "id": "starters-meat",
+          "title": "Meat",
+          "items": [
+            { "name": "Bresaola della Valtellina", "description": "Beef salted air dried", "price": 690, "v": false }
+          ]
+        },
+        {
+          "id": "starters-fish",
+          "title": "Fish",
+          "items": [
+            { "name": "Cozze Marinara", "description": "Fresh Mussels Marinara Sautéed – Taranto – Ionio sea", "price": 690, "v": false },
+            { "name": "Vongole in Guazzetto", "description": "Fresh Clams Guazzetto Sautéed – Adriatic sea", "price": 690, "v": false },
+            { "name": "Trota Salmonata Affumicata", "description": "Smoked Salmon Trout", "price": 790, "v": false },
+            { "name": "Carpaccio di Tonno con Agrumi", "description": "Tuna carpaccio, orange, lemon", "price": 690, "v": false }
+          ]
+        },
+        {
+          "id": "starters-salad",
+          "title": "Salad",
+          "items": [
+            { "name": "Insalata Greca", "description": "Salad, tomatoes, onion, cucumber, black olives, Feta cheese", "price": 590, "v": true },
+            { "name": "Insalata Mediterranea", "description": "Orange, rocket, fennel, red onion, walnuts", "price": 590, "v": true }
+          ]
+        },
+        {
+          "id": "starters-soup",
+          "title": "Soup",
+          "items": [
+            { "name": "Zuppa del giorno", "description": "Day’s soup", "price": 590, "v": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pasta",
+      "title": "Homemade fresh pasta",
+      "navLabel": "Pasta",
+      "sourcePage": 2,
+      "groups": [
+        {
+          "id": "pasta-main",
+          "title": null,
+          "items": [
+            { "name": "Spaghetti Aglio, Olio e Peperoncino", "description": "Garlic, EVO oil, Chili", "price": 390, "v": true },
+            { "name": "Spaghetti Pomodoro fresco e Basilico", "description": "Cherry tomatoes, Basil", "price": 390, "v": true },
+            { "name": "Spaghetti Pomodoro Fresco e crema di Burrata", "description": "Cream, peppers, tomatoes", "price": 490, "v": true },
+            { "name": "Maccheroni Carbonara", "description": "Guanciale, Fresh egg yolks, Pecorino cheese, Black pepper", "price": 490, "v": false },
+            { "name": "Maccheroni Pomodorini e Ricotta salata", "description": "Cherry tomatoes, crumbly aged ricotta cheese", "price": 490, "v": true },
+            { "name": "Maccheroni Giulietta e Romeo", "description": "Creamy rosé sauce with melted Mozzarella", "price": 490, "v": true },
+            { "name": "Gnocchi alla Sorrentina", "description": "Gnocchi baked in tomato sauce with melted Mozzarella", "price": 590, "v": true },
+            { "name": "Gnocchi con Stracotto di Manzo", "description": "Gnocchi, stewed beef", "price": 690, "v": false },
+            { "name": "Gnocchi con ragù di Agnello", "description": "Gnocchi, lamb ragout", "price": 790, "v": false },
+            { "name": "Tagliatelle con Funghi", "description": "Mushroom", "price": 590, "v": true },
+            { "name": "Tagliatelle con Tartufo di Norcia", "description": "Black truffle", "price": 990, "v": true },
+            { "name": "Tagliatelle con Gorgonzola e Pere", "description": "Gorgonzola cheese, pears", "price": 790, "v": true },
+            { "name": "Ravioli Ricotta e Spinaci", "description": "Ricotta cheese, spinach, butter", "price": 690, "v": true }
+          ]
+        },
+        {
+          "id": "pasta-fish",
+          "title": "...With Fish...",
+          "items": [
+            { "name": "Spaghetti alla Siciliana", "description": "With fresh Tuna, Bottarga – Sicily", "price": 790, "v": false },
+            { "name": "Spaghetti Vongole", "description": "With fresh clams – Adriatic sea", "price": 790, "v": false },
+            { "name": "Spaghetti Bottarga", "description": "With Mullet Bottarga – Sardinia island", "price": 990, "v": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "meat",
+      "title": "Meat",
+      "navLabel": "Meat",
+      "sourcePage": 2,
+      "groups": [
+        {
+          "id": "meat-main",
+          "title": null,
+          "items": [
+            { "name": "Stracotto di Fassona all'Amarone", "description": "Stewed beef, polenta", "price": 990, "v": false },
+            { "name": "Costolette di Agnello Scottadito", "description": "Lamb chops bbq", "price": 1290, "v": false },
+            { "name": "Filetto di Fassona", "description": "Beef tenderloin bbq", "price": 1290, "v": false }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "pizza",
+      "title": "Our Pizza Gourmet 72h natural leavening",
+      "navLabel": "Pizza",
+      "sourcePage": 3,
+      "groups": [
+        {
+          "id": "pizza-main",
+          "title": null,
+          "items": [
+            { "name": "Pizza Napoletana original recipe", "description": "Tomato San Marzano, mozzarella fior di latte, Basil", "price": 590, "v": true },
+            { "name": "Pizza Carmelo", "description": "Tomato San Marzano, mozzarella fior di latte, cherry tomatoes, parmesan", "price": 690, "v": true },
+            { "name": "Pizza with Black Truffle from Norcia", "description": "Tomato San Marzano, mozzarella fior di latte, fresh Black Truffle", "price": 890, "v": true },
+            { "name": "Pizza Giulietta e Romeo", "description": "Tomato San Marzano, mozzarella fior di latte, capers, olives, stracciatella, wild rocket", "price": 990, "v": true }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "dessert",
+      "title": "Dessert",
+      "navLabel": "Dessert",
+      "sourcePage": 3,
+      "groups": [
+        {
+          "id": "dessert-main",
+          "title": null,
+          "items": [
+            { "name": "Dolci di Giulietta", "description": "Homemade dessert", "price": 340, "v": false }
+          ]
+        }
+      ]
+    }
+  ],
+  "categoryLinks": [
+    { "category": "Antipasti", "target": "starters" },
+    { "category": "Pasta", "target": "pasta" },
+    { "category": "Seafood", "target": "starters-fish" },
+    { "category": "Grill", "target": "meat" },
+    { "category": "Pizza", "target": "pizza" },
+    { "category": "Dessert", "target": "dessert" }
+  ],
+  "corrections": [
+    { "where": "Carpaccio di Tonno con Agrumi — описание", "original": "Tuna carpaccio, orange, lemom", "fixed": "Tuna carpaccio, orange, lemon" },
+    { "where": "Maccheroni Carbonara — описание", "original": "Guanciale, Fresh agg yolks, Pecorino cheese, Black pepper", "fixed": "Guanciale, Fresh egg yolks, Pecorino cheese, Black pepper" },
+    { "where": "Gnocchi con Stracotto di Manzo — описание", "original": "Gnocchi, strew beef", "fixed": "Gnocchi, stewed beef" },
+    { "where": "Stracotto di Fassona all'Amarone — описание", "original": "Strew beef, polenta", "fixed": "Stewed beef, polenta" },
+    { "where": "Maccheroni Giulietta e Romeo — описание", "original": "Creamy rosè sauce with melted Mozzarella", "fixed": "Creamy rosé sauce with melted Mozzarella" },
+    { "where": "Cozze Marinara — описание", "original": "Fresh Mussels Marinara Sautèed - Taranto – Ionio sea", "fixed": "Fresh Mussels Marinara Sautéed – Taranto – Ionio sea" },
+    { "where": "Vongole in Guazzetto — описание", "original": "Fresh Clams Guazzetto Sautèed - Adriatic sea", "fixed": "Fresh Clams Guazzetto Sautéed – Adriatic sea" },
+    { "where": "Gnocchi con ragù di Agnello — название", "original": "Gnocchi con ragu’di Agnello", "fixed": "Gnocchi con ragù di Agnello" }
+  ]
+}
