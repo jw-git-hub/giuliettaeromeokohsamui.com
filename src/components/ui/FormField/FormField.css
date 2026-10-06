@@ -12,7 +12,7 @@
   min-height: var(--field-height);
   padding: var(--sp-2) var(--sp-3);
   border: 1px solid var(--line-strong);
-  border-radius: var(--radius);
+  border-radius: var(--radius-field);
   background: var(--surface);
   color: var(--text);
   font-family: var(--font-text);
@@ -79,7 +79,7 @@
     margin-block: var(--sp-1);
     padding-block: var(--sp-1);
     border: 1px solid var(--line-strong);
-    border-radius: var(--radius);
+    border-radius: var(--radius-field);
     background: var(--surface);
     color: var(--text);
   }

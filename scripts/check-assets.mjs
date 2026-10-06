@@ -78,8 +78,7 @@ function findMissingFiles(root) {
 }
 
 function findImageProblems(root) {
-  // Фото без src — пустая заготовка увеличенного фото галереи: адрес ей ставит скрипт.
-  const images = root.querySelectorAll('img[src]');
+  const images = root.querySelectorAll('img');
   const sized = [...images, ...root.querySelectorAll('picture source')];
   const unsized = sized.filter((node) => !node.getAttribute('width') || !node.getAttribute('height'));
   const priority = images.filter((image) => image.getAttribute('fetchpriority') === 'high');

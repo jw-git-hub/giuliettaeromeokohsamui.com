@@ -2,16 +2,26 @@
 import Icon from '@/components/ui/Icon/Icon.astro';
 import './Lightbox.css';
 
-// Увеличенное фото на нативном <dialog>. Открывает и листает src/scripts/lightbox.ts;
+// Увеличенные фото на нативном <dialog>: лента из всех фото, которая листается пальцем
+// (прокрутка с остановкой на каждом фото), точки под фото показывают, какое открыто.
+// На планшете и компьютере есть ещё стрелки. Открывает и листает src/scripts/lightbox.ts;
 // без скриптов плитка галереи — обычная ссылка на большое фото.
 // Кнопки «назад» и «вперёд» получают подпись соседнего фото — новых фраз не нужно.
+export interface LightboxPhoto {
+  src: string;
+  width: number;
+  height: number;
+  caption: string;
+}
+
 interface Props {
   /** Название окна для экранных читалок — надпись секции. */
   label: string;
   closeLabel: string;
+  photos: LightboxPhoto[];
 }
 
-const { label, closeLabel } = Astro.props;
+const { label, closeLabel, photos } = Astro.props;
 ---
 
 <dialog class="lightbox" aria-label={label} data-lightbox>
@@ -21,11 +31,30 @@ const { label, closeLabel } = Astro.props;
   <button class="lightbox__button lightbox__button--previous" type="button" data-lightbox-previous>
     <Icon name="chevron" />
   </button>
-  <figure class="lightbox__figure">
-    <img class="lightbox__image" alt="" data-lightbox-image />
-    <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
-  </figure>
+  <ul class="lightbox__track" data-lightbox-track>
+    {
+      photos.map((photo) => (
+        <li class="lightbox__slide">
+          <figure class="lightbox__figure">
+            <img
+              class="lightbox__image"
+              src={photo.src}
+              width={photo.width}
+              height={photo.height}
+              alt={photo.caption}
+              loading="lazy"
+              decoding="async"
+            />
+            <figcaption class="lightbox__caption">{photo.caption}</figcaption>
+          </figure>
+        </li>
+      ))
+    }
+  </ul>
   <button class="lightbox__button lightbox__button--next" type="button" data-lightbox-next>
     <Icon name="chevron" />
   </button>
+  <div class="lightbox__dots" aria-hidden="true">
+    {photos.map(() => <span class="lightbox__dot" data-lightbox-dot />)}
+  </div>
 </dialog>

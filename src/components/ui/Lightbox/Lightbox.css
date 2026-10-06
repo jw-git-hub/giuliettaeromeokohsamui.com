@@ -12,14 +12,14 @@
   color: var(--text);
 }
 
-/* Телефон: фото на всю ширину, стрелки под ним. */
+/* Телефон: лента фото на всю ширину, под ней точки. Листается пальцем, стрелок нет. */
 .lightbox[open] {
   display: grid;
   grid-template-areas:
-    "figure figure"
-    "previous next";
-  grid-template-columns: 1fr 1fr;
-  gap: var(--sp-2);
+    "track"
+    "dots";
+  grid-template-columns: minmax(0, 1fr);
+  gap: var(--sp-3);
   align-content: center;
   align-items: center;
 }
@@ -33,24 +33,66 @@ html:has(.lightbox[open]) {
   background: var(--backdrop);
 }
 
+/* Лента: все фото в ряд, прокрутка останавливается ровно на каждом. Полосы прокрутки нет. */
+.lightbox__track {
+  display: flex;
+  grid-area: track;
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+}
+
+.lightbox__track::-webkit-scrollbar {
+  display: none;
+}
+
+.lightbox__slide {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  scroll-snap-stop: always;
+}
+
 .lightbox__figure {
   display: grid;
-  grid-area: figure;
   gap: var(--sp-3);
   justify-items: center;
 }
 
+/* У всех фото одна рамка: фото любых пропорций вписывается в неё целиком, поэтому подпись
+   и точки стоят на месте и при листании ничего не прыгает. */
 .lightbox__image {
-  width: auto;
-  max-width: min(100%, var(--zoom-max-width));
-  max-height: calc(100svh - 3 * var(--sp-6));
+  width: 100%;
+  max-width: var(--zoom-max-width);
+  height: var(--zoom-frame-height);
   object-fit: contain;
 }
 
+/* Место под две строки: длинная подпись на узком экране не сдвигает точки. */
 .lightbox__caption {
+  min-height: calc(2 * var(--lh-text) * 1em);
   color: var(--muted);
   font-size: var(--fs-note);
   text-align: center;
+}
+
+.lightbox__dots {
+  display: flex;
+  grid-area: dots;
+  gap: var(--sp-2);
+  justify-content: center;
+}
+
+.lightbox__dot {
+  width: var(--dot-size);
+  height: var(--dot-size);
+  border-radius: 50%;
+  background: var(--line-strong);
+  transition: background-color var(--transition);
+}
+
+.lightbox__dot[data-current] {
+  background: var(--gold);
 }
 
 .lightbox__button {
@@ -75,16 +117,14 @@ html:has(.lightbox[open]) {
   position: absolute;
   top: max(var(--sp-3), env(safe-area-inset-top));
   right: max(var(--sp-3), env(safe-area-inset-right));
+  z-index: 1;
 }
 
-.lightbox__button--previous {
-  grid-area: previous;
-  justify-self: start;
-}
-
-.lightbox__button--next {
-  grid-area: next;
-  justify-self: end;
+/* Стрелки — только на планшете и компьютере; у первого и последнего фото лишняя скрыта. */
+.lightbox__button--previous,
+.lightbox__button--next,
+.lightbox__button[hidden] {
+  display: none;
 }
 
 .lightbox__button--previous .icon {
@@ -95,10 +135,27 @@ html:has(.lightbox[open]) {
   rotate: -90deg;
 }
 
-/* Планшет и компьютер: стрелки по бокам от фото. */
 @media (width >= 768px) {
   .lightbox[open] {
-    grid-template-areas: "previous figure next";
-    grid-template-columns: auto minmax(0, 1fr) auto;
+    grid-template-areas:
+      "previous track next"
+      ". dots .";
+    grid-template-columns: var(--tap-min) minmax(0, 1fr) var(--tap-min);
+  }
+
+  .lightbox__button--previous:not([hidden]) {
+    display: grid;
+    grid-area: previous;
+  }
+
+  .lightbox__button--next:not([hidden]) {
+    display: grid;
+    grid-area: next;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .lightbox__dot {
+    transition: none;
   }
 }

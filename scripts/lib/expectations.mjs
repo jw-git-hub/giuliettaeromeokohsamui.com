@@ -61,7 +61,8 @@ function galleryBindings(t) {
   return [
     binding('текст галереи', '.gallery .prose', [t.gallery.text]),
     binding('подписи фото галереи', '.gallery__tile img', t.gallery.alts, 'alt'),
-    binding('подписи увеличенных фото', '.gallery__tile', t.gallery.alts, 'data-zoom-caption'),
+    binding('подписи увеличенных фото', '.lightbox__caption', t.gallery.alts),
+    binding('подписи увеличенных фото для экранных читалок', '.lightbox__image', t.gallery.alts, 'alt'),
   ];
 }
 

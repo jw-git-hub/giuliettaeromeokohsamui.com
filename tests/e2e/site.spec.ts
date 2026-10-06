@@ -161,17 +161,42 @@ for (const locale of BUILT_LOCALES) {
       await expect(page.locator('.site-header__links-link').first()).toBeVisible();
     });
 
-    test('фото галереи увеличивается по нажатию и закрывается', async ({ page }) => {
+    test('фото галереи увеличивается по нажатию, листается стрелками и закрывается', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(pagePath(locale));
       await page.locator('.gallery__tile').first().click();
       const dialog = page.locator('[data-lightbox]');
       await expect(dialog).toHaveAttribute('open', '');
-      await expect(dialog.locator('img')).toHaveAttribute('src', /\.webp$/);
+      await expect(dialog.locator('img').first()).toHaveAttribute('src', /\.webp$/);
+      await expect(dialog.locator('[data-lightbox-dot]').nth(0)).toHaveAttribute('data-current', '');
+      await expect(dialog.locator('[data-lightbox-previous]')).toBeHidden();
       await page.keyboard.press('ArrowRight');
-      await expect(dialog.locator('figcaption')).not.toBeEmpty();
+      await expect(dialog.locator('[data-lightbox-dot]').nth(1)).toHaveAttribute('data-current', '');
+      await dialog.locator('[data-lightbox-next]').click();
+      await expect(dialog.locator('[data-lightbox-dot]').nth(2)).toHaveAttribute('data-current', '');
+      await expect(dialog.locator('figcaption').nth(2)).toBeInViewport();
       await page.keyboard.press('Escape');
       await expect(dialog).not.toHaveAttribute('open', '');
+    });
+
+    test('на телефоне фото листаются пальцем: точка следует за фото, подпись и точки не прыгают', async ({ page }) => {
+      await page.setViewportSize(VIEWPORTS.phone);
+      await page.goto(pagePath(locale));
+      await page.locator('.gallery__tile').nth(4).click();
+      const dialog = page.locator('[data-lightbox]');
+      const dots = dialog.locator('[data-lightbox-dot]');
+      await expect(dots.nth(4)).toHaveAttribute('data-current', '');
+      await expect(dialog.locator('[data-lightbox-next]')).toBeHidden();
+      // Сдвиг ленты на одно фото — то же, что делает палец.
+      await dialog.locator('[data-lightbox-track]').evaluate((track) => track.scrollBy({ left: track.clientWidth, behavior: 'instant' }));
+      await expect(dots.nth(5)).toHaveAttribute('data-current', '');
+      const layout = await dialog.evaluate((element) => {
+        const tops = (selector: string) =>
+          Array.from(element.querySelectorAll(selector), (node) => Math.round(node.getBoundingClientRect().top));
+        return { captions: [...new Set(tops('figcaption'))], images: [...new Set(tops('img'))] };
+      });
+      expect(layout.captions).toHaveLength(1);
+      expect(layout.images).toHaveLength(1);
     });
 
     test('шапка на компьютере: якоря ведут к секциям, бронь помещается в один экран', async ({ page }) => {

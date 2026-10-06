@@ -9,7 +9,7 @@ import { sourceSize } from '@/data/picture';
 import type { Dictionary } from '@/i18n';
 import './Gallery.css';
 
-// Двенадцать фото плитками 4:5. Нажатие увеличивает фото; без скриптов открывается само фото.
+// Двенадцать фото плитками 4:5. Нажатие открывает ленту больших фото; без скриптов открывается само фото.
 interface Props {
   t: Dictionary;
 }
@@ -28,6 +28,13 @@ const tiles = await Promise.all(
     }),
   })),
 );
+
+const zoomPhotos = tiles.map(({ zoom, caption }) => ({
+  src: zoom.src,
+  width: Number(zoom.attributes.width),
+  height: Number(zoom.attributes.height),
+  caption,
+}));
 ---
 
 <section class="section gallery" id={ANCHORS.gallery}>
@@ -38,7 +45,7 @@ const tiles = await Promise.all(
       {
         tiles.map((tile) => (
           <li>
-            <a class="gallery__tile" href={tile.zoom.src} data-zoom data-zoom-caption={tile.caption}>
+            <a class="gallery__tile" href={tile.zoom.src} data-zoom>
               <Picture variants={tile.variants} alt={tile.caption} />
             </a>
           </li>
@@ -46,5 +53,5 @@ const tiles = await Promise.all(
       }
     </ul>
   </div>
-  <Lightbox label={gallery.label} closeLabel={a11y.close} />
+  <Lightbox label={gallery.label} closeLabel={a11y.close} photos={zoomPhotos} />
 </section>
