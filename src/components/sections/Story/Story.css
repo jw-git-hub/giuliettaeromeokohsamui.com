@@ -1,10 +1,22 @@
+/* Телефон и планшет: одна колонка — заголовок, текст, фото. */
 .story__inner {
   display: grid;
-  gap: var(--sp-5);
+  gap: var(--sp-3);
+}
+
+.story__lead,
+.story__body {
+  max-width: var(--measure);
+}
+
+/* Отступ снизу, а не сверху: в двух колонках абзац в начале второй колонки не съезжает вниз. */
+.story__body > .story__paragraph:not(:last-child) {
+  margin-bottom: var(--sp-3);
 }
 
 .story__photo {
   max-width: var(--facade-max);
+  margin-top: var(--sp-4);
 }
 
 .story__photo img {
@@ -12,8 +24,7 @@
 }
 
 /* Абзац про шефа — выноской: тонкая золотая линия слева. */
-.story__chef {
-  margin-top: var(--sp-4);
+.story__paragraph--chef {
   padding-left: var(--sp-4);
   border-left: 1px solid var(--gold);
 }
@@ -24,15 +35,35 @@
   white-space: nowrap;
 }
 
-/* Компьютер: слева фото фасада, справа текст. */
+/* Компьютер: сверху фото и рядом заголовок с первым абзацем — они одной высоты;
+   ниже остальной текст в две колонки на всю ширину. */
 @media (width >= 1024px) {
   .story__inner {
+    grid-template-areas:
+      "photo lead"
+      "body body";
     grid-template-columns: minmax(0, var(--facade-max-desktop)) minmax(0, 1fr);
     gap: var(--sp-6);
-    align-items: start;
+    align-items: center;
+  }
+
+  .story__lead {
+    grid-area: lead;
   }
 
   .story__photo {
-    order: -1;
+    grid-area: photo;
+    margin-top: 0;
+  }
+
+  .story__body {
+    grid-area: body;
+    max-width: none;
+    columns: 2;
+    column-gap: var(--sp-6);
+  }
+
+  .story__body > .story__paragraph {
+    break-inside: avoid;
   }
 }

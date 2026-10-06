@@ -5,9 +5,16 @@
   font-size: var(--fs-note);
 }
 
+/* Подвал места не экономит: блоки встают в ряд по своей ширине и переносятся целиком,
+   а строки внутри блоков не рвутся. */
 .site-footer__inner {
-  display: grid;
-  gap: var(--sp-5);
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5) var(--sp-6);
+}
+
+.site-footer__brand {
+  flex-basis: 100%;
 }
 
 .site-footer__name {
@@ -37,19 +44,18 @@
   color: var(--gold);
 }
 
+.site-footer .opening-hours,
+.site-footer__contacts {
+  white-space: nowrap;
+}
+
 .site-footer__contacts {
   gap: 0;
 }
 
+/* Адрес в одну строку там, где он помещается; на телефоне переносится по ширине экрана. */
 @media (width >= 768px) {
-  .site-footer__inner {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: var(--sp-5) var(--sp-6);
-  }
-}
-
-@media (width >= 1024px) {
-  .site-footer__inner {
-    grid-template-columns: 1.4fr 1.2fr 1.2fr 1fr;
+  .site-footer__address {
+    white-space: nowrap;
   }
 }

@@ -31,7 +31,7 @@
 
   .reservations__contacts {
     grid-column: 1 / -1;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-columns: minmax(0, 1fr) auto;
     gap: var(--sp-6);
     align-items: start;
     padding-top: var(--sp-5);

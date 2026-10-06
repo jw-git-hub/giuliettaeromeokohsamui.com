@@ -14,22 +14,27 @@ interface Props {
 // Подписи к фото фасада в текстах нет: фото оформительское, для экранных читалок скрыто (alt пустой).
 const { story } = Astro.props.t;
 const familyLinks = { dolce: `#${ANCHORS.dolce}`, pasta: `#${ANCHORS.pasta}` };
+// Первый абзац стоит рядом с фото, остальные — ниже: на компьютере в две колонки.
+const [leadParagraph, ...bodyParagraphs] = story.paragraphs;
 ---
 
 <section class="section story" id={ANCHORS.story}>
   <div class="container story__inner">
-    <div class="story__text">
+    <div class="story__lead">
       <SectionHeading label={story.label} title={story.title} />
-      <div class="prose">
-        {
-          story.paragraphs.map((paragraph) => (
-            <p>
-              <RichText text={paragraph} links={familyLinks} />
-            </p>
-          ))
-        }
-        <p class="story__chef">{story.chef}</p>
-      </div>
+      <p class="story__paragraph">
+        <RichText text={leadParagraph} links={familyLinks} />
+      </p>
+    </div>
+    <div class="story__body">
+      {
+        bodyParagraphs.map((paragraph) => (
+          <p class="story__paragraph">
+            <RichText text={paragraph} links={familyLinks} />
+          </p>
+        ))
+      }
+      <p class="story__paragraph story__paragraph--chef">{story.chef}</p>
     </div>
     <Picture class="story__photo" variants={facadeVariants} alt="" />
   </div>

@@ -29,7 +29,7 @@ function heroBindings(t, shared, info) {
 
 function storyBindings(t) {
   const paragraphs = [...t.story.paragraphs, t.story.chef].map(stripMarkers);
-  return [binding('абзацы истории', '.story .prose > p', paragraphs)];
+  return [binding('абзацы истории', '.story__paragraph', paragraphs)];
 }
 
 function categoryBindings(t, shared) {

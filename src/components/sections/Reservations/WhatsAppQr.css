@@ -9,15 +9,37 @@
     align-items: center;
   }
 
+  /* QR в цветах сайта: кремовая карточка, тёмные клетки. Сам файл не меняется:
+     белый фон картинки умножается на крем карточки, чёрные клетки остаются тёмными —
+     так код по-прежнему читается камерой. Карточка квадратная и обрезает подпись,
+     впечатанную в картинку снизу: те же слова стоят рядом текстом. */
   .whatsapp-qr__link {
     flex: none;
+    width: var(--qr-width);
+    aspect-ratio: 1;
+    overflow: hidden;
+    border-radius: var(--radius);
+    background: var(--text);
+    isolation: isolate;
   }
 
   .whatsapp-qr__image {
-    width: var(--qr-width);
+    width: 100%;
+    mix-blend-mode: multiply;
+  }
+
+  .whatsapp-qr__link:hover,
+  .whatsapp-qr__link:focus-visible {
+    outline: var(--focus-width) solid var(--gold);
+    outline-offset: var(--focus-offset);
+  }
+
+  .whatsapp-qr__title {
+    font-size: var(--fs-h3);
   }
 
   .whatsapp-qr__text {
+    max-width: 28ch;
     margin-top: var(--sp-2);
     color: var(--muted);
     font-size: var(--fs-note);

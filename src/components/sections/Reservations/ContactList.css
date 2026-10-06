@@ -40,18 +40,25 @@
   }
 }
 
-/* Компьютер: адрес и соцсети слева, кнопки столбиком справа. */
+/* Компьютер: адрес, под ним кнопки в ряд по ширине своего текста, ниже соцсети.
+   Ничего не переносится: длинный русский «Позвонить +66…» остаётся в одну строку. */
 @media (width >= 1024px) {
   .contact-list {
-    grid-template-areas:
-      "address buttons"
-      "social buttons";
-    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
-    gap: var(--sp-3) var(--sp-5);
-    align-items: start;
+    gap: var(--sp-3);
   }
 
   .contact-list__buttons {
-    grid-template-columns: minmax(0, 1fr);
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .contact-list__buttons .button {
+    white-space: nowrap;
+  }
+}
+
+@media (width >= 1200px) {
+  .contact-list__address {
+    white-space: nowrap;
   }
 }
