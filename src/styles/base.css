@@ -70,8 +70,9 @@ textarea {
   outline-offset: var(--focus-offset);
 }
 
+/* Переход по якорю не прячет заголовок под липкой шапкой. */
 [id] {
-  scroll-margin-top: var(--sp-4);
+  scroll-margin-top: calc(var(--header-height) + var(--sp-4));
 }
 
 .container {
@@ -87,7 +88,7 @@ textarea {
   padding-block: var(--section-y);
 
   /* Переход по якорю ставит заголовок секции близко к верху экрана, а не под всем её отступом. */
-  scroll-margin-top: calc(var(--sp-5) - var(--section-y));
+  scroll-margin-top: calc(var(--header-height) + var(--sp-5) - var(--section-y));
 }
 
 .skip-link {
@@ -103,16 +104,6 @@ textarea {
 
 .skip-link:focus-visible {
   transform: none;
-}
-
-@media (width >= 1024px) {
-  [id] {
-    scroll-margin-top: calc(var(--header-height) + var(--sp-4));
-  }
-
-  .section {
-    scroll-margin-top: calc(var(--header-height) + var(--sp-5) - var(--section-y));
-  }
 }
 
 @media (prefers-reduced-motion: reduce) {

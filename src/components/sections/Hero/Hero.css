@@ -9,11 +9,6 @@
   justify-items: center;
 }
 
-.hero__switcher {
-  min-height: var(--tap-min);
-  margin-top: var(--sp-1);
-}
-
 .hero__intro {
   margin-top: var(--sp-3);
 }
@@ -87,10 +82,6 @@
     grid-template-columns: minmax(0, 1fr) auto;
     column-gap: var(--sp-6);
     justify-items: start;
-  }
-
-  .hero__switcher {
-    display: none;
   }
 
   .hero__intro {

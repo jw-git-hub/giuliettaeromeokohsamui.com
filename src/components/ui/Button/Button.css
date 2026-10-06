@@ -6,7 +6,7 @@
   min-height: var(--button-height);
   padding: var(--sp-2) var(--sp-4);
   border: 1px solid transparent;
-  border-radius: var(--radius);
+  border-radius: var(--radius-pill);
   background: transparent;
   color: var(--text);
   font-family: var(--font-text);
@@ -23,19 +23,33 @@
     border-color var(--transition);
 }
 
+/* Главная кнопка — как Book Now в оригинале: тёмная «таблетка» с золотой рамкой.
+   Рамка — полоса градиента вдвое шире кнопки, она медленно едет вбок: золото переливается.
+   Первый слой фона закрывает середину кнопки, второй виден только под рамкой. */
 .button--primary {
-  background: var(--bordeaux);
+  --cta-fill: var(--surface);
+
+  border: var(--cta-border) solid transparent;
+  background:
+    linear-gradient(var(--cta-fill), var(--cta-fill)) padding-box,
+    var(--cta-shimmer) border-box;
+  background-size:
+    100% 100%,
+    200% 100%;
+  animation: button-shimmer var(--cta-shimmer-duration) linear infinite;
 }
 
 .button--primary:hover {
-  background: var(--bordeaux-hover);
+  --cta-fill: var(--bordeaux);
 }
 
+/* Вторичная кнопка тише главной: рамка приглушённая, золотой она становится при наведении. */
 .button--secondary {
-  border-color: var(--gold);
+  border-color: var(--line-strong);
 }
 
 .button--secondary:hover {
+  border-color: var(--gold);
   background: var(--gold-wash);
 }
 
@@ -64,11 +78,12 @@
   .button--secondary-on-desktop {
     min-height: var(--button-height);
     padding-inline: var(--sp-4);
-    border-color: var(--gold);
+    border-color: var(--line-strong);
     color: var(--text);
   }
 
   .button--secondary-on-desktop:hover {
+    border-color: var(--gold);
     background: var(--gold-wash);
   }
 
@@ -81,8 +96,21 @@
   }
 }
 
+/* Сдвиг ровно на одну полосу градиента — блик идёт по кругу без шва. */
+@keyframes button-shimmer {
+  to {
+    background-position:
+      0 0,
+      200% 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .button {
     transition: none;
+  }
+
+  .button--primary {
+    animation: none;
   }
 }

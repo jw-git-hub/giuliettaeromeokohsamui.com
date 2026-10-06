@@ -1,43 +1,30 @@
 ---
 import Button from '@/components/ui/Button/Button.astro';
+import Icon from '@/components/ui/Icon/Icon.astro';
 import LangSwitcher from '@/components/ui/LangSwitcher/LangSwitcher.astro';
 import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import SectionLinks from '@/components/ui/SectionLinks/SectionLinks.astro';
 import { ANCHORS } from '@/config/restaurant';
 import type { Dictionary, LocaleCode } from '@/i18n';
 import { localeUrl } from '@/i18n/urls';
 import './SiteHeader.css';
 
-// Шапка только на компьютере (от 1024 px). Якоря — существующие надписи секций.
+// Шапка. Компьютер (от 1024 px): название, разделы, языки и бронь.
+// Телефон и планшет: название и кнопка «Menu» — она открывает меню на весь экран (MobileMenu).
+// Без скриптов кнопка ведёт к списку разделов в подвале.
 interface Props {
   locale: LocaleCode;
   t: Dictionary;
 }
 
 const { locale, t } = Astro.props;
-const navLinks = [
-  { anchor: ANCHORS.story, label: t.story.label },
-  { anchor: ANCHORS.menu, label: t.menu.label },
-  { anchor: ANCHORS.reviews, label: t.reviews.label },
-  { anchor: ANCHORS.gallery, label: t.gallery.label },
-  { anchor: ANCHORS.reservations, label: t.reservations.label },
-];
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
     <a class="site-header__name" href={localeUrl(locale)}><RestaurantName /></a>
     <nav class="site-header__nav">
-      <ul class="site-header__links">
-        {
-          navLinks.map((link) => (
-            <li>
-              <a class="site-header__link" href={`#${link.anchor}`}>
-                {link.label}
-              </a>
-            </li>
-          ))
-        }
-      </ul>
+      <SectionLinks t={t} class="site-header__links" />
     </nav>
     <div class="site-header__actions">
       <LangSwitcher current={locale} t={t} />
@@ -45,5 +32,9 @@ const navLinks = [
         {t.hero.bookNow}
       </Button>
     </div>
+    <a class="site-header__menu" href={`#${ANCHORS.footerNav}`} data-mobile-menu-open>
+      <span>{t.menu.label}</span>
+      <Icon name="menu" />
+    </a>
   </div>
 </header>

@@ -53,7 +53,8 @@ for (const locale of BUILT_LOCALES) {
       await page.setViewportSize(VIEWPORTS.phone);
       await page.goto(pagePath(locale));
       const smallTargets = await page.evaluate((minSize) => {
-        const selector = '.button, .lang-switcher__link, .site-footer__link, .form-field__control, .gallery__tile';
+        const selector =
+          '.button, .lang-switcher__link, .site-footer__link, .site-footer__sections-link, .site-header__menu, .form-field__control, .gallery__tile';
         return Array.from(document.querySelectorAll<HTMLElement>(selector))
           .filter((element) => element.offsetParent !== null)
           .map((element) => ({ text: element.textContent?.trim().slice(0, 30), box: element.getBoundingClientRect() }))
@@ -107,6 +108,28 @@ for (const locale of BUILT_LOCALES) {
       expect(footerBottom).toBeLessThanOrEqual(barTop + 1);
     });
 
+    test('меню на телефоне: открывается, показывает разделы и языки, ведёт к разделу и закрывается', async ({ page }) => {
+      await page.setViewportSize(VIEWPORTS.phone);
+      await page.emulateMedia({ reducedMotion: 'reduce' });
+      await page.goto(pagePath(locale));
+      const menu = page.locator('[data-mobile-menu]');
+      await page.locator('.site-header__menu').click();
+      await expect(menu).toHaveAttribute('open', '');
+      await expect(menu.locator('.mobile-menu__links-link')).toHaveCount(5);
+      await expect(menu.locator('.lang-switcher__link')).toHaveCount(BUILT_LOCALES.length);
+      await menu.locator('a[href="#gallery"]').click();
+      await expect(menu).not.toHaveAttribute('open', '');
+      await page.waitForTimeout(SCROLL_SETTLE_MS);
+      await expect(page.locator('#gallery h2')).toBeInViewport();
+    });
+
+    test('на компьютере кнопки «Menu» нет, разделы стоят в шапке', async ({ page }) => {
+      await page.setViewportSize(VIEWPORTS.desktop);
+      await page.goto(pagePath(locale));
+      await expect(page.locator('.site-header__menu')).toBeHidden();
+      await expect(page.locator('.site-header__links-link').first()).toBeVisible();
+    });
+
     test('фото галереи увеличивается по нажатию и закрывается', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.goto(pagePath(locale));
@@ -124,7 +147,7 @@ for (const locale of BUILT_LOCALES) {
       await page.setViewportSize(VIEWPORTS.desktop);
       await page.emulateMedia({ reducedMotion: 'reduce' });
       await page.goto(pagePath(locale));
-      await page.locator('.site-header__link[href="#reservations"]').click();
+      await page.locator('.site-header__links-link[href="#reservations"]').click();
       await page.waitForTimeout(SCROLL_SETTLE_MS);
       const box = await page.locator('.reservations__inner').boundingBox();
       expect(box!.y).toBeGreaterThanOrEqual(72);
@@ -142,5 +165,8 @@ test('без скриптов страница читается, форма ве
   await expect(page.locator('.reservation-form')).toHaveAttribute('action', 'https://wa.me/66611971080');
   await expect(page.locator('[data-bottom-bar]')).toBeVisible();
   await expect(page.locator('#booking-date')).toBeHidden();
+  // Кнопка «Menu» без скриптов ведёт к списку разделов в подвале.
+  await expect(page.locator('.site-header__menu')).toHaveAttribute('href', '#site-nav');
+  await expect(page.locator('#site-nav a')).toHaveCount(5);
   await context.close();
 });

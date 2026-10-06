@@ -1,6 +1,5 @@
 ---
 import Button from '@/components/ui/Button/Button.astro';
-import LangSwitcher from '@/components/ui/LangSwitcher/LangSwitcher.astro';
 import Picture from '@/components/ui/Picture/Picture.astro';
 import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
 import { ANCHORS } from '@/config/restaurant';
@@ -21,10 +20,6 @@ const { showsQuoteTranslation } = getLocaleInfo(locale);
 
 <section class="hero">
   <div class="container hero__inner">
-    <div class="hero__switcher">
-      <LangSwitcher current={locale} t={t} />
-    </div>
-
     <div class="hero__intro">
       <p class="label">{t.hero.label}</p>
       <h1 class="hero__title" lang="it"><RestaurantName /></h1>

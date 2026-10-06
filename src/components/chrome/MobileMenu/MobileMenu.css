@@ -1,0 +1,87 @@
+.mobile-menu {
+  width: 100%;
+  max-width: none;
+  height: 100%;
+  max-height: none;
+  padding: 0 max(var(--gutter), env(safe-area-inset-right)) var(--sp-5) max(var(--gutter), env(safe-area-inset-left));
+  border: 0;
+  background: var(--bg);
+  color: var(--text);
+}
+
+.mobile-menu[open] {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+}
+
+/* Пока меню открыто, страница под ним не прокручивается. */
+html:has(.mobile-menu[open]) {
+  overflow: hidden;
+}
+
+/* Верхняя строка повторяет шапку: название слева, крестик на месте кнопки «Menu». */
+.mobile-menu__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--header-height);
+}
+
+.mobile-menu__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-header-name);
+  line-height: 1;
+}
+
+.mobile-menu__close {
+  --icon-size: 24px;
+
+  display: grid;
+  place-items: center;
+  width: var(--tap-min);
+  height: var(--tap-min);
+  margin-right: calc(-1 * var(--sp-2));
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--gold);
+  cursor: pointer;
+}
+
+.mobile-menu__nav {
+  align-self: center;
+}
+
+.mobile-menu__links {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.mobile-menu__links-link {
+  display: inline-flex;
+  align-items: center;
+  min-height: var(--button-height);
+  font-family: var(--font-display);
+  font-size: var(--fs-h2);
+  line-height: var(--lh-heading);
+  text-decoration: none;
+}
+
+.mobile-menu__links-link:hover {
+  color: var(--gold);
+}
+
+.mobile-menu__bottom {
+  display: grid;
+  gap: var(--sp-4);
+  justify-items: start;
+}
+
+/* У подписей языков широкая область нажатия: сдвигаем ряд, чтобы первая буква встала по левому краю. */
+.mobile-menu__bottom .lang-switcher {
+  margin-left: calc(-1 * var(--sp-3));
+}
+
+.mobile-menu__book {
+  width: 100%;
+}

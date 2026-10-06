@@ -56,6 +56,19 @@
   --gutter: clamp(20px, 4vw, 48px);
   --measure: 62ch;
   --radius: 2px;
+  --radius-pill: 999px;      /* кнопки — «таблеткой», как главная кнопка оригинала */
+
+  /* главная кнопка: золотая рамка с бегущим бликом (правка John, 06.10.2026) */
+  --cta-border: 1.5px;
+  --cta-shimmer: linear-gradient(
+    90deg,
+    var(--gold) 0%,
+    var(--gold) 34%,
+    var(--text) 50%,
+    var(--gold) 66%,
+    var(--gold) 100%
+  );
+  --cta-shimmer-duration: 6s;
 
   /* компоненты */
   --button-height: 52px;
@@ -63,7 +76,9 @@
   --button-height-bar: 48px;
   --field-height: 52px;
   --tap-min: 44px;
-  --header-height: 72px;
+  --header-height: 56px;          /* телефон и планшет; на компьютере — 72 px, см. ниже */
+  --header-name-from: 140px;      /* на телефоне название в шапке проявляется между этими отметками прокрутки */
+  --header-name-to: 220px;
   --bar-pad-y: 10px;
   --bar-pad-x: 16px;
   --icon-size: 18px;
@@ -88,4 +103,10 @@
   --hero-fade-circle: 90%;   /* до этого радиуса квадрат фото непрозрачен — круг окна виден целиком */
   --hero-fade-x: 5%;
   --hero-fade-y: 12%;
+}
+
+@media (width >= 1024px) {
+  :root {
+    --header-height: 72px;
+  }
 }

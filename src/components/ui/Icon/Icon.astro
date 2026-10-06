@@ -3,7 +3,7 @@ import './Icon.css';
 
 // Свои тонкие контурные значки. Стрелка и звезда — SVG, а не символы → и ★:
 // этих символов нет в латинском наборе шрифтов, текстом они притянули бы лишние файлы.
-export type IconName = 'whatsapp' | 'phone' | 'arrow' | 'chevron' | 'star' | 'close';
+export type IconName = 'whatsapp' | 'phone' | 'arrow' | 'chevron' | 'star' | 'close' | 'menu';
 
 interface Props {
   name: IconName;
@@ -18,6 +18,7 @@ const PATHS: Record<IconName, string> = {
   chevron: 'm6 9 6 6 6-6',
   star: 'm12 3 2.8 5.7 6.2.9-4.5 4.4 1.1 6.2L12 17.3l-5.6 2.9 1.1-6.2L3 9.6l6.2-.9z',
   close: 'M5 5l14 14M19 5 5 19',
+  menu: 'M4 8h16M4 16h16',
 };
 
 const FILLED_ICONS: IconName[] = ['star'];

@@ -25,6 +25,7 @@ export const ANCHORS = {
   family: 'family',
   dolce: 'la-dolce-vita',
   pasta: 'la-pasta',
+  footerNav: 'site-nav',
 } as const;
 
 export interface TimeSlot {

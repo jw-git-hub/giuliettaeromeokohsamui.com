@@ -1,0 +1,37 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import Icon from '@/components/ui/Icon/Icon.astro';
+import LangSwitcher from '@/components/ui/LangSwitcher/LangSwitcher.astro';
+import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import SectionLinks from '@/components/ui/SectionLinks/SectionLinks.astro';
+import { ANCHORS } from '@/config/restaurant';
+import type { Dictionary, LocaleCode } from '@/i18n';
+import './MobileMenu.css';
+
+// Меню на весь экран для телефона и планшета: разделы, языки, бронь.
+// Нативный <dialog>: фокус остаётся внутри, Esc закрывает. Открывает src/scripts/mobile-menu.ts.
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+---
+
+<dialog class="mobile-menu" aria-label={t.menu.label} data-mobile-menu>
+  <div class="mobile-menu__top">
+    <p class="mobile-menu__name"><RestaurantName /></p>
+    <button class="mobile-menu__close" type="button" aria-label={t.a11y.close} data-mobile-menu-close>
+      <Icon name="close" />
+    </button>
+  </div>
+  <nav class="mobile-menu__nav">
+    <SectionLinks t={t} class="mobile-menu__links" />
+  </nav>
+  <div class="mobile-menu__bottom">
+    <LangSwitcher current={locale} t={t} />
+    <Button class="mobile-menu__book" variant="primary" href={`#${ANCHORS.reservations}`} goal="book-menu">
+      {t.hero.bookNow}
+    </Button>
+  </div>
+</dialog>

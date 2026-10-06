@@ -9,7 +9,12 @@ function binding(what, selector, expected, attribute = null) {
 
 function headingBindings(t, name) {
   const sections = [t.story, t.menu, { label: t.menu.fullLabel, title: t.menu.fullTitle }, t.reviews, t.gallery, t.reservations, t.family];
+  const navLabels = [t.story, t.menu, t.reviews, t.gallery, t.reservations].map((section) => section.label);
   return [
+    binding('разделы в шапке', '.site-header__links-link', navLabels),
+    binding('разделы в меню телефона', '.mobile-menu__links-link', navLabels),
+    binding('разделы в подвале', '.site-footer__sections-link', navLabels),
+    binding('кнопка меню', '.site-header__menu span', [t.menu.label]),
     binding('главный заголовок', 'h1', [name]),
     binding('заголовки секций', 'h2', sections.map((section) => section.title)),
     binding('надписи секций', '.section-heading > .label', sections.map((section) => section.label)),

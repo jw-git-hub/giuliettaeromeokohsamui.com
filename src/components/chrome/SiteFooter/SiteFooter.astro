@@ -1,8 +1,9 @@
 ---
 import OpeningHours from '@/components/ui/OpeningHours/OpeningHours.astro';
 import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import SectionLinks from '@/components/ui/SectionLinks/SectionLinks.astro';
 import { EXTERNAL_LINK } from '@/config/links';
-import { FACEBOOK_URL, INSTAGRAM_URL, MAPS_URL, PHONE_HREF } from '@/config/restaurant';
+import { ANCHORS, FACEBOOK_URL, INSTAGRAM_URL, MAPS_URL, PHONE_HREF } from '@/config/restaurant';
 import type { Dictionary } from '@/i18n';
 import shared from '@/i18n/shared.json';
 import './SiteFooter.css';
@@ -22,6 +23,9 @@ const { reservations } = t;
       <p class="site-footer__name"><RestaurantName /></p>
       <p class="label site-footer__tagline">{t.footer.tagline}</p>
     </div>
+    <nav class="site-footer__nav" id={ANCHORS.footerNav}>
+      <SectionLinks t={t} class="site-footer__sections" />
+    </nav>
     <div class="site-footer__block">
       <p class="label">{reservations.addressLabel}</p>
       <a class="site-footer__link site-footer__address" href={MAPS_URL} data-goal="address-footer" {...EXTERNAL_LINK}>

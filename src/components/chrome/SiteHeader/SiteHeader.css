@@ -1,42 +1,72 @@
 .site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  height: var(--header-height);
+  border-bottom: 1px solid var(--line);
+  background: var(--surface);
+}
+
+/* Над первым экраном шапка прозрачная, после прокрутки — с фоном. Без скрипта:
+   где браузер не умеет анимацию по прокрутке, шапка просто всегда с фоном. */
+@supports (animation-timeline: scroll()) {
+  .site-header {
+    animation: site-header-solidify linear both;
+    animation-timeline: scroll(root);
+    animation-range: 0 var(--header-height);
+  }
+}
+
+.site-header__inner {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: center;
+  justify-content: space-between;
+  height: 100%;
+}
+
+.site-header__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-header-name);
+  line-height: 1;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+.site-header__nav,
+.site-header__actions {
   display: none;
 }
 
-@media (width >= 1024px) {
-  .site-header {
-    position: sticky;
-    top: 0;
-    z-index: 20;
-    display: block;
-    height: var(--header-height);
-    border-bottom: 1px solid var(--line);
-    background: var(--surface);
-  }
+/* Кнопка «Menu» на телефоне и планшете. */
+.site-header__menu {
+  display: inline-flex;
+  gap: var(--sp-2);
+  align-items: center;
+  min-height: var(--tap-min);
+  color: var(--gold);
+  font-size: var(--fs-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-button);
+  text-decoration: none;
+  text-transform: var(--label-case);
+}
 
-  /* Над первым экраном шапка прозрачная, после прокрутки — с фоном. Без скрипта:
-     где браузер не умеет анимацию по прокрутке, шапка просто всегда с фоном. */
+/* На телефоне название в шапке появляется, когда крупное название первого экрана
+   уходит вверх: два названия одно под другим на первом экране не нужны. */
+@media (max-width: 1023.98px) {
   @supports (animation-timeline: scroll()) {
-    .site-header {
-      animation: site-header-solidify linear both;
+    .site-header__name {
+      animation: site-header-name-appear linear both;
       animation-timeline: scroll(root);
-      animation-range: 0 var(--header-height);
+      animation-range: var(--header-name-from) var(--header-name-to);
     }
   }
+}
 
-  .site-header__inner {
-    display: flex;
-    gap: var(--sp-3);
-    align-items: center;
-    justify-content: space-between;
-    height: 100%;
-  }
-
-  .site-header__name {
-    font-family: var(--font-display);
-    font-size: var(--fs-header-name);
-    line-height: 1;
-    text-decoration: none;
-    white-space: nowrap;
+@media (width >= 1024px) {
+  .site-header__nav {
+    display: block;
   }
 
   .site-header__links {
@@ -44,7 +74,7 @@
     gap: clamp(12px, 1.4vw, var(--sp-5));
   }
 
-  .site-header__link {
+  .site-header__links-link {
     display: inline-flex;
     align-items: center;
     min-height: var(--tap-min);
@@ -56,7 +86,7 @@
     white-space: nowrap;
   }
 
-  .site-header__link:hover {
+  .site-header__links-link:hover {
     color: var(--gold);
   }
 
@@ -64,6 +94,10 @@
     display: flex;
     gap: var(--sp-3);
     align-items: center;
+  }
+
+  .site-header__menu {
+    display: none;
   }
 }
 
@@ -85,5 +119,17 @@
   to {
     border-bottom-color: var(--line);
     background-color: var(--surface);
+  }
+}
+
+@keyframes site-header-name-appear {
+  from {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  to {
+    opacity: 1;
+    visibility: visible;
   }
 }

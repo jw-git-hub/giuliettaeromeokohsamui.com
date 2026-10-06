@@ -4,6 +4,7 @@ import '@/styles/base.css';
 import '@/styles/typography.css';
 import '@/styles/lang.css';
 import BottomBar from '@/components/chrome/BottomBar/BottomBar.astro';
+import MobileMenu from '@/components/chrome/MobileMenu/MobileMenu.astro';
 import SiteHeader from '@/components/chrome/SiteHeader/SiteHeader.astro';
 import FontFaces from '@/components/head/FontFaces.astro';
 import Seo from '@/components/head/Seo.astro';
@@ -40,10 +41,12 @@ const imageUrl = new URL(assetUrl(OG_IMAGE_FILE), Astro.site).href;
     </main>
     <slot name="footer" />
     <BottomBar t={t} />
+    <MobileMenu locale={locale} t={t} />
     <script>
       import '@/scripts/bottom-bar.ts';
       import '@/scripts/booking/index.ts';
       import '@/scripts/lightbox.ts';
+      import '@/scripts/mobile-menu.ts';
     </script>
   </body>
 </html>

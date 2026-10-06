@@ -1,0 +1,25 @@
+---
+import { getSectionLinks } from '@/data/navigation';
+import type { Dictionary } from '@/i18n';
+
+// Список ссылок на разделы. Оформление задаёт место, где список стоит: шапка, меню на телефоне, подвал.
+interface Props {
+  t: Dictionary;
+  /** Класс списка и префикс класса ссылок. */
+  class: string;
+}
+
+const { t, class: className } = Astro.props;
+---
+
+<ul class={className}>
+  {
+    getSectionLinks(t).map((link) => (
+      <li>
+        <a class={`${className}-link`} href={link.href}>
+          {link.label}
+        </a>
+      </li>
+    ))
+  }
+</ul>
