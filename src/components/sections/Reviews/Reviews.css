@@ -30,6 +30,14 @@
   margin-inline: auto;
 }
 
+/* Уже 270 px оценки встают одна под другой (правка John, 06.10.2026). */
+@media (max-width: 269.98px) {
+  .reviews__ratings {
+    grid-template-columns: minmax(0, 1fr);
+    gap: var(--sp-5);
+  }
+}
+
 /* Компьютер: слева заголовок и текст, справа оценки. */
 @media (width >= 1024px) {
   .reviews__inner {

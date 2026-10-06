@@ -1,5 +1,9 @@
 .form-field {
   display: grid;
+
+  /* Колонка не шире формы: длинная подсказка в списке («Выберите число гостей») на самом узком
+     экране иначе распирала бы всю секцию. */
+  grid-template-columns: minmax(0, 1fr);
   gap: var(--sp-2);
 }
 
@@ -19,6 +23,7 @@
   font-size: var(--fs-body);
   line-height: 1.4;
   appearance: none;
+  min-width: 0;
 }
 
 .form-field__control::placeholder {

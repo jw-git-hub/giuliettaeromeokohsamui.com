@@ -32,7 +32,7 @@ html:has(.mobile-menu[open]) {
 
 .mobile-menu__name {
   font-family: var(--font-display);
-  font-size: var(--fs-header-name);
+  font-size: min(var(--fs-header-name), var(--fs-header-name-narrow));
   line-height: 1;
 }
 

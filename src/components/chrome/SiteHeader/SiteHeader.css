@@ -43,7 +43,9 @@
   grid-area: 1 / 1;
   justify-self: start;
   font-family: var(--font-display);
-  font-size: var(--fs-header-name);
+
+  /* На экранах уже 320 px (обложка складного телефона) название чуть мельче — иначе налезает на кнопку. */
+  font-size: min(var(--fs-header-name), var(--fs-header-name-narrow));
   line-height: 1;
   text-decoration: none;
   white-space: nowrap;
@@ -67,6 +69,19 @@
   letter-spacing: var(--tracking-button);
   text-decoration: none;
   text-transform: var(--label-case);
+}
+
+/* Самые узкие экраны: рядом с языками или названием слово «Menu» не помещается — остаётся значок.
+   Для экранных читалок слово на месте. */
+@media (max-width: 339.98px) {
+  .site-header__menu span {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip-path: inset(50%);
+    white-space: nowrap;
+  }
 }
 
 /* На телефоне языки и название в шапку вместе не помещаются. Вверху страницы, пока крупное

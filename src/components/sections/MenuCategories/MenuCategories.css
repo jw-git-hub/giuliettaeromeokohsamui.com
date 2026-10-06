@@ -43,7 +43,18 @@
 @media (max-width: 359.98px) {
   .menu-categories__text {
     overflow-wrap: break-word;
+  }
+
+  /* По слогам — только русский: английские слова браузер делит странно («br-uschetta»). */
+  :lang(ru) .menu-categories__text {
     hyphens: auto;
+  }
+}
+
+/* Уже 270 px плитки встают в один столбик (правка John, 06.10.2026). */
+@media (max-width: 269.98px) {
+  .menu-categories__grid {
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 

@@ -1,5 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
-import { BUILT_LOCALES, VIEWPORTS, htmlLang, pagePath } from './locales';
+import { BUILT_LOCALES, NARROWEST, VIEWPORTS, htmlLang, pagePath } from './locales';
 
 // Приёмка из DESIGN.md, раздел 9 — то, что можно проверить автоматически.
 
@@ -48,6 +48,27 @@ for (const locale of BUILT_LOCALES) {
         expect(clippedButtons).toEqual([]);
       });
     }
+
+    test('на экране 280 px шапка не слипается, нижняя панель помещается, страницу нельзя утянуть вбок', async ({ page }) => {
+      await page.setViewportSize(NARROWEST);
+      await page.goto(pagePath(locale));
+      const gapToMenu = (selector: string) =>
+        page.evaluate((leftSelector) => {
+          const left = document.querySelector(leftSelector)!.getBoundingClientRect();
+          return document.querySelector('.site-header__menu')!.getBoundingClientRect().left - left.right;
+        }, selector);
+      // Вверху слева стоят языки — там, где браузер умеет смену по прокрутке; иначе сразу название.
+      const showsLanguages = await page.locator('.site-header__languages').isVisible();
+      expect(await gapToMenu(showsLanguages ? '.site-header__languages' : '.site-header__name')).toBeGreaterThanOrEqual(0);
+      await page.evaluate(() => window.scrollTo({ top: 600, behavior: 'instant' }));
+      expect(await gapToMenu('.site-header__name')).toBeGreaterThanOrEqual(0);
+      const overflow = await page.evaluate(() => document.documentElement.scrollWidth - window.innerWidth);
+      expect(overflow).toBeLessThanOrEqual(0);
+      const barOverhang = await page.evaluate(() =>
+        Math.max(...Array.from(document.querySelectorAll('.bottom-bar .button'), (button) => button.getBoundingClientRect().right - window.innerWidth)),
+      );
+      expect(barOverhang).toBeLessThanOrEqual(0);
+    });
 
     test('на самом узком экране текст не выходит за свой блок и не наезжает на соседний', async ({ page }) => {
       await page.setViewportSize(VIEWPORTS.small);

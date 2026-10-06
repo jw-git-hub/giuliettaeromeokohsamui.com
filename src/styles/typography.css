@@ -7,6 +7,16 @@ h3 {
   text-wrap: var(--heading-wrap);
 }
 
+/* Экраны уже 340 px: длинное слово заголовка («Забронируйте») шире экрана — ему можно переноситься,
+   иначе страницу можно было бы утянуть вбок. */
+@media (max-width: 339.98px) {
+  h1,
+  h2,
+  h3 {
+    overflow-wrap: anywhere;
+  }
+}
+
 h1 {
   font-size: var(--fs-h1);
   line-height: var(--lh-tight);

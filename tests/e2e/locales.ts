@@ -12,6 +12,9 @@ export const VIEWPORTS = {
   desktop: { width: 1440, height: 900 },
 } as const;
 
+/** Обложка складного телефона — уже этого экранов в ходу нет. */
+export const NARROWEST = { width: 280, height: 653 } as const;
+
 export function pagePath(locale: LocaleCode): string {
   return locale === registry.defaultLocale ? '/' : `/${locale}/`;
 }
