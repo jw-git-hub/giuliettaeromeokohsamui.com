@@ -1,26 +1,27 @@
-/* Телефон и планшет: одна колонка — заголовок, текст, фото. */
+/* Телефон и планшет: одна колонка — заголовок, под ним фото, дальше текст. */
 .story__inner {
   display: grid;
   gap: var(--sp-3);
 }
 
-.story__lead,
+.story__heading,
+.story__paragraph--lead,
 .story__body {
   max-width: var(--measure);
+}
+
+.story__photo {
+  max-width: var(--facade-max);
+  margin-block: var(--sp-2);
+}
+
+.story__photo img {
+  width: 100%;
 }
 
 /* Отступ снизу, а не сверху: в двух колонках абзац в начале второй колонки не съезжает вниз. */
 .story__body > .story__paragraph:not(:last-child) {
   margin-bottom: var(--sp-3);
-}
-
-.story__photo {
-  max-width: var(--facade-max);
-  margin-top: var(--sp-4);
-}
-
-.story__photo img {
-  width: 100%;
 }
 
 /* Абзац про шефа — выноской: тонкая золотая линия слева. */
@@ -35,30 +36,38 @@
   white-space: nowrap;
 }
 
-/* Компьютер: сверху фото и рядом заголовок с первым абзацем — они одной высоты;
+/* Компьютер: слева фото, справа заголовок и первый абзац — вместе они одной высоты с фото;
    ниже остальной текст в две колонки на всю ширину. */
 @media (width >= 1024px) {
   .story__inner {
     grid-template-areas:
+      "photo heading"
       "photo lead"
       "body body";
     grid-template-columns: minmax(0, var(--facade-max-desktop)) minmax(0, 1fr);
-    gap: var(--sp-6);
-    align-items: center;
+    gap: var(--sp-4) var(--sp-6);
   }
 
-  .story__lead {
+  .story__heading {
+    grid-area: heading;
+    align-self: end;
+  }
+
+  .story__paragraph--lead {
     grid-area: lead;
+    align-self: start;
   }
 
   .story__photo {
     grid-area: photo;
-    margin-top: 0;
+    align-self: center;
+    margin-block: 0;
   }
 
   .story__body {
     grid-area: body;
     max-width: none;
+    margin-top: var(--sp-5);
     columns: 2;
     column-gap: var(--sp-6);
   }
