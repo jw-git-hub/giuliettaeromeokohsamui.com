@@ -8,8 +8,9 @@ function binding(what, selector, expected, attribute = null) {
 }
 
 function headingBindings(t, name) {
-  const sections = [t.story, t.menu, { label: t.menu.fullLabel, title: t.menu.fullTitle }, t.reviews, t.gallery, t.reservations, t.family];
-  const navLabels = [t.story, t.menu, t.reviews, t.gallery, t.reservations].map((section) => section.label);
+  // Порядок секций на странице и разделов в шапке — см. src/components/HomePage.astro.
+  const sections = [t.reviews, t.menu, t.story, t.gallery, { label: t.menu.fullLabel, title: t.menu.fullTitle }, t.reservations, t.family];
+  const navLabels = [t.reviews, t.menu, t.story, t.gallery, t.reservations].map((section) => section.label);
   return [
     binding('разделы в шапке', '.site-header__links-link', navLabels),
     binding('разделы в меню телефона', '.mobile-menu__links-link', navLabels),

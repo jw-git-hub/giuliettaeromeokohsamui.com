@@ -11,7 +11,9 @@ import Story from '@/components/sections/Story/Story.astro';
 import { getDictionary, type LocaleCode } from '@/i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
-// Единственная страница сайта. Порядок секций — как в оригинале.
+// Единственная страница сайта. Порядок секций (решение John от 06.10.2026): доверие — отзывы, еда —
+// категории, атмосфера — история и галерея, подробности — полное меню, действие — бронь.
+// В оригинале отзывы стояли после полного меню, история — сразу за первым экраном.
 interface Props {
   locale: LocaleCode;
 }
@@ -22,11 +24,11 @@ const t = getDictionary(locale);
 
 <BaseLayout locale={locale} t={t}>
   <Hero locale={locale} t={t} />
-  <Story t={t} />
-  <MenuCategories t={t} />
-  <FullMenu locale={locale} t={t} />
   <Reviews t={t} />
+  <MenuCategories t={t} />
+  <Story t={t} />
   <Gallery t={t} />
+  <FullMenu locale={locale} t={t} />
   <Reservations locale={locale} t={t} />
   <Family t={t} />
   <SiteFooter slot="footer" t={t} />
