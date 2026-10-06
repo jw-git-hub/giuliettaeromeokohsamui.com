@@ -8,10 +8,11 @@
   },
   "scripts": {
     "dev": "astro dev --host",
-    "build": "npm run -s check:texts && astro build && node scripts/check-dist.mjs",
-    "build:demo": "npm run -s check:texts && astro build --mode demo && node scripts/check-dist.mjs",
+    "build": "npm run -s check:texts && astro build && node scripts/prune-fonts.mjs && npm run -s check:dist",
+    "build:demo": "npm run -s check:texts && astro build --mode demo && node scripts/prune-fonts.mjs && npm run -s check:dist",
     "preview": "node scripts/serve-dist.mjs",
     "check:texts": "node scripts/check-content.mjs && node scripts/check-i18n.mjs",
+    "check:dist": "node scripts/check-dist.mjs && node scripts/check-assets.mjs",
     "check:budget": "node scripts/check-budget.mjs",
     "check": "astro check",
     "lint": "eslint . && stylelint \"src/**/*.css\"",
@@ -19,7 +20,8 @@
     "test:e2e": "playwright test",
     "shots": "node scripts/shoot.mjs",
     "make:og": "node scripts/make-og.mjs",
-    "make:favicon": "node scripts/make-favicon.mjs"
+    "make:favicon": "node scripts/make-favicon.mjs",
+    "make:fonts": "node scripts/make-fonts.mjs"
   },
   "dependencies": {
     "@fontsource-variable/bodoni-moda": "^5.3.0",
@@ -39,6 +41,7 @@
     "node-html-parser": "^9.0.4",
     "stylelint": "^17.16.0",
     "stylelint-config-standard": "^40.0.0",
+    "subset-font": "^2.9.0",
     "typescript": "^6.0.3",
     "typescript-eslint": "^8.71.1"
   }

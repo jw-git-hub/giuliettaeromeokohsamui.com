@@ -31,7 +31,6 @@ const imageUrl = new URL(assetUrl(OG_IMAGE_FILE), Astro.site).href;
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
     <Seo locale={locale} t={t} imageUrl={imageUrl} />
     <FontFaces locale={locale} />
-    <StructuredData locale={locale} t={t} imageUrl={imageUrl} />
   </head>
   <body>
     <a class="skip-link" href={`#${ANCHORS.main}`}>{t.a11y.skipToContent}</a>
@@ -48,5 +47,7 @@ const imageUrl = new URL(assetUrl(OG_IMAGE_FILE), Astro.site).href;
       import '@/scripts/lightbox.ts';
       import '@/scripts/mobile-menu.ts';
     </script>
+    {/* Разметка для поиска — в конце страницы: в <head> она стояла бы перед стилями и задерживала их. */}
+    <StructuredData locale={locale} t={t} imageUrl={imageUrl} />
   </body>
 </html>

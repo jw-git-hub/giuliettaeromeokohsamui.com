@@ -5,6 +5,7 @@ import Picture from '@/components/ui/Picture/Picture.astro';
 import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
 import { ANCHORS } from '@/config/restaurant';
 import { GALLERY_ZOOM, gallerySources, toGalleryTile } from '@/data/images';
+import { sourceSize } from '@/data/picture';
 import type { Dictionary } from '@/i18n';
 import './Gallery.css';
 
@@ -21,7 +22,7 @@ const tiles = await Promise.all(
     caption: gallery.alts[index],
     zoom: await getImage({
       src,
-      width: Math.min(src.width, GALLERY_ZOOM.maxWidth),
+      width: Math.min(sourceSize(src).width, GALLERY_ZOOM.maxWidth),
       format: 'webp',
       quality: GALLERY_ZOOM.quality,
     }),

@@ -46,12 +46,19 @@ export interface PictureFallback {
   height: number;
 }
 
+/** Размеры исходника — с его копии. Astro считает оригинал нужным на сайте, как только у импорта
+    прочитали любое свойство, и кладёт его в dist целиком; копия этого учёта не ведёт. */
+export function sourceSize(src: ImageMetadata): AspectRatio {
+  const { width, height } = (src as ImageMetadata & { clone?: ImageMetadata }).clone ?? src;
+  return { width, height };
+}
+
 function largestWidth(variant: PictureVariant): number {
-  return Math.min(Math.max(...variant.widths), variant.src.width);
+  return Math.min(Math.max(...variant.widths), sourceSize(variant.src).width);
 }
 
 function variantHeight(variant: PictureVariant, width: number): number {
-  const ratio = variant.aspect ?? variant.src;
+  const ratio = variant.aspect ?? sourceSize(variant.src);
   return Math.round((width * ratio.height) / ratio.width);
 }
 
@@ -63,7 +70,7 @@ async function renderVariant(variant: PictureVariant, format: OutputFormat) {
     quality: QUALITY[format],
     width,
     height: variantHeight(variant, width),
-    widths: variant.widths.filter((candidate) => candidate <= variant.src.width),
+    widths: variant.widths.filter((candidate) => candidate <= sourceSize(variant.src).width),
     fit: 'cover',
     position: variant.position ?? 'center',
   });
