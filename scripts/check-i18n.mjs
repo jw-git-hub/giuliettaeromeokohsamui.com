@@ -2,7 +2,7 @@
 // 1. Те же ключи, что в английском, и те же метки разметки в каждой строке.
 // 2. Русский и тайский: латиницей остаётся только разрешённое (название, бренды).
 // 3. Строка, совпадающая с английской, — скорее всего забытый перевод.
-// 4. В переводе меню есть каждая позиция, раздел и группа, и нет лишних.
+// 4. В переводе меню есть каждая позиция, раздел, группа и название категории, и нет лишних.
 import { existsSync } from 'node:fs';
 import { assertSameShape } from '../src/i18n/shape.ts';
 import { fail, flattenStrings, menuGroups, menuItems, pass, readJson, removeKnown, stripMarkers } from './lib/content.mjs';
@@ -13,6 +13,7 @@ const MARKER = /\{\/?\w+\}/g;
 const registry = readJson('src/i18n/registry.json');
 const english = readJson('src/i18n/dictionaries/en.json');
 const menu = readJson('content/menu.json');
+const shared = readJson('src/i18n/shared.json');
 const allowlist = readJson('scripts/i18n-allowlist.json');
 const englishByPath = new Map(flattenStrings(english).map(({ path, value }) => [path, value]));
 
@@ -67,11 +68,13 @@ function findMenuProblems(locale) {
   const translation = readJson(path);
   const titledGroups = menuGroups(menu).filter((group) => group.title !== null);
   const descriptions = Object.entries(translation.items).map(([id, value]) => ({ path: `меню.${id}`, value }));
+  const categoryNames = Object.entries(translation.categories ?? {}).map(([key, value]) => ({ path: `категория.${key}`, value }));
   return [
+    ...findKeyMismatch(Object.keys(shared.categories), Object.keys(translation.categories ?? {}), 'категории'),
     ...findKeyMismatch(menuItems(menu).map((item) => item.id), Object.keys(translation.items), 'позиции'),
     ...findKeyMismatch(menu.sections.map((section) => section.id), Object.keys(translation.sections), 'раздела'),
     ...findKeyMismatch(titledGroups.map((group) => group.id), Object.keys(translation.groups), 'группы'),
-    ...findLatinLeftovers(locale, descriptions),
+    ...findLatinLeftovers(locale, [...descriptions, ...categoryNames]),
   ];
 }
 

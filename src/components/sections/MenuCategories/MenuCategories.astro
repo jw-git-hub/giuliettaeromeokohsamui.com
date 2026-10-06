@@ -3,20 +3,20 @@ import Picture from '@/components/ui/Picture/Picture.astro';
 import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
 import { ANCHORS } from '@/config/restaurant';
 import { categoryTiles } from '@/data/images';
-import { getCategoryTarget } from '@/data/menu';
-import type { Dictionary } from '@/i18n';
-import shared from '@/i18n/shared.json';
+import { getCategoryNames, getCategoryTarget, type CategoryKey } from '@/data/menu';
+import type { Dictionary, LocaleCode } from '@/i18n';
 import './MenuCategories.css';
 
 // Шесть категорий — плитки-ссылки на разделы набранного меню.
 interface Props {
+  locale: LocaleCode;
   t: Dictionary;
 }
 
-type CategoryKey = keyof typeof shared.categories;
-
+const { locale } = Astro.props;
 const { menu } = Astro.props.t;
-const categoryKeys = Object.keys(shared.categories) as CategoryKey[];
+const categoryNames = getCategoryNames(locale);
+const categoryKeys = Object.keys(categoryNames) as CategoryKey[];
 ---
 
 <section class="section menu-categories" id={ANCHORS.menu}>
@@ -28,7 +28,7 @@ const categoryKeys = Object.keys(shared.categories) as CategoryKey[];
           <li>
             <a class="menu-categories__tile" href={`#${getCategoryTarget(key)}`} data-goal={`menu-category-${key}`}>
               <Picture class="menu-categories__photo" variants={categoryTiles[key]} alt={menu.categories[key].alt} />
-              <h3 class="menu-categories__name">{shared.categories[key]}</h3>
+              <h3 class="menu-categories__name">{categoryNames[key]}</h3>
               <p class="menu-categories__text">{menu.categories[key].text}</p>
             </a>
           </li>

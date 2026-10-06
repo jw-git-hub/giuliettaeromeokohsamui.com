@@ -1,4 +1,12 @@
 {
+  "categories": {
+    "antipasti": "แอนติพาสติ",
+    "pasta": "พาสต้า",
+    "seafood": "ซีฟู้ด",
+    "grill": "เนื้อย่าง",
+    "pizza": "พิซซ่า",
+    "dessert": "ของหวาน"
+  },
   "sections": {
     "starters": {
       "title": "อาหารเรียกน้ำย่อย",

@@ -1,4 +1,12 @@
 {
+  "categories": {
+    "antipasti": "Antipasti",
+    "pasta": "Pasta",
+    "seafood": "Pesce",
+    "grill": "Griglia",
+    "pizza": "Pizza",
+    "dessert": "Dessert"
+  },
   "sections": {
     "starters": {
       "title": "Antipasti",

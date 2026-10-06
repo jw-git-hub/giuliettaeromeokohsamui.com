@@ -1,4 +1,12 @@
 {
+  "categories": {
+    "antipasti": "Антипасти",
+    "pasta": "Паста",
+    "seafood": "Дары моря",
+    "grill": "Гриль",
+    "pizza": "Пицца",
+    "dessert": "Десерты"
+  },
   "sections": {
     "starters": {
       "title": "Закуски",

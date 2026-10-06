@@ -62,6 +62,11 @@ function loadMenuTranslation(locale) {
   return existsSync(path) ? readJson(path) : { sections: {}, groups: {}, items: {} };
 }
 
+/** Названия плиток-категорий на языке страницы; в английском — из shared.json. */
+function categoryNames(locale) {
+  return loadMenuTranslation(locale).categories ?? shared.categories;
+}
+
 /** Меню так, как оно должно стоять на странице этого языка. */
 function expectedMenu(locale) {
   const translation = loadMenuTranslation(locale);
@@ -100,6 +105,7 @@ function knownStrings(locale, dictionary) {
     ...entries.flatMap(({ value }) => taggedTexts(value)),
     ...flattenStrings(shared).map(({ value }) => value),
     ...menuStrings(expectedMenu(locale)),
+    ...Object.values(categoryNames(locale)),
     ...timeLabels(locale),
     ...guestCounts,
     ...Object.values(registry.locales).map((info) => info.label),
@@ -206,7 +212,7 @@ function checkLocale(locale) {
   const dictionary = loadDictionary(locale);
   const known = knownStrings(locale, dictionary);
   const root = readPage(locale);
-  const context = { dictionary, shared, info: registry.locales[locale], name, timeLabels: timeLabels(locale), guestCounts };
+  const context = { dictionary, shared, info: registry.locales[locale], name, timeLabels: timeLabels(locale), guestCounts, categoryNames: categoryNames(locale) };
   return [
     ...findMisplacedTexts(root, context),
     ...findExtraWords(locale, known),

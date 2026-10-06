@@ -2,6 +2,7 @@
 // описания и заголовки разделов — из перевода языка.
 import menuSource from '@content/menu.json';
 import { DEFAULT_LOCALE, getLocaleInfo, type LocaleCode } from '@/i18n';
+import shared from '@/i18n/shared.json';
 import { typesetStrings } from '@/i18n/typography';
 
 export interface MenuItem {
@@ -25,7 +26,11 @@ export interface MenuSection {
   groups: MenuGroup[];
 }
 
+export type CategoryKey = keyof typeof shared.categories;
+
 export interface MenuTranslation {
+  /** Названия шести плиток-категорий; в английском они стоят в shared.json. */
+  categories: Record<CategoryKey, string>;
   sections: Record<string, { title: string; navLabel: string }>;
   groups: Record<string, string>;
   items: Record<string, string>;
@@ -61,6 +66,7 @@ function assertCompleteTranslation(translation: MenuTranslation): void {
   const titledGroupIds = groups.filter((group) => group.title !== null).map((group) => group.id);
   const itemIds = groups.flatMap((group) => group.items.map((item) => item.id));
   const sectionIds = menuSource.sections.map((section) => section.id);
+  assertSameKeys(Object.keys(shared.categories), Object.keys(translation.categories ?? {}), 'категорий');
   assertSameKeys(sectionIds, Object.keys(translation.sections), 'разделов');
   assertSameKeys(titledGroupIds, Object.keys(translation.groups), 'групп');
   assertSameKeys(itemIds, Object.keys(translation.items), 'позиций');
@@ -101,6 +107,11 @@ function toSection(section: SourceSection, translation?: MenuTranslation): MenuS
 export function getMenu(locale: LocaleCode): MenuSection[] {
   const translation = loadTranslation(locale);
   return menuSource.sections.map((section) => toSection(section, translation));
+}
+
+/** Названия плиток-категорий на языке страницы, в порядке shared.json. */
+export function getCategoryNames(locale: LocaleCode): Record<CategoryKey, string> {
+  return loadTranslation(locale)?.categories ?? shared.categories;
 }
 
 /** Куда ведёт плитка категории: ключ — название категории строчными. */

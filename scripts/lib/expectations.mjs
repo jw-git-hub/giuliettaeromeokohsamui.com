@@ -38,10 +38,10 @@ function storyBindings(t) {
   return [binding('абзацы истории', '.story__paragraph', paragraphs)];
 }
 
-function categoryBindings(t, shared) {
+function categoryBindings(t, shared, categoryNames) {
   const keys = Object.keys(shared.categories);
   return [
-    binding('названия категорий', '.menu-categories__name', keys.map((key) => shared.categories[key])),
+    binding('названия категорий', '.menu-categories__name', keys.map((key) => categoryNames[key])),
     binding('тексты категорий', '.menu-categories__text', keys.map((key) => t.menu.categories[key].text)),
     binding('подписи фото категорий', '.menu-categories__photo img', keys.map((key) => t.menu.categories[key].alt), 'alt'),
   ];
@@ -112,13 +112,13 @@ function familyBindings(t) {
   ];
 }
 
-export function pageBindings({ dictionary, shared, info, name, timeLabels, guestCounts }) {
+export function pageBindings({ dictionary, shared, info, name, timeLabels, guestCounts, categoryNames }) {
   return [
     ...formOptionBindings(dictionary.reservations.form, timeLabels, guestCounts),
     ...headingBindings(dictionary, name),
     ...heroBindings(dictionary, shared, info),
     ...storyBindings(dictionary),
-    ...categoryBindings(dictionary, shared),
+    ...categoryBindings(dictionary, shared, categoryNames),
     ...reviewBindings(dictionary, shared),
     ...galleryBindings(dictionary),
     ...reservationBindings(dictionary, shared),

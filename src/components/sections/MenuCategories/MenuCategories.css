@@ -27,6 +27,12 @@
   font-style: italic;
 }
 
+/* Курсив есть только у латинского шрифта заголовков; кириллицу и тайский браузер наклонил бы сам. */
+:lang(ru) .menu-categories__name,
+:lang(th) .menu-categories__name {
+  font-style: normal;
+}
+
 .menu-categories__tile:hover .menu-categories__name {
   color: var(--gold);
 }
