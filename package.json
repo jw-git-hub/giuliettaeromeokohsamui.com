@@ -9,6 +9,7 @@
   "scripts": {
     "dev": "astro dev --host",
     "build": "npm run -s check:texts && astro build && node scripts/prune-fonts.mjs && npm run -s check:dist",
+    "build:test": "SITE_URL=http://localhost:4322 BASE_PATH=/ PREVIEW_LOCALES=it,ru,th npm run -s build:demo",
     "build:demo": "npm run -s check:texts && astro build --mode demo && node scripts/prune-fonts.mjs && npm run -s check:dist",
     "preview": "node scripts/serve-dist.mjs",
     "check:texts": "node scripts/check-content.mjs && node scripts/check-i18n.mjs",

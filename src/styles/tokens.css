@@ -95,6 +95,8 @@
   --transition: 200ms;
   --tile-gap: 8px;
   --menu-item-gap: 20px;
+  --menu-divider-width: 160px;
+  --menu-divider-height: 8px;
   --form-gap: 20px;
   --facade-max: 700px;
   --story-column: 38rem;   /* телефон и планшет: общая ширина заголовка, фото и текста истории */

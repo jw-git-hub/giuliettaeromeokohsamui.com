@@ -1,0 +1,18 @@
+/* Едва заметный: линии — цвета тонких линий сайта, ромб чуть светлее. Отступы сверху и снизу
+   вместе дают прежнее расстояние между разделами. */
+.menu-divider {
+  display: block;
+  width: var(--menu-divider-width);
+  height: var(--menu-divider-height);
+  margin: var(--sp-5) auto;
+  fill: none;
+  stroke-width: 1;
+}
+
+.menu-divider__line {
+  stroke: var(--line);
+}
+
+.menu-divider__mark {
+  stroke: var(--line-strong);
+}

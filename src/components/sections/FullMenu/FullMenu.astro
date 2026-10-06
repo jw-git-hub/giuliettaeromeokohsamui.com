@@ -3,6 +3,7 @@ import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro'
 import { ANCHORS } from '@/config/restaurant';
 import { getMenu } from '@/data/menu';
 import type { Dictionary, LocaleCode } from '@/i18n';
+import MenuDivider from './MenuDivider.astro';
 import MenuSection from './MenuSection.astro';
 import './FullMenu.css';
 
@@ -20,7 +21,14 @@ const menuSections = getMenu(locale);
   <div class="container">
     <SectionHeading label={t.menu.fullLabel} title={t.menu.fullTitle} />
     <div class="full-menu__sections">
-      {menuSections.map((section) => <MenuSection section={section} />)}
+      {
+        menuSections.map((section, index) => (
+          <>
+            {index > 0 && <MenuDivider />}
+            <MenuSection section={section} />
+          </>
+        ))
+      }
     </div>
   </div>
 </section>
