@@ -1,0 +1,23 @@
+.reviews {
+  border-block: 1px solid var(--line);
+}
+
+.reviews__inner {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.reviews__ratings {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-5) var(--sp-6);
+}
+
+/* Компьютер: слева заголовок и текст, справа оценки. */
+@media (width >= 1024px) {
+  .reviews__inner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: var(--sp-6);
+    align-items: center;
+  }
+}

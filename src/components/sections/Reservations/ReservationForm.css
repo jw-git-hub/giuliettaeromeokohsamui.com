@@ -1,0 +1,33 @@
+.reservation-form {
+  display: grid;
+  gap: var(--form-gap);
+}
+
+.reservation-form__row {
+  display: grid;
+  gap: var(--sp-4);
+}
+
+.reservation-form__submit {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.reservation-form__hint {
+  color: var(--muted);
+  font-size: var(--fs-small);
+}
+
+/* Дата и время — в одну строку. */
+@media (width >= 768px) {
+  .reservation-form__row {
+    grid-auto-columns: minmax(0, 1fr);
+    grid-auto-flow: column;
+  }
+
+  .reservation-form__submit {
+    grid-template-columns: auto 1fr;
+    gap: var(--sp-3);
+    align-items: center;
+  }
+}

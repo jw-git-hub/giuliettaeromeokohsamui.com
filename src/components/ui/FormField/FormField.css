@@ -1,0 +1,57 @@
+.form-field {
+  display: grid;
+  gap: var(--sp-2);
+}
+
+.form-field[hidden] {
+  display: none;
+}
+
+.form-field__control {
+  width: 100%;
+  min-height: var(--field-height);
+  padding: var(--sp-2) var(--sp-3);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-text);
+  font-size: var(--fs-body);
+  line-height: 1.4;
+  appearance: none;
+}
+
+.form-field__control::placeholder {
+  color: var(--muted);
+  opacity: 0.7;
+}
+
+.form-field__control:focus-visible {
+  border-color: var(--gold);
+  outline: 1px solid var(--gold);
+  outline-offset: 0;
+}
+
+.form-field__control--area {
+  padding-block: var(--sp-3);
+  resize: vertical;
+}
+
+.form-field__select {
+  position: relative;
+}
+
+.form-field__select .form-field__control {
+  padding-right: calc(var(--sp-3) * 2 + var(--icon-size));
+  cursor: pointer;
+}
+
+/* Стрелка списка — тонкий золотой шеврон. */
+.form-field__select .icon {
+  position: absolute;
+  top: 50%;
+  right: var(--sp-3);
+  color: var(--gold);
+  translate: 0 -50%;
+  pointer-events: none;
+}

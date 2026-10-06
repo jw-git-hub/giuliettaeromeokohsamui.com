@@ -1,0 +1,57 @@
+.contact-list {
+  display: grid;
+  grid-template-areas:
+    "address"
+    "buttons"
+    "social";
+  gap: var(--sp-4);
+}
+
+.contact-list__address-block {
+  grid-area: address;
+}
+
+.contact-list__address {
+  display: inline-block;
+  margin-top: var(--sp-1);
+  text-decoration: none;
+}
+
+.contact-list__address:hover {
+  color: var(--gold);
+}
+
+.contact-list__buttons {
+  display: grid;
+  grid-area: buttons;
+  gap: var(--sp-2);
+}
+
+.contact-list__social {
+  display: flex;
+  flex-wrap: wrap;
+  grid-area: social;
+  gap: var(--sp-2) var(--sp-5);
+}
+
+@media (width >= 768px) {
+  .contact-list__buttons {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+/* Компьютер: адрес и соцсети слева, кнопки столбиком справа. */
+@media (width >= 1024px) {
+  .contact-list {
+    grid-template-areas:
+      "address buttons"
+      "social buttons";
+    grid-template-columns: minmax(0, 1fr) minmax(0, 18rem);
+    gap: var(--sp-3) var(--sp-5);
+    align-items: start;
+  }
+
+  .contact-list__buttons {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}

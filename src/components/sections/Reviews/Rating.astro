@@ -1,0 +1,30 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import Icon from '@/components/ui/Icon/Icon.astro';
+import './Rating.css';
+
+// Оценка площадки: цифра крупно, рядом площадка, звёзды и число отзывов; весь блок — ссылка.
+interface Props {
+  platform: string;
+  score: string;
+  count: string;
+  linkLabel: string;
+  href: string;
+  goal: string;
+}
+
+const STAR_COUNT = 5;
+
+const { platform, score, count, linkLabel, href, goal } = Astro.props;
+const stars = Array.from({ length: STAR_COUNT });
+---
+
+<div class="rating">
+  <p class="rating__score">{score}</p>
+  <div class="rating__details">
+    <p class="rating__platform">{platform}</p>
+    <div class="rating__stars">{stars.map(() => <Icon name="star" />)}</div>
+    <p class="rating__count">{count}</p>
+  </div>
+  <Button class="rating__link" variant="text" href={href} goal={goal} external>{linkLabel}</Button>
+</div>

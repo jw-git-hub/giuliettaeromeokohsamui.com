@@ -1,0 +1,42 @@
+.menu-item {
+  break-inside: avoid;
+}
+
+.menu-item + .menu-item {
+  margin-top: var(--menu-item-gap);
+}
+
+.menu-item__head {
+  display: flex;
+  gap: var(--sp-3);
+  align-items: baseline;
+  justify-content: space-between;
+}
+
+.menu-item__name {
+  font-family: var(--font-display);
+  font-size: var(--fs-item);
+  line-height: 1.25;
+}
+
+.menu-item__v {
+  margin-left: var(--sp-2);
+  color: var(--gold);
+  font-family: var(--font-text);
+  font-size: var(--fs-label);
+  font-weight: var(--weight-label);
+}
+
+.menu-item__price {
+  flex: none;
+  color: var(--gold);
+  font-variant-numeric: tabular-nums lining-nums;
+}
+
+.menu-item__description {
+  margin-top: var(--sp-1);
+  max-width: 46ch;
+  color: var(--muted);
+  font-size: var(--fs-note);
+  line-height: 1.5;
+}

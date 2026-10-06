@@ -1,0 +1,15 @@
+.opening-hours {
+  display: grid;
+  grid-template-columns: auto auto;
+  gap: var(--sp-1) var(--sp-4);
+  justify-content: start;
+}
+
+.opening-hours__row {
+  display: contents;
+}
+
+.opening-hours__time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums lining-nums;
+}

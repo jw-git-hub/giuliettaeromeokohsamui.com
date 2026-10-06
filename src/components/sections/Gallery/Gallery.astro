@@ -1,0 +1,49 @@
+---
+import { getImage } from 'astro:assets';
+import Lightbox from '@/components/ui/Lightbox/Lightbox.astro';
+import Picture from '@/components/ui/Picture/Picture.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS } from '@/config/restaurant';
+import { GALLERY_ZOOM, gallerySources, toGalleryTile } from '@/data/images';
+import type { Dictionary } from '@/i18n';
+import './Gallery.css';
+
+// Двенадцать фото плитками 4:5. Нажатие увеличивает фото; без скриптов открывается само фото.
+interface Props {
+  t: Dictionary;
+}
+
+const { gallery, a11y } = Astro.props.t;
+
+const tiles = await Promise.all(
+  gallerySources.map(async (src, index) => ({
+    variants: toGalleryTile(src),
+    caption: gallery.alts[index],
+    zoom: await getImage({
+      src,
+      width: Math.min(src.width, GALLERY_ZOOM.maxWidth),
+      format: 'webp',
+      quality: GALLERY_ZOOM.quality,
+    }),
+  })),
+);
+---
+
+<section class="section gallery" id={ANCHORS.gallery}>
+  <div class="container">
+    <SectionHeading label={gallery.label} title={gallery.title} />
+    <p class="prose">{gallery.text}</p>
+    <ul class="gallery__grid">
+      {
+        tiles.map((tile) => (
+          <li>
+            <a class="gallery__tile" href={tile.zoom.src} data-zoom data-zoom-caption={tile.caption}>
+              <Picture variants={tile.variants} alt={tile.caption} />
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+  <Lightbox label={gallery.label} closeLabel={a11y.close} />
+</section>

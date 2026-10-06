@@ -1,0 +1,16 @@
+---
+import './SectionHeading.css';
+
+// Надпись секции + заголовок: одинаково во всех секциях.
+interface Props {
+  label: string;
+  title: string;
+}
+
+const { label, title } = Astro.props;
+---
+
+<header class="section-heading">
+  <p class="label">{label}</p>
+  <h2 class="section-heading__title">{title}</h2>
+</header>

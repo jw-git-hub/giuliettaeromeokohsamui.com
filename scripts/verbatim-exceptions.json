@@ -1,0 +1,14 @@
+{
+  "_about": "Фрагменты content/texts.md, которых на новой странице нет намеренно, и причина. Всё остальное из texts.md обязано быть в словаре.",
+  "notOnPage": [
+    { "text": "Giulietta e Romeo starters menu", "reason": "подпись картинки меню: меню теперь текстом" },
+    { "text": "Giulietta e Romeo pasta and meat menu", "reason": "подпись картинки меню: меню теперь текстом" },
+    { "text": "Giulietta e Romeo pizza and dessert menu.", "reason": "подпись картинки меню: меню теперь текстом" }
+  ],
+  "_newPhrases": "Новые фразы, которых нет в texts.md. Невидимые подписи для экранных читалок.",
+  "newPhrases": [
+    { "key": "a11y.skipToContent", "reason": "ссылка «к содержанию» для клавиатуры и экранных читалок" },
+    { "key": "a11y.language", "reason": "название переключателя языков для экранных читалок" },
+    { "key": "a11y.close", "reason": "название кнопки закрытия увеличенного фото" }
+  ]
+}

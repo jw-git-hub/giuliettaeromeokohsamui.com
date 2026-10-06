@@ -1,0 +1,56 @@
+/* Телефон: логотип и заголовок в строку, текст и кнопка ниже на всю ширину. */
+.family-card {
+  display: grid;
+  grid-template-areas:
+    "logo head"
+    "body body";
+  grid-template-columns: var(--logo-size) minmax(0, 1fr);
+  gap: var(--sp-3);
+  align-items: center;
+}
+
+/* Логотипы круглые на белом квадрате: обрезаем по кругу, чтобы белые углы не светились на тёмном. */
+.family-card__logo {
+  grid-area: logo;
+}
+
+.family-card__logo img {
+  width: var(--logo-size);
+  border-radius: 50%;
+}
+
+.family-card__head {
+  grid-area: head;
+}
+
+.family-card__body {
+  grid-area: body;
+}
+
+.family-card__tagline {
+  margin-top: var(--sp-2);
+}
+
+.family-card__hours {
+  margin-top: var(--sp-1);
+  color: var(--muted);
+  font-size: var(--fs-note);
+  font-variant-numeric: lining-nums;
+}
+
+.family-card__button {
+  margin-top: var(--sp-4);
+}
+
+/* Компьютер: логотип слева, весь текст справа. */
+@media (width >= 1024px) {
+  .family-card {
+    --logo-size: var(--logo-size-desktop);
+
+    grid-template-areas:
+      "logo head"
+      "logo body";
+    gap: var(--sp-3) var(--sp-4);
+    align-items: start;
+  }
+}

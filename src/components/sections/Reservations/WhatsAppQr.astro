@@ -1,0 +1,38 @@
+---
+import { WHATSAPP_URL } from '@/config/restaurant';
+import { whatsappQrImage } from '@/data/images';
+import type { Dictionary } from '@/i18n';
+import './WhatsAppQr.css';
+
+// QR нужен тем, кто сидит за компьютером: на телефоне скрыт.
+interface Props {
+  t: Dictionary;
+}
+
+const { qr } = Astro.props.t.reservations;
+---
+
+<aside class="whatsapp-qr" aria-label={qr.ariaLabel}>
+  <a
+    class="whatsapp-qr__link"
+    href={WHATSAPP_URL}
+    target="_blank"
+    rel="noopener noreferrer"
+    aria-label={qr.linkLabel}
+    data-goal="whatsapp-qr"
+  >
+    <img
+      class="whatsapp-qr__image"
+      src={whatsappQrImage.src}
+      width={whatsappQrImage.width}
+      height={whatsappQrImage.height}
+      alt={qr.alt}
+      loading="lazy"
+      decoding="async"
+    />
+  </a>
+  <div>
+    <h3 class="whatsapp-qr__title">{qr.title}</h3>
+    <p class="whatsapp-qr__text">{qr.text}</p>
+  </div>
+</aside>

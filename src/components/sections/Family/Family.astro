@@ -1,0 +1,48 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS, LA_DOLCE_VITA_URL, LA_PASTA_URL } from '@/config/restaurant';
+import { familyLogos } from '@/data/images';
+import type { Dictionary } from '@/i18n';
+import FamilyCard from './FamilyCard.astro';
+import './Family.css';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { family } = Astro.props.t;
+---
+
+<section class="section family" id={ANCHORS.family} aria-label={family.ariaLabel}>
+  <div class="container">
+    <SectionHeading label={family.label} title={family.title} />
+    <p class="prose">{family.text}</p>
+    <div class="family__cards">
+      <FamilyCard
+        id={ANCHORS.dolce}
+        logo={familyLogos.dolce}
+        logoAlt={family.dolce.logoAlt}
+        title={family.dolce.title}
+        tagline={family.dolce.tagline}
+        hours={family.dolce.hours}
+        text={family.dolce.text}
+        buttonLabel={family.dolce.button}
+        href={LA_DOLCE_VITA_URL}
+        goal="family-dolce"
+      />
+      <FamilyCard
+        id={ANCHORS.pasta}
+        logo={familyLogos.pasta}
+        logoAlt={family.pasta.logoAlt}
+        title={family.pasta.title}
+        tagline={family.pasta.tagline}
+        hours={family.pasta.hours}
+        text={family.pasta.text}
+        buttonLabel={family.pasta.button}
+        href={LA_PASTA_URL}
+        goal="family-pasta"
+      />
+    </div>
+    <p class="family__closing">{family.closing}</p>
+  </div>
+</section>

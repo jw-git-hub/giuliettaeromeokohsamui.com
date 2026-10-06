@@ -1,0 +1,40 @@
+.reservations__inner {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.reservations__hours {
+  margin-top: var(--sp-4);
+  padding-top: var(--sp-4);
+  border-top: 1px solid var(--line);
+}
+
+.reservations__note {
+  margin-top: var(--sp-3);
+  color: var(--muted);
+  font-size: var(--fs-note);
+}
+
+.reservations__contacts {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+/* Компьютер: слева тексты и часы, справа форма; ниже одной строкой — адрес, телефон,
+   карта, соцсети и QR. Так бронь помещается в один экран. */
+@media (width >= 1024px) {
+  .reservations__inner {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--sp-5) var(--sp-6);
+    align-items: start;
+  }
+
+  .reservations__contacts {
+    grid-column: 1 / -1;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: var(--sp-6);
+    align-items: start;
+    padding-top: var(--sp-5);
+    border-top: 1px solid var(--line);
+  }
+}

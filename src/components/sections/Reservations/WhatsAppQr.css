@@ -1,0 +1,25 @@
+.whatsapp-qr {
+  display: none;
+}
+
+@media (width >= 768px) {
+  .whatsapp-qr {
+    display: flex;
+    gap: var(--sp-4);
+    align-items: center;
+  }
+
+  .whatsapp-qr__link {
+    flex: none;
+  }
+
+  .whatsapp-qr__image {
+    width: var(--qr-width);
+  }
+
+  .whatsapp-qr__text {
+    margin-top: var(--sp-2);
+    color: var(--muted);
+    font-size: var(--fs-note);
+  }
+}

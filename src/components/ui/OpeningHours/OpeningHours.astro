@@ -1,0 +1,21 @@
+---
+import type { Dictionary } from '@/i18n';
+import './OpeningHours.css';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { hours, hoursLabel } = Astro.props.t.reservations;
+---
+
+<dl class="opening-hours" aria-label={hoursLabel}>
+  {
+    hours.map((row) => (
+      <div class="opening-hours__row">
+        <dt class="opening-hours__days">{row.days}</dt>
+        <dd class="opening-hours__time">{row.time}</dd>
+      </div>
+    ))
+  }
+</dl>

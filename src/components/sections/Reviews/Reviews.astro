@@ -1,0 +1,42 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS, MAPS_URL, TRIPADVISOR_URL } from '@/config/restaurant';
+import type { Dictionary } from '@/i18n';
+import shared from '@/i18n/shared.json';
+import Rating from './Rating.astro';
+import './Reviews.css';
+
+// Тёмная секция, как все. Цифры вписаны руками, сами не обновляются.
+interface Props {
+  t: Dictionary;
+}
+
+const { reviews } = Astro.props.t;
+---
+
+<section class="section reviews" id={ANCHORS.reviews}>
+  <div class="container reviews__inner">
+    <div>
+      <SectionHeading label={reviews.label} title={reviews.title} />
+      <p class="prose">{reviews.text}</p>
+    </div>
+    <div class="reviews__ratings">
+      <Rating
+        platform={shared.reviews.google.platform}
+        score={shared.reviews.google.score}
+        count={reviews.google.count}
+        linkLabel={reviews.google.link}
+        href={MAPS_URL}
+        goal="reviews-google"
+      />
+      <Rating
+        platform={shared.reviews.tripadvisor.platform}
+        score={shared.reviews.tripadvisor.score}
+        count={reviews.tripadvisor.count}
+        linkLabel={reviews.tripadvisor.link}
+        href={TRIPADVISOR_URL}
+        goal="reviews-tripadvisor"
+      />
+    </div>
+  </div>
+</section>

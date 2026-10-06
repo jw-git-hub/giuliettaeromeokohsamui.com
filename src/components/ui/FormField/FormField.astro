@@ -1,0 +1,72 @@
+---
+import Icon from '@/components/ui/Icon/Icon.astro';
+import './FormField.css';
+
+// Поле формы: подпись над полем — как надпись секции. DESIGN.md, раздел 5.
+export interface FieldOption {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  id: string;
+  label: string;
+  kind: 'text' | 'select' | 'textarea';
+  placeholder: string;
+  options?: FieldOption[];
+  /** Обязательность включает скрипт формы: без скриптов форма просто ведёт в WhatsApp. */
+  required?: boolean;
+  autocomplete?: string;
+  /** Поле показывает скрипт (список дат строится в браузере). */
+  hiddenUntilScript?: boolean;
+  /** Имя поля для скрипта формы. */
+  field: string;
+}
+
+const TEXTAREA_ROWS = 2;
+
+const {
+  id,
+  label,
+  kind,
+  placeholder,
+  options = [],
+  required = false,
+  autocomplete,
+  hiddenUntilScript = false,
+  field,
+} = Astro.props;
+const controlAttributes = { id, 'data-booking-field': field, 'data-required': required ? '' : undefined };
+---
+
+<div class="form-field" hidden={hiddenUntilScript} data-booking-wrapper={field}>
+  <label class="label form-field__label" for={id}>{label}</label>
+  {
+    kind === 'text' && (
+      <input class="form-field__control" type="text" placeholder={placeholder} autocomplete={autocomplete} {...controlAttributes} />
+    )
+  }
+  {
+    kind === 'select' && (
+      <div class="form-field__select">
+        <select class="form-field__control" {...controlAttributes}>
+          <option value="">{placeholder}</option>
+          {options.map((option) => (
+            <option value={option.value}>{option.label}</option>
+          ))}
+        </select>
+        <Icon name="chevron" />
+      </div>
+    )
+  }
+  {
+    kind === 'textarea' && (
+      <textarea
+        class="form-field__control form-field__control--area"
+        rows={TEXTAREA_ROWS}
+        placeholder={placeholder}
+        {...controlAttributes}
+      />
+    )
+  }
+</div>

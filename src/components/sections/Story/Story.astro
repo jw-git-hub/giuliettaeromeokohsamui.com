@@ -1,0 +1,36 @@
+---
+import Picture from '@/components/ui/Picture/Picture.astro';
+import RichText from '@/components/ui/RichText/RichText.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS } from '@/config/restaurant';
+import { facadeVariants } from '@/data/images';
+import type { Dictionary } from '@/i18n';
+import './Story.css';
+
+interface Props {
+  t: Dictionary;
+}
+
+const { story } = Astro.props.t;
+const familyLinks = { dolce: `#${ANCHORS.dolce}`, pasta: `#${ANCHORS.pasta}` };
+---
+
+<section class="section story" id={ANCHORS.story}>
+  <div class="container story__inner">
+    <div class="story__text">
+      <SectionHeading label={story.label} title={story.title} />
+      <div class="prose">
+        {
+          story.paragraphs.map((paragraph) => (
+            <p>
+              <RichText text={paragraph} links={familyLinks} />
+            </p>
+          ))
+        }
+        <p class="story__chef">{story.chef}</p>
+      </div>
+    </div>
+    <!-- Подписи к фото фасада в текстах нет: фото оформительское, для экранных читалок скрыто. -->
+    <Picture class="story__photo" variants={facadeVariants} alt="" />
+  </div>
+</section>

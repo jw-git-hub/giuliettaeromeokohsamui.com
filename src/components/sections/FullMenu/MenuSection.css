@@ -1,0 +1,32 @@
+.menu-section + .menu-section {
+  margin-top: var(--sp-6);
+}
+
+.menu-section__title {
+  font-size: var(--fs-menu-section);
+  font-style: italic;
+}
+
+.menu-section__columns {
+  margin-top: var(--sp-4);
+}
+
+/* Отступ снизу, а не сверху: иначе группа в начале второй колонки съезжает вниз. */
+.menu-section__group:not(:last-child) {
+  margin-bottom: var(--sp-5);
+}
+
+.menu-section__group--titled {
+  break-inside: avoid;
+}
+
+.menu-section__group-title {
+  margin: 0 0 var(--sp-3);
+}
+
+@media (width >= 1024px) {
+  .menu-section__columns {
+    columns: 2;
+    column-gap: var(--sp-6);
+  }
+}

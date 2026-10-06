@@ -1,5 +1,13 @@
 ---
+import SiteFooter from '@/components/chrome/SiteFooter/SiteFooter.astro';
+import Family from '@/components/sections/Family/Family.astro';
+import FullMenu from '@/components/sections/FullMenu/FullMenu.astro';
+import Gallery from '@/components/sections/Gallery/Gallery.astro';
 import Hero from '@/components/sections/Hero/Hero.astro';
+import MenuCategories from '@/components/sections/MenuCategories/MenuCategories.astro';
+import Reservations from '@/components/sections/Reservations/Reservations.astro';
+import Reviews from '@/components/sections/Reviews/Reviews.astro';
+import Story from '@/components/sections/Story/Story.astro';
 import { getDictionary, type LocaleCode } from '@/i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 
@@ -14,4 +22,12 @@ const t = getDictionary(locale);
 
 <BaseLayout locale={locale} t={t}>
   <Hero locale={locale} t={t} />
+  <Story t={t} />
+  <MenuCategories t={t} />
+  <FullMenu locale={locale} t={t} />
+  <Reviews t={t} />
+  <Gallery t={t} />
+  <Reservations locale={locale} t={t} />
+  <Family t={t} />
+  <SiteFooter slot="footer" t={t} />
 </BaseLayout>

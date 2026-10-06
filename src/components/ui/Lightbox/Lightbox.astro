@@ -1,0 +1,31 @@
+---
+import Icon from '@/components/ui/Icon/Icon.astro';
+import './Lightbox.css';
+
+// Увеличенное фото на нативном <dialog>. Открывает и листает src/scripts/lightbox.ts;
+// без скриптов плитка галереи — обычная ссылка на большое фото.
+// Кнопки «назад» и «вперёд» получают подпись соседнего фото — новых фраз не нужно.
+interface Props {
+  /** Название окна для экранных читалок — надпись секции. */
+  label: string;
+  closeLabel: string;
+}
+
+const { label, closeLabel } = Astro.props;
+---
+
+<dialog class="lightbox" aria-label={label} data-lightbox>
+  <button class="lightbox__button lightbox__button--close" type="button" aria-label={closeLabel} data-lightbox-close>
+    <Icon name="close" />
+  </button>
+  <button class="lightbox__button lightbox__button--previous" type="button" data-lightbox-previous>
+    <Icon name="chevron" />
+  </button>
+  <figure class="lightbox__figure">
+    <img class="lightbox__image" alt="" data-lightbox-image />
+    <figcaption class="lightbox__caption" data-lightbox-caption></figcaption>
+  </figure>
+  <button class="lightbox__button lightbox__button--next" type="button" data-lightbox-next>
+    <Icon name="chevron" />
+  </button>
+</dialog>

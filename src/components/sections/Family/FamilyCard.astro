@@ -1,0 +1,36 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import Picture from '@/components/ui/Picture/Picture.astro';
+import type { PictureVariant } from '@/data/picture';
+import './FamilyCard.css';
+
+// Карточка дочернего проекта: логотип слева, текст справа. Кнопка — в цветах сайта,
+// цвета логотипа остаются только внутри логотипа.
+interface Props {
+  id: string;
+  logo: PictureVariant[];
+  logoAlt: string;
+  title: string;
+  tagline: string;
+  hours: string;
+  text: string;
+  buttonLabel: string;
+  href: string;
+  goal: string;
+}
+
+const { id, logo, logoAlt, title, tagline, hours, text, buttonLabel, href, goal } = Astro.props;
+---
+
+<article class="family-card" id={id}>
+  <Picture class="family-card__logo" variants={logo} alt={logoAlt} />
+  <div class="family-card__head">
+    <h3>{title}</h3>
+    <p class="label family-card__tagline">{tagline}</p>
+    <p class="family-card__hours">{hours}</p>
+  </div>
+  <div class="family-card__body">
+    <p>{text}</p>
+    <Button class="family-card__button" variant="secondary" href={href} goal={goal} external>{buttonLabel}</Button>
+  </div>
+</article>

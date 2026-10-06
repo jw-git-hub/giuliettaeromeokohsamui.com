@@ -1,0 +1,36 @@
+.story__inner {
+  display: grid;
+  gap: var(--sp-5);
+}
+
+.story__photo {
+  max-width: var(--facade-max);
+}
+
+.story__photo img {
+  width: 100%;
+}
+
+/* Абзац про шефа — выноской: тонкая золотая линия слева. */
+.story__chef {
+  margin-top: var(--sp-4);
+  padding-left: var(--sp-4);
+  border-left: 1px solid var(--gold);
+}
+
+.story cite {
+  font-style: normal;
+}
+
+/* Компьютер: слева фото фасада, справа текст. */
+@media (width >= 1024px) {
+  .story__inner {
+    grid-template-columns: minmax(0, var(--facade-max-desktop)) minmax(0, 1fr);
+    gap: var(--sp-6);
+    align-items: start;
+  }
+
+  .story__photo {
+    order: -1;
+  }
+}

@@ -1,0 +1,7 @@
+.section-heading__title {
+  margin-top: var(--sp-2);
+}
+
+.section-heading + * {
+  margin-top: var(--sp-4);
+}

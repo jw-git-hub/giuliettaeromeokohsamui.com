@@ -1,0 +1,26 @@
+---
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS } from '@/config/restaurant';
+import { getMenu } from '@/data/menu';
+import type { Dictionary, LocaleCode } from '@/i18n';
+import MenuSection from './MenuSection.astro';
+import './FullMenu.css';
+
+// Полное меню текстом из content/menu.json. В аккордеон не прячем.
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+const menuSections = getMenu(locale);
+---
+
+<section class="section full-menu" id={ANCHORS.fullMenu}>
+  <div class="container">
+    <SectionHeading label={t.menu.fullLabel} title={t.menu.fullTitle} />
+    <div class="full-menu__sections">
+      {menuSections.map((section) => <MenuSection section={section} />)}
+    </div>
+  </div>
+</section>

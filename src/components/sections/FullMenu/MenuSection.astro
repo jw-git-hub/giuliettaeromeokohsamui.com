@@ -1,0 +1,31 @@
+---
+import type { MenuSection } from '@/data/menu';
+import MenuItem from './MenuItem.astro';
+import './MenuSection.css';
+
+// Раздел меню: заголовок — крупный курсив, подзаголовки групп — как надписи секций.
+// На компьютере две колонки; группа с подзаголовком между колонками не рвётся.
+interface Props {
+  section: MenuSection;
+}
+
+const { section } = Astro.props;
+---
+
+<section class="menu-section" id={section.id}>
+  <h3 class="menu-section__title">{section.title}</h3>
+  <div class="menu-section__columns">
+    {
+      section.groups.map((group) => (
+        <div class:list={['menu-section__group', { 'menu-section__group--titled': group.title !== null }]} id={group.id}>
+          {group.title !== null && <h4 class="label menu-section__group-title">{group.title}</h4>}
+          <ul>
+            {group.items.map((item) => (
+              <MenuItem item={item} />
+            ))}
+          </ul>
+        </div>
+      ))
+    }
+  </div>
+</section>

@@ -1,0 +1,91 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import FormField, { type FieldOption } from '@/components/ui/FormField/FormField.astro';
+import { BOOKING_RULES, GUESTS_MAX, GUESTS_MIN, TIME_SLOTS, WHATSAPP_URL } from '@/config/restaurant';
+import { getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
+import './ReservationForm.css';
+
+// Сообщение собирает src/scripts/booking. Подписи — на языке страницы,
+// значения, которые уходят в сообщение (время), — всегда английские.
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+const { form } = t.reservations;
+const localeInfo = getLocaleInfo(locale);
+
+const timeOptions: FieldOption[] = TIME_SLOTS.map((slot) => ({
+  value: slot.value,
+  label: localeInfo.hour12 ? slot.value : slot.label24,
+}));
+const guestCounts = Array.from({ length: GUESTS_MAX - GUESTS_MIN + 1 }, (_, index) => String(GUESTS_MIN + index));
+const guestOptions: FieldOption[] = guestCounts.map((count) => ({ value: count, label: count }));
+---
+
+<form
+  class="reservation-form"
+  action={WHATSAPP_URL}
+  method="get"
+  target="_blank"
+  data-booking-form
+  data-bar-hide
+  data-goal="reserve-form"
+  data-whatsapp-url={WHATSAPP_URL}
+  data-intl-locale={localeInfo.intlLocale}
+  data-time-zone={BOOKING_RULES.timeZone}
+  data-first-date={BOOKING_RULES.firstDate}
+  data-options-count={BOOKING_RULES.optionsCount}
+  data-closed-weekdays={BOOKING_RULES.closedWeekdays.join(',')}
+>
+  <FormField
+    id="booking-name"
+    field="name"
+    kind="text"
+    label={form.name.label}
+    placeholder={form.name.placeholder}
+    autocomplete="name"
+    required
+  />
+  <div class="reservation-form__row">
+    <FormField
+      id="booking-date"
+      field="date"
+      kind="select"
+      label={form.date.label}
+      placeholder={form.date.placeholder}
+      required
+      hiddenUntilScript
+    />
+    <FormField
+      id="booking-time"
+      field="time"
+      kind="select"
+      label={form.time.label}
+      placeholder={form.time.placeholder}
+      options={timeOptions}
+      required
+    />
+  </div>
+  <FormField
+    id="booking-guests"
+    field="guests"
+    kind="select"
+    label={form.guests.label}
+    placeholder={form.guests.placeholder}
+    options={guestOptions}
+    required
+  />
+  <FormField
+    id="booking-requests"
+    field="requests"
+    kind="textarea"
+    label={form.requests.label}
+    placeholder={form.requests.placeholder}
+  />
+  <div class="reservation-form__submit">
+    <Button variant="primary" type="submit">{form.submit}</Button>
+    <p class="reservation-form__hint">{form.hint}</p>
+  </div>
+</form>

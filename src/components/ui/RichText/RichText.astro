@@ -1,0 +1,27 @@
+---
+import { parseRichText } from '@/data/rich-text';
+
+// Строка словаря с метками: {cite}…{/cite} — название произведения, остальные метки — ссылки из links.
+interface Props {
+  text: string;
+  /** Адреса ссылок по имени метки. */
+  links?: Record<string, string>;
+}
+
+const CITE_TAG = 'cite';
+
+const { text, links = {} } = Astro.props;
+const segments = parseRichText(text);
+---
+
+{
+  segments.map((segment) => {
+    if (segment.tag === undefined) return segment.text;
+    if (segment.tag === CITE_TAG) return <cite>{segment.text}</cite>;
+    return (
+      <a class="text-link" href={links[segment.tag]}>
+        {segment.text}
+      </a>
+    );
+  })
+}

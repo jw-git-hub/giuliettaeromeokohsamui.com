@@ -32,7 +32,7 @@
 /* Запас под панель, чтобы она не закрывала подвал. */
 @media (width < 768px) {
   body {
-    padding-bottom: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + env(safe-area-inset-bottom));
+    padding-bottom: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + 1px + env(safe-area-inset-bottom));
   }
 }
 

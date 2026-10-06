@@ -1,0 +1,41 @@
+---
+import OpeningHours from '@/components/ui/OpeningHours/OpeningHours.astro';
+import SectionHeading from '@/components/ui/SectionHeading/SectionHeading.astro';
+import { ANCHORS } from '@/config/restaurant';
+import type { Dictionary, LocaleCode } from '@/i18n';
+import ContactList from './ContactList.astro';
+import ReservationForm from './ReservationForm.astro';
+import WhatsAppQr from './WhatsAppQr.astro';
+import './Reservations.css';
+
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+const { reservations } = t;
+---
+
+<section class="section reservations" id={ANCHORS.reservations} aria-label={reservations.ariaLabel}>
+  <div class="container reservations__inner">
+    <div class="reservations__intro">
+      <SectionHeading label={reservations.label} title={reservations.title} />
+      <div class="prose">
+        <p>{reservations.intro}</p>
+        <p>{reservations.howTo}</p>
+      </div>
+      <div class="reservations__hours">
+        <OpeningHours t={t} />
+        <p class="reservations__note">{reservations.note}</p>
+      </div>
+    </div>
+    <div class="reservations__form">
+      <ReservationForm locale={locale} t={t} />
+    </div>
+    <div class="reservations__contacts">
+      <ContactList t={t} />
+      <WhatsAppQr t={t} />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,35 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import { FACEBOOK_URL, INSTAGRAM_URL, MAPS_URL, PHONE_HREF } from '@/config/restaurant';
+import type { Dictionary } from '@/i18n';
+import shared from '@/i18n/shared.json';
+import './ContactList.css';
+
+// Адрес, телефон, карта и соцсети — рядом с формой, спокойным списком.
+interface Props {
+  t: Dictionary;
+}
+
+const { reservations } = Astro.props.t;
+---
+
+<div class="contact-list">
+  <div class="contact-list__address-block">
+    <p class="label">{reservations.addressLabel}</p>
+    <a class="contact-list__address" href={MAPS_URL} target="_blank" rel="noopener noreferrer" data-goal="address-reservations">
+      {reservations.address}
+    </a>
+  </div>
+  <div class="contact-list__buttons">
+    <Button variant="secondary" icon="phone" href={PHONE_HREF} goal="call-reservations">{reservations.call}</Button>
+    <Button variant="secondary" href={MAPS_URL} goal="maps-reservations" external>{reservations.maps}</Button>
+  </div>
+  <ul class="contact-list__social">
+    <li>
+      <Button variant="text" href={INSTAGRAM_URL} goal="instagram-reservations" external>{shared.social.instagram}</Button>
+    </li>
+    <li>
+      <Button variant="text" href={FACEBOOK_URL} goal="facebook-reservations" external>{shared.social.facebook}</Button>
+    </li>
+  </ul>
+</div>
