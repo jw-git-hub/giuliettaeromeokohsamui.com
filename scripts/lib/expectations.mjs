@@ -146,6 +146,7 @@ export const ALLOWED_SCHEMA_KEYS = [
   'addressLocality',
   'addressRegion',
   'postalCode',
+  'addressCountry',
   'hasMap',
   'openingHoursSpecification',
   'dayOfWeek',

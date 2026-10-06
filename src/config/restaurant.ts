@@ -80,10 +80,12 @@ export const LA_DOLCE_VITA_HOURS: OpeningHours = {
 
 /** Адрес из texts.md по частям — для разметки поиска. Ничего не добавлено: части, склеенные обратно
     («улица, район, провинция индекс»), дают строку адреса со страницы — это проверяет сборка.
-    Страны в оригинале нет, поэтому нет и здесь. */
+    Страны в тексте владелицы нет; её код (Таиланд) вписан по решению John от 06.10.2026 —
+    только в разметку для поиска, на странице адрес остаётся как был. */
 export const ADDRESS_PARTS = {
   streetAddress: '83, Bophut, 46 Moo 2, Bo Put',
   addressLocality: 'Ko Samui District',
   addressRegion: 'Surat Thani',
   postalCode: '84320',
+  addressCountry: 'TH',
 } as const;
