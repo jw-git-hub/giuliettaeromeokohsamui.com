@@ -63,25 +63,24 @@ for (const locale of BUILT_LOCALES) {
       expect(smallTargets).toEqual([]);
     });
 
-    test('форма брони открывает WhatsApp с английским сообщением', async ({ page }) => {
+    test('форма брони открывает WhatsApp один раз, с английским сообщением; сайт остаётся открытым', async ({ page, context }) => {
+      await context.route('https://wa.me/**', (route) => route.fulfill({ contentType: 'text/html', body: '<title>WhatsApp</title>' }));
       await page.goto(pagePath(locale));
-      await page.evaluate(() => {
-        window.open = (url) => {
-          (window as unknown as { openedUrl: string }).openedUrl = String(url);
-          return window;
-        };
-      });
       await page.fill('#booking-name', 'Anna Rossi');
       await page.selectOption('#booking-date', { index: 1 });
       await page.selectOption('#booking-time', '7:30 PM');
       await page.selectOption('#booking-guests', '3');
       await page.fill('#booking-requests', 'Window table');
       const chosenDate = await page.locator('#booking-date').inputValue();
+      const whatsappTab = context.waitForEvent('page');
       await page.locator('.reservation-form button[type="submit"]').click();
-      const openedUrl = new URL(await page.evaluate(() => (window as unknown as { openedUrl: string }).openedUrl));
+      const openedUrl = new URL((await whatsappTab).url());
       expect(openedUrl.origin + openedUrl.pathname).toBe('https://wa.me/66611971080');
       expect(openedUrl.searchParams.get('text')).toBe(EXPECTED_MESSAGE(chosenDate));
       expect(chosenDate).toMatch(/^[A-Z][a-z]+day, \d{1,2} [A-Z][a-z]+ 20\d\d$/);
+      await page.waitForTimeout(SCROLL_SETTLE_MS);
+      expect(context.pages()).toHaveLength(2);
+      expect(new URL(page.url()).pathname).toBe(pagePath(locale));
     });
 
     test('гостей можно выбрать от 1 до 8; год в списке дат — григорианский', async ({ page }) => {

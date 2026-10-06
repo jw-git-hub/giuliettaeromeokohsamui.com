@@ -7,11 +7,23 @@ export type LocaleCode = keyof typeof registry.locales;
 export type LocaleInfo = (typeof registry.locales)[LocaleCode];
 
 const TRIAL_STATUS = 'trial';
+const PUBLISHED_STATUS = 'published';
 
 export const DEFAULT_LOCALE = registry.defaultLocale as LocaleCode;
 
 /** Языки текущей сборки, в порядке реестра. Список приходит из astro.config.ts. */
 export const BUILD_LOCALES = __BUILD_LOCALES__ as LocaleCode[];
+
+/** Второй замок: черновик языка не может попасть в сборку, открытую для поиска,
+    даже если astro.config.ts по какой-то причине его пропустил. */
+function assertNoDraftsInPublicBuild(): void {
+  const drafts = BUILD_LOCALES.filter((locale) => registry.locales[locale].status !== PUBLISHED_STATUS);
+  if (import.meta.env.PROD && !__IS_DEMO__ && drafts.length > 0) {
+    throw new Error(`Черновики языков в боевой сборке: ${drafts.join(', ')}. Нужен статус published или демо-сборка.`);
+  }
+}
+
+assertNoDraftsInPublicBuild();
 
 const dictionaryModules = import.meta.glob<unknown>('./dictionaries/*.json', {
   eager: true,

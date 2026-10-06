@@ -4,6 +4,7 @@
     "selector-class-pattern": null,
     "custom-property-empty-line-before": null,
     "declaration-empty-line-before": null,
+    "media-feature-range-notation": null,
     "color-no-hex": true,
     "color-named": "never",
     "function-disallowed-list": ["rgb", "rgba", "hsl", "hsla"],

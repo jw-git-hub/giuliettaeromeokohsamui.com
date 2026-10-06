@@ -11,6 +11,7 @@ interface Props {
   t: Dictionary;
 }
 
+// Подписи к фото фасада в текстах нет: фото оформительское, для экранных читалок скрыто (alt пустой).
 const { story } = Astro.props.t;
 const familyLinks = { dolce: `#${ANCHORS.dolce}`, pasta: `#${ANCHORS.pasta}` };
 ---
@@ -30,7 +31,6 @@ const familyLinks = { dolce: `#${ANCHORS.dolce}`, pasta: `#${ANCHORS.pasta}` };
         <p class="story__chef">{story.chef}</p>
       </div>
     </div>
-    <!-- Подписи к фото фасада в текстах нет: фото оформительское, для экранных читалок скрыто. -->
     <Picture class="story__photo" variants={facadeVariants} alt="" />
   </div>
 </section>

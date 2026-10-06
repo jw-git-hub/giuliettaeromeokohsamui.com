@@ -2,6 +2,9 @@
 import { readFileSync } from 'node:fs';
 
 const MARKER_PATTERN = /\{\/?\w+\}/g;
+const TAGGED_TEXT = /\{(\w+)\}(.*?)\{\/\1\}/g;
+const WORD_CHARACTER = '[\\p{L}\\p{N}]';
+const REGEXP_SPECIALS = /[.*+?^${}()|[\]\\]/g;
 
 export function readText(path) {
   return readFileSync(path, 'utf8').normalize('NFC');
@@ -14,6 +17,11 @@ export function readJson(path) {
 /** Убирает метки {cite}…{/cite} и подобные, оставляя текст. */
 export function stripMarkers(value) {
   return value.replace(MARKER_PATTERN, '');
+}
+
+/** Тексты внутри меток: «Romeo and Juliet», «La Dolce Vita» — на странице это отдельные элементы. */
+export function taggedTexts(value) {
+  return [...value.matchAll(TAGGED_TEXT)].map((match) => match[2]);
 }
 
 export function collapseSpaces(value) {
@@ -32,9 +40,19 @@ export function longestFirst(values) {
   return [...new Set(values)].filter(Boolean).sort((first, second) => second.length - first.length);
 }
 
-/** Вычёркивает из текста все известные строки и возвращает остаток. */
+function wholeWordPattern(known) {
+  const escaped = known.replace(REGEXP_SPECIALS, '\\$&');
+  return new RegExp(`(?<!${WORD_CHARACTER})${escaped}(?!${WORD_CHARACTER})`, 'gu');
+}
+
+/** Вычёркивает из текста известные строки целиком — не как часть другого слова — и возвращает остаток. */
 export function removeKnown(text, knownValues) {
-  return longestFirst(knownValues).reduce((rest, known) => rest.split(known).join(' '), text);
+  return longestFirst(knownValues).reduce((rest, known) => rest.replace(wholeWordPattern(known), ' '), text);
+}
+
+export function restaurantName(shared) {
+  const { first, conjunction, last } = shared.name;
+  return `${first} ${conjunction} ${last}`;
 }
 
 export function menuItems(menu) {

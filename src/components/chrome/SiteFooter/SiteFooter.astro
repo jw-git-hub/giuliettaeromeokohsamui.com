@@ -1,6 +1,7 @@
 ---
 import OpeningHours from '@/components/ui/OpeningHours/OpeningHours.astro';
 import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import { EXTERNAL_LINK } from '@/config/links';
 import { FACEBOOK_URL, INSTAGRAM_URL, MAPS_URL, PHONE_HREF } from '@/config/restaurant';
 import type { Dictionary } from '@/i18n';
 import shared from '@/i18n/shared.json';
@@ -13,7 +14,6 @@ interface Props {
 
 const { t } = Astro.props;
 const { reservations } = t;
-const externalLink = { target: '_blank', rel: 'noopener noreferrer' };
 ---
 
 <footer class="site-footer">
@@ -24,7 +24,7 @@ const externalLink = { target: '_blank', rel: 'noopener noreferrer' };
     </div>
     <div class="site-footer__block">
       <p class="label">{reservations.addressLabel}</p>
-      <a class="site-footer__link" href={MAPS_URL} data-goal="address-footer" {...externalLink}>{reservations.address}</a>
+      <a class="site-footer__link" href={MAPS_URL} data-goal="address-footer" {...EXTERNAL_LINK}>{reservations.address}</a>
     </div>
     <div class="site-footer__block">
       <p class="label">{reservations.hoursLabel}</p>
@@ -33,12 +33,12 @@ const externalLink = { target: '_blank', rel: 'noopener noreferrer' };
     <ul class="site-footer__block site-footer__contacts">
       <li><a class="site-footer__link" href={PHONE_HREF} data-goal="call-footer">{reservations.call}</a></li>
       <li>
-        <a class="site-footer__link" href={INSTAGRAM_URL} data-goal="instagram-footer" {...externalLink}>
+        <a class="site-footer__link" href={INSTAGRAM_URL} data-goal="instagram-footer" {...EXTERNAL_LINK}>
           {shared.social.instagram}
         </a>
       </li>
       <li>
-        <a class="site-footer__link" href={FACEBOOK_URL} data-goal="facebook-footer" {...externalLink}>
+        <a class="site-footer__link" href={FACEBOOK_URL} data-goal="facebook-footer" {...EXTERNAL_LINK}>
           {shared.social.facebook}
         </a>
       </li>

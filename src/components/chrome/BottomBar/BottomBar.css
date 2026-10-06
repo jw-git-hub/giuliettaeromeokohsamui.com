@@ -27,16 +27,17 @@
   white-space: nowrap;
 }
 
-/* Без скриптов панель видна всегда. Со скриптами — скрыта, пока скрипт не покажет. */
-@media (scripting: enabled) {
-  .bottom-bar:not([data-visible]) {
-    visibility: hidden;
-    transform: translateY(100%);
-  }
+/* Без скриптов панель видна всегда. Прятать её начинает сам скрипт: он ставит data-enhanced.
+   Так панель не пропадёт, если скрипт не запустился, и работает в старых Safari. */
+.bottom-bar[data-enhanced]:not([data-visible]) {
+  visibility: hidden;
+  transform: translateY(100%);
 }
 
 /* Запас под панель, чтобы она не закрывала подвал. */
-@media (width < 768px) {
+
+/* Запись через max-width: отрицание диапазона старые Safari не понимают и пропустили бы правило. */
+@media (max-width: 767.98px) {
   body {
     padding-bottom: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + 1px + env(safe-area-inset-bottom));
   }

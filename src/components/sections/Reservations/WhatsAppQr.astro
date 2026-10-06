@@ -1,4 +1,5 @@
 ---
+import { EXTERNAL_LINK } from '@/config/links';
 import { WHATSAPP_URL } from '@/config/restaurant';
 import { whatsappQrImage } from '@/data/images';
 import type { Dictionary } from '@/i18n';
@@ -16,10 +17,9 @@ const { qr } = Astro.props.t.reservations;
   <a
     class="whatsapp-qr__link"
     href={WHATSAPP_URL}
-    target="_blank"
-    rel="noopener noreferrer"
     aria-label={qr.linkLabel}
     data-goal="whatsapp-qr"
+    {...EXTERNAL_LINK}
   >
     <img
       class="whatsapp-qr__image"

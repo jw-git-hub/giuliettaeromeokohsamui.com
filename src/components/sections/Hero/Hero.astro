@@ -15,8 +15,8 @@ interface Props {
 }
 
 const { locale, t } = Astro.props;
-// На итальянской странице вторая строка цитаты повторяла бы первую.
-const showsQuoteTranslation = getLocaleInfo(locale).htmlLang !== 'it';
+// На итальянской странице вторая строка цитаты повторяла бы первую — см. registry.json.
+const { showsQuoteTranslation } = getLocaleInfo(locale);
 ---
 
 <section class="hero">

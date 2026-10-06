@@ -8,6 +8,7 @@ const HIDE_TARGET_SELECTOR = '[data-bar-hide]';
 const HIDE_MODE_ATTRIBUTE = 'data-bar-hide';
 const FULL_MODE = 'full';
 const VISIBLE_ATTRIBUTE = 'data-visible';
+const ENHANCED_ATTRIBUTE = 'data-enhanced';
 const PARTLY_VISIBLE = 0;
 const FULLY_VISIBLE = 1;
 const ROUNDING_TOLERANCE = 0.01;
@@ -38,8 +39,9 @@ function watchHideTargets(bar: HTMLElement): void {
 
 function initBottomBar(): void {
   const bar = document.querySelector<HTMLElement>(BAR_SELECTOR);
-  if (!bar) return;
-  if (!('IntersectionObserver' in window)) return setBarVisible(bar, true);
+  if (!bar || !('IntersectionObserver' in window)) return;
+  bar.setAttribute(ENHANCED_ATTRIBUTE, '');
+  setBarVisible(bar, true);
   watchHideTargets(bar);
 }
 

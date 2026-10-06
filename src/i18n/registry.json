@@ -1,9 +1,9 @@
 {
   "defaultLocale": "en",
   "locales": {
-    "en": { "status": "published", "htmlLang": "en", "intlLocale": "en-GB", "ogLocale": "en_GB", "label": "EN", "hour12": true },
-    "it": { "status": "draft", "htmlLang": "it", "intlLocale": "it-IT", "ogLocale": "it_IT", "label": "IT", "hour12": false },
-    "ru": { "status": "draft", "htmlLang": "ru", "intlLocale": "ru-RU", "ogLocale": "ru_RU", "label": "RU", "hour12": false },
-    "th": { "status": "draft", "htmlLang": "th", "intlLocale": "th-TH-u-ca-gregory", "ogLocale": "th_TH", "label": "TH", "hour12": false }
+    "en": { "status": "published", "htmlLang": "en", "intlLocale": "en-GB", "ogLocale": "en_GB", "label": "EN", "hour12": true, "showsQuoteTranslation": true },
+    "it": { "status": "draft", "htmlLang": "it", "intlLocale": "it-IT", "ogLocale": "it_IT", "label": "IT", "hour12": false, "showsQuoteTranslation": false },
+    "ru": { "status": "draft", "htmlLang": "ru", "intlLocale": "ru-RU", "ogLocale": "ru_RU", "label": "RU", "hour12": false, "showsQuoteTranslation": true },
+    "th": { "status": "draft", "htmlLang": "th", "intlLocale": "th-TH-u-ca-gregory", "ogLocale": "th_TH", "label": "TH", "hour12": false, "showsQuoteTranslation": true }
   }
 }

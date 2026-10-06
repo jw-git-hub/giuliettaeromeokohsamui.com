@@ -50,8 +50,14 @@ function openWhatsApp(form: HTMLFormElement, event: SubmitEvent): void {
   event.preventDefault();
   const message = buildBookingMessage(readRequest(form));
   const url = buildWhatsAppUrl(form.dataset.whatsappUrl ?? form.action, message);
-  const openedWindow = window.open(url, '_blank', 'noopener');
-  if (openedWindow === null) window.location.href = url;
+  // Без 'noopener' в параметрах: с ним window.open всегда возвращает null,
+  // и нельзя отличить «окно открылось» от «браузер его заблокировал».
+  const openedWindow = window.open(url, '_blank');
+  if (openedWindow === null) {
+    window.location.href = url;
+    return;
+  }
+  openedWindow.opener = null;
 }
 
 function initBookingForm(): void {

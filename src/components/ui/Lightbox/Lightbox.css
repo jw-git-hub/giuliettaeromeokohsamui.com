@@ -9,11 +9,21 @@
   color: var(--text);
 }
 
+/* Телефон: фото на всю ширину, стрелки под ним. */
 .lightbox[open] {
   display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
+  grid-template-areas:
+    "figure figure"
+    "previous next";
+  grid-template-columns: 1fr 1fr;
   gap: var(--sp-2);
+  align-content: center;
   align-items: center;
+}
+
+/* Пока фото открыто, страница под ним не прокручивается. */
+html:has(.lightbox[open]) {
+  overflow: hidden;
 }
 
 .lightbox::backdrop {
@@ -22,6 +32,7 @@
 
 .lightbox__figure {
   display: grid;
+  grid-area: figure;
   gap: var(--sp-3);
   justify-items: center;
 }
@@ -29,7 +40,7 @@
 .lightbox__image {
   width: auto;
   max-width: min(100%, var(--zoom-max-width));
-  max-height: calc(100svh - 2 * var(--sp-6));
+  max-height: calc(100svh - 3 * var(--sp-6));
   object-fit: contain;
 }
 
@@ -63,10 +74,28 @@
   right: var(--sp-3);
 }
 
+.lightbox__button--previous {
+  grid-area: previous;
+  justify-self: start;
+}
+
+.lightbox__button--next {
+  grid-area: next;
+  justify-self: end;
+}
+
 .lightbox__button--previous .icon {
   rotate: 90deg;
 }
 
 .lightbox__button--next .icon {
   rotate: -90deg;
+}
+
+/* Планшет и компьютер: стрелки по бокам от фото. */
+@media (width >= 768px) {
+  .lightbox[open] {
+    grid-template-areas: "previous figure next";
+    grid-template-columns: auto minmax(0, 1fr) auto;
+  }
 }

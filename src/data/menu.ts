@@ -21,7 +21,6 @@ export interface MenuGroup {
 export interface MenuSection {
   id: string;
   title: string;
-  navLabel: string;
   groups: MenuGroup[];
 }
 
@@ -86,7 +85,6 @@ function toSection(section: SourceSection, translation?: MenuTranslation): MenuS
   return {
     id: section.id,
     title: translation?.sections[section.id].title ?? section.title,
-    navLabel: translation?.sections[section.id].navLabel ?? section.navLabel,
     groups: section.groups.map((group) => toGroup(group, translation)),
   };
 }

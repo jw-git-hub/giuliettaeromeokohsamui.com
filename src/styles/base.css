@@ -8,6 +8,8 @@ html {
   color-scheme: dark;
   font-synthesis: none;
   scroll-behavior: smooth;
+  /* stylelint-disable-next-line property-no-vendor-prefix -- iPhone понимает только запись с префиксом */
+  -webkit-text-size-adjust: 100%;
   text-size-adjust: 100%;
 }
 
@@ -76,7 +78,9 @@ textarea {
   width: 100%;
   max-width: calc(var(--container) + 2 * var(--gutter));
   margin-inline: auto;
-  padding-inline: var(--gutter);
+
+  /* В альбомной ориентации телефона контент не заходит под вырез экрана. */
+  padding-inline: max(var(--gutter), env(safe-area-inset-left)) max(var(--gutter), env(safe-area-inset-right));
 }
 
 .section {
@@ -84,15 +88,6 @@ textarea {
 
   /* Переход по якорю ставит заголовок секции близко к верху экрана, а не под всем её отступом. */
   scroll-margin-top: calc(var(--sp-5) - var(--section-y));
-}
-
-.visually-hidden {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
 }
 
 .skip-link {

@@ -2,8 +2,8 @@
 import { IS_DEMO } from '@/config/env';
 import { THEME_COLOR } from '@/config/site.mjs';
 import { BUILD_LOCALES, getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
-import shared from '@/i18n/shared.json';
-import { alternateLinks, assetUrl, canonicalUrl } from '@/i18n/urls';
+import { RESTAURANT_NAME } from '@/data/restaurant-name';
+import { alternateLinks, assetUrl, canonicalUrl, localeUrl } from '@/i18n/urls';
 
 // Заголовок, описание, канонический адрес, языковые версии, карточка для мессенджеров, иконка.
 interface Props {
@@ -17,8 +17,8 @@ const OG_IMAGE_WIDTH = 1200;
 const OG_IMAGE_HEIGHT = 630;
 
 const { locale, t, imageUrl } = Astro.props;
-const { first, conjunction, last } = shared.name;
-const siteName = `${first} ${conjunction} ${last}`;
+// В демо карточка ссылки ведёт на само демо; канонический адрес при этом остаётся боевым.
+const pageUrl = IS_DEMO ? new URL(localeUrl(locale), Astro.site).href : canonicalUrl(locale);
 const otherLocales = BUILD_LOCALES.filter((code) => code !== locale);
 ---
 
@@ -29,14 +29,14 @@ const otherLocales = BUILD_LOCALES.filter((code) => code !== locale);
 {IS_DEMO && <meta name="robots" content="noindex, nofollow" />}
 
 <meta property="og:type" content="website" />
-<meta property="og:site_name" content={siteName} />
+<meta property="og:site_name" content={RESTAURANT_NAME} />
 <meta property="og:title" content={t.meta.title} />
 <meta property="og:description" content={t.meta.description} />
-<meta property="og:url" content={canonicalUrl(locale)} />
+<meta property="og:url" content={pageUrl} />
 <meta property="og:image" content={imageUrl} />
 <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
 <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />
-<meta property="og:image:alt" content={siteName} />
+<meta property="og:image:alt" content={RESTAURANT_NAME} />
 <meta property="og:locale" content={getLocaleInfo(locale).ogLocale} />
 {otherLocales.map((code) => <meta property="og:locale:alternate" content={getLocaleInfo(code).ogLocale} />)}
 <meta name="twitter:card" content="summary_large_image" />

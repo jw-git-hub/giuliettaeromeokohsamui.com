@@ -4,14 +4,29 @@ import { PRODUCTION_SITE } from './src/config/site.mjs';
 import { readRegistry, resolveBuildLocales } from './src/i18n/build-locales.mjs';
 
 const ALL_PREFIXES = '';
+const MODE_FLAG = '--mode';
 const isBuild = process.argv.includes('build');
-const modeFlagIndex = process.argv.indexOf('--mode');
 const defaultMode = isBuild ? 'production' : 'development';
-const mode = modeFlagIndex === -1 ? defaultMode : process.argv[modeFlagIndex + 1];
+
+/** Режим из командной строки: и «--mode demo», и «--mode=demo». */
+function readMode(argv: string[]): string {
+  const inlineFlag = argv.find((argument) => argument.startsWith(`${MODE_FLAG}=`));
+  if (inlineFlag) return inlineFlag.slice(MODE_FLAG.length + 1);
+  const flagIndex = argv.indexOf(MODE_FLAG);
+  return flagIndex === -1 ? defaultMode : (argv[flagIndex + 1] ?? defaultMode);
+}
+
+const mode = readMode(process.argv);
 
 // Astro не читает .env в конфиге сам — берём через Vite.
 const env = loadEnv(mode, process.cwd(), ALL_PREFIXES);
 const isDemo = env.PUBLIC_DEMO === 'true';
+
+// У демо свой адрес: по нему строятся картинка и адрес для мессенджеров.
+// Без него карточка ссылки ушла бы на боевой домен, где нового сайта ещё нет.
+if (isBuild && isDemo && !env.SITE_URL) {
+  throw new Error('Демо-сборке нужен SITE_URL — адрес, где будет жить демо (см. .env.demo).');
+}
 
 const registry = readRegistry();
 const buildLocales = resolveBuildLocales({
@@ -34,6 +49,8 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   vite: {
+    // Старые Safari (до 16.4) не понимают запись @media (width >= …): сборка переводит её в min-width.
+    build: { cssTarget: ['chrome100', 'firefox100', 'safari14', 'ios14'] },
     define: {
       __BUILD_LOCALES__: JSON.stringify(buildLocales),
       __IS_DEMO__: JSON.stringify(isDemo),

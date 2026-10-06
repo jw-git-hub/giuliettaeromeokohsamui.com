@@ -13,7 +13,6 @@ export interface DateRules {
 
 const MS_PER_DAY = 86_400_000;
 const ENGLISH_LOCALE = 'en-GB';
-const ISO_DATE_LOCALE = 'en-CA';
 const UTC = 'UTC';
 const LONG_DATE: Intl.DateTimeFormatOptions = {
   weekday: 'long',
@@ -35,9 +34,16 @@ function addDays(isoDate: string, days: number): string {
   return toIsoDate(new Date(toUtcDate(isoDate).getTime() + days * MS_PER_DAY));
 }
 
-/** Сегодняшняя дата в часовом поясе ресторана, ГГГГ-ММ-ДД. */
+function partOf(parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes): string {
+  return parts.find((part) => part.type === type)?.value ?? '';
+}
+
+/** Сегодняшняя дата в часовом поясе ресторана, ГГГГ-ММ-ДД. Собирается из частей,
+    чтобы не зависеть от того, как браузер пишет дату целиком. */
 export function todayInTimeZone(now: Date, timeZone: string): string {
-  return new Intl.DateTimeFormat(ISO_DATE_LOCALE, { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' }).format(now);
+  const numericDate: Intl.DateTimeFormatOptions = { timeZone, year: 'numeric', month: '2-digit', day: '2-digit' };
+  const parts = new Intl.DateTimeFormat(ENGLISH_LOCALE, numericDate).formatToParts(now);
+  return `${partOf(parts, 'year')}-${partOf(parts, 'month')}-${partOf(parts, 'day')}`;
 }
 
 function isOpenOn(isoDate: string, closedWeekdays: number[]): boolean {
@@ -54,10 +60,6 @@ export function listBookingDates(now: Date, rules: DateRules): string[] {
     candidate = addDays(candidate, 1);
   }
   return dates;
-}
-
-function partOf(parts: Intl.DateTimeFormatPart[], type: Intl.DateTimeFormatPartTypes): string {
-  return parts.find((part) => part.type === type)?.value ?? '';
 }
 
 /** Дата для сообщения в WhatsApp — всегда по-английски: «Wednesday, 7 October 2026».

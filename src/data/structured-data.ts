@@ -9,8 +9,8 @@ import {
 } from '@/config/restaurant';
 import { PRODUCTION_SITE } from '@/config/site.mjs';
 import { getMenu, type MenuSection } from '@/data/menu';
+import { RESTAURANT_NAME } from '@/data/restaurant-name';
 import type { Dictionary, LocaleCode } from '@/i18n';
-import shared from '@/i18n/shared.json';
 import { canonicalUrl } from '@/i18n/urls';
 
 const SCHEMA_CONTEXT = 'https://schema.org';
@@ -44,12 +44,11 @@ function buildOpeningHours() {
 }
 
 export function buildRestaurantSchema(locale: LocaleCode, t: Dictionary, imageUrl: string) {
-  const { first, conjunction, last } = shared.name;
   return {
     '@context': SCHEMA_CONTEXT,
     '@type': 'Restaurant',
     '@id': RESTAURANT_ID,
-    name: `${first} ${conjunction} ${last}`,
+    name: RESTAURANT_NAME,
     description: t.meta.description,
     url: canonicalUrl(locale),
     image: imageUrl,

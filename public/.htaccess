@@ -1,16 +1,21 @@
 # Giulietta e Romeo — настройки Apache для обычного хостинга.
+# Каждая настройка обёрнута проверкой модуля: если модуля на хостинге нет, сайт продолжит работать.
 
 AddDefaultCharset UTF-8
 
 # Типы файлов, которых может не быть в старых настройках сервера.
-AddType image/avif .avif
-AddType image/webp .webp
-AddType font/woff2 .woff2
-AddType image/svg+xml .svg
+<IfModule mod_mime.c>
+  AddType image/avif .avif
+  AddType image/webp .webp
+  AddType font/woff2 .woff2
+  AddType image/svg+xml .svg
+</IfModule>
 
 # Сжатие текстовых файлов.
 <IfModule mod_deflate.c>
-  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml text/xml text/plain image/svg+xml
+  <IfModule mod_filter.c>
+    AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript application/json application/xml text/xml text/plain image/svg+xml
+  </IfModule>
 </IfModule>
 
 <IfModule mod_headers.c>
@@ -24,10 +29,11 @@ AddType image/svg+xml .svg
     Header set Cache-Control "public, max-age=604800"
   </FilesMatch>
 
-  # Файлы с хэшем в имени (стили, шрифты, фото) не меняются никогда: кэш на год.
-  <If "%{REQUEST_URI} =~ m#/_astro/#">
+  # Файлы с хэшем в имени (стили, шрифты, фото из папки _astro) не меняются никогда: кэш на год.
+  # Пример имён: index.DU3ZSt7q.css, hero-lantern.B6mjQZvF_Z1OEoxy.avif
+  <FilesMatch "\.[A-Za-z0-9_-]{8}(_[A-Za-z0-9]+)?\.(css|js|woff2|avif|webp|jpg|png)$">
     Header set Cache-Control "public, max-age=31536000, immutable"
-  </If>
+  </FilesMatch>
 
   Header set X-Content-Type-Options "nosniff"
 </IfModule>

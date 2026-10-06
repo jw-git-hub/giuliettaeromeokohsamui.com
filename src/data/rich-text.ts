@@ -19,7 +19,3 @@ export function parseRichText(source: string): RichTextSegment[] {
   if (cursor < source.length) segments.push({ text: source.slice(cursor) });
   return segments;
 }
-
-export function stripRichText(source: string): string {
-  return source.replace(MARKER_PATTERN, '$2');
-}

@@ -48,8 +48,9 @@ function showPhoto(parts: LightboxParts, index: number): void {
   parts.image.src = link.href;
   parts.image.alt = captionOf(link);
   parts.caption.textContent = captionOf(link);
-  parts.previousButton.ariaLabel = captionOf(parts.links[wrapIndex(currentIndex + PREVIOUS_STEP, total)]);
-  parts.nextButton.ariaLabel = captionOf(parts.links[wrapIndex(currentIndex + NEXT_STEP, total)]);
+  // Подпись кнопки — подпись фото, к которому она ведёт. Атрибутом: свойство ariaLabel есть не везде.
+  parts.previousButton.setAttribute('aria-label', captionOf(parts.links[wrapIndex(currentIndex + PREVIOUS_STEP, total)]));
+  parts.nextButton.setAttribute('aria-label', captionOf(parts.links[wrapIndex(currentIndex + NEXT_STEP, total)]));
 }
 
 function openPhoto(parts: LightboxParts, index: number, event: Event): void {

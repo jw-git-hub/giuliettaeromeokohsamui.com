@@ -1,5 +1,6 @@
 ---
 import Button from '@/components/ui/Button/Button.astro';
+import { EXTERNAL_LINK } from '@/config/links';
 import { FACEBOOK_URL, INSTAGRAM_URL, MAPS_URL, PHONE_HREF } from '@/config/restaurant';
 import type { Dictionary } from '@/i18n';
 import shared from '@/i18n/shared.json';
@@ -16,7 +17,7 @@ const { reservations } = Astro.props.t;
 <div class="contact-list">
   <div class="contact-list__address-block">
     <p class="label">{reservations.addressLabel}</p>
-    <a class="contact-list__address" href={MAPS_URL} target="_blank" rel="noopener noreferrer" data-goal="address-reservations">
+    <a class="contact-list__address" href={MAPS_URL} data-goal="address-reservations" {...EXTERNAL_LINK}>
       {reservations.address}
     </a>
   </div>

@@ -28,9 +28,7 @@ const categoryKeys = Object.keys(shared.categories) as CategoryKey[];
           <li>
             <a class="menu-categories__tile" href={`#${getCategoryTarget(key)}`} data-goal={`menu-category-${key}`}>
               <Picture class="menu-categories__photo" variants={categoryTiles[key]} alt={menu.categories[key].alt} />
-              <h3 class="menu-categories__name" lang="it">
-                {shared.categories[key]}
-              </h3>
+              <h3 class="menu-categories__name">{shared.categories[key]}</h3>
               <p class="menu-categories__text">{menu.categories[key].text}</p>
             </a>
           </li>
