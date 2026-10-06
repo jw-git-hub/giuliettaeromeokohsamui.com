@@ -55,7 +55,7 @@ async function openPage(browser, viewport, options) {
     isMobile: viewport.isMobile,
     hasTouch: viewport.hasTouch,
   };
-  const deviceScaleFactor = options.scale ? Number(options.scale) : contextOptions.deviceScaleFactor;
+  const deviceScaleFactor = options.scale ? Number(options.scale) : viewport.deviceScaleFactor;
   const viewportSize = { width: viewport.width, height: viewport.height };
   const context = await browser.newContext({ ...contextOptions, deviceScaleFactor, viewport: viewportSize });
   const page = await context.newPage();

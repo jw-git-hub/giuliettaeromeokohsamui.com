@@ -7,15 +7,20 @@ import BottomBar from '@/components/chrome/BottomBar/BottomBar.astro';
 import SiteHeader from '@/components/chrome/SiteHeader/SiteHeader.astro';
 import FontFaces from '@/components/head/FontFaces.astro';
 import Seo from '@/components/head/Seo.astro';
+import StructuredData from '@/components/head/StructuredData.astro';
 import { ANCHORS } from '@/config/restaurant';
 import { getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
+import { assetUrl } from '@/i18n/urls';
 
 interface Props {
   locale: LocaleCode;
   t: Dictionary;
 }
 
+const OG_IMAGE_FILE = 'og.jpg';
+
 const { locale, t } = Astro.props;
+const imageUrl = new URL(assetUrl(OG_IMAGE_FILE), Astro.site).href;
 ---
 
 <!doctype html>
@@ -23,8 +28,9 @@ const { locale, t } = Astro.props;
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-    <Seo locale={locale} t={t} />
+    <Seo locale={locale} t={t} imageUrl={imageUrl} />
     <FontFaces locale={locale} />
+    <StructuredData locale={locale} t={t} imageUrl={imageUrl} />
   </head>
   <body>
     <a class="skip-link" href={`#${ANCHORS.main}`}>{t.a11y.skipToContent}</a>

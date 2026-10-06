@@ -31,8 +31,10 @@ const TILE_ASPECT = { width: 4, height: 5 };
 const TILE_WIDTHS = [240, 360, 480, 600];
 const LOGO_WIDTHS = [128, 192, 256, 384];
 
-const CATEGORY_SIZES = '(min-width: 1200px) 190px, (min-width: 768px) 31vw, 46vw';
-const GALLERY_SIZES = '(min-width: 1024px) 290px, (min-width: 768px) 31vw, 46vw';
+// На телефоне плитка занимает около 46vw; заявляем 40vw, чтобы экраны с тройной плотностью
+// брали файл 480 px, а не 600: разницы на глаз нет, а весит на треть меньше.
+const CATEGORY_SIZES = '(min-width: 1200px) 190px, (min-width: 768px) 31vw, 40vw';
+const GALLERY_SIZES = '(min-width: 1024px) 290px, (min-width: 768px) 31vw, 40vw';
 const LOGO_SIZES = '(min-width: 1024px) 128px, 96px';
 
 /** Телефон и планшет: квадрат, круглое окно с фонарём видно целиком. */
@@ -59,7 +61,8 @@ export const facadeVariants: PictureVariant[] = [
   {
     src: facadeSign,
     widths: [400, 600, 800, 1200],
-    sizes: '(min-width: 1024px) 600px, min(100vw - 40px, 700px)',
+    // На телефоне заявляем 66vw по той же причине: 800 px вместо 1200.
+    sizes: '(min-width: 1024px) 600px, (min-width: 768px) 700px, 66vw',
   },
 ];
 

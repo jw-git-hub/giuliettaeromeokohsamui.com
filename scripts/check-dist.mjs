@@ -107,7 +107,10 @@ function findExtraWords(root, known) {
 function findMissingStrings(root, locale, dictionary) {
   const pageText = collapseSpaces(`${root.querySelector('head').text} ${root.querySelector('body').structuredText}`);
   const attributes = attributeTexts(root);
-  const isHidden = (path) => path === 'hero.quoteTranslation' && registry.locales[locale].htmlLang === 'it';
+  // Вторая строка цитаты скрыта на итальянской странице; переключателя нет, когда язык в сборке один.
+  const isHidden = (path) =>
+    (path === 'hero.quoteTranslation' && registry.locales[locale].htmlLang === 'it') ||
+    (path === 'a11y.language' && builtLocales.length === 1);
   return dictionaryValues(dictionary)
     .filter(({ path }) => !isHidden(path))
     .filter(({ value }) => !pageText.includes(value) && !attributes.includes(value))

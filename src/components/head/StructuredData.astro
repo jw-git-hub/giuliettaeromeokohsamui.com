@@ -1,0 +1,15 @@
+---
+import { buildRestaurantSchema } from '@/data/structured-data';
+import type { Dictionary, LocaleCode } from '@/i18n';
+
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+  imageUrl: string;
+}
+
+const { locale, t, imageUrl } = Astro.props;
+const schemaJson = JSON.stringify(buildRestaurantSchema(locale, t, imageUrl));
+---
+
+<script is:inline type="application/ld+json" set:html={schemaJson} />
