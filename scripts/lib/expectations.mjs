@@ -159,6 +159,9 @@ export const ALLOWED_SCHEMA_KEYS = [
   'hasMenu',
   'hasMenuSection',
   'hasMenuItem',
+  'offers',
+  'price',
+  'priceCurrency',
   'department',
 ];
 

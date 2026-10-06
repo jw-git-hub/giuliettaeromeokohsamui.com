@@ -1,7 +1,7 @@
 // Проверка собранных страниц, после сборки. Для каждого языка в dist/:
 // 1. Тексты стоят на своих местах (lib/expectations.mjs).
 // 2. На странице нет слов сверх словаря, меню и общих данных — ни в тексте, ни в подписях,
-//    ни в стилях; нет знаков валют.
+//    ни в стилях; знак валюты — только бат у цен меню.
 // 3. Меню: разделы, группы, позиции, цены и буквы V — как в content/menu.json.
 // 4. В <head> и в разметке для поиска — только разрешённые поля: ни оценок, ни координат, ни цен;
 //    адрес в разметке, разбитый на части, совпадает с адресом на странице.
@@ -68,7 +68,7 @@ function expectedMenu(locale) {
   const toItem = (item) => ({
     name: item.name,
     description: translation.items[item.id] ?? item.description,
-    price: String(item.price),
+    price: `${menu.currency.sign}${item.price}`,
     hasVMark: item.v,
   });
   const toGroup = (group) => ({

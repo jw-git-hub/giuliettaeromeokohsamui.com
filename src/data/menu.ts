@@ -31,6 +31,14 @@ export interface MenuTranslation {
   items: Record<string, string>;
 }
 
+/** Валюта цен — тайский бат (решение John от 06.10.2026: на картинках меню знака валюты не было). */
+export const MENU_CURRENCY = menuSource.currency;
+
+/** Цена так, как она стоит на странице: знак бата и число. */
+export function formatPrice(price: number): string {
+  return `${MENU_CURRENCY.sign}${price}`;
+}
+
 type SourceSection = (typeof menuSource.sections)[number];
 type SourceGroup = SourceSection['groups'][number];
 

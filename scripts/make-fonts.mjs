@@ -1,5 +1,5 @@
 // Облегчённые шрифты сайта: из файлов пакетов fontsource убираются начертания, которых на сайте нет.
-// Знаки остаются все — меняется только диапазон жирности: у Bodoni на сайте одна жирность (400),
+// Знаки остаются все (кроме файла с одним знаком бата) — меняется только диапазон жирности: у Bodoni на сайте одна жирность (400),
 // у текстовых шрифтов — от 400 до 600. Вид букв тот же, файлы легче примерно на треть–половину.
 // Жирности на сайте задают --weight-display и --weight-label в src/styles/tokens.css:
 // понадобится другая — поменять диапазон здесь и в src/data/fonts.ts, затем запустить заново.
@@ -20,6 +20,8 @@ const FONTS = [
   { source: 'source-serif-4/files/source-serif-4-latin-wght-normal.woff2', output: 'source-serif-4-latin.woff2', axes: TEXT_WEIGHTS },
   { source: 'source-serif-4/files/source-serif-4-cyrillic-wght-normal.woff2', output: 'source-serif-4-cyrillic.woff2', axes: TEXT_WEIGHTS },
   { source: 'noto-serif-thai/files/noto-serif-thai-thai-wght-normal.woff2', output: 'noto-serif-thai.woff2', axes: TEXT_WEIGHTS },
+  // Знак бата у цен: в Source Serif его нет. На нетайских страницах — файл из одного этого знака.
+  { source: 'noto-serif-thai/files/noto-serif-thai-thai-wght-normal.woff2', output: 'noto-serif-thai-baht.woff2', axes: TEXT_WEIGHTS, characters: '฿' },
 ];
 
 function toKb(bytes) {
@@ -36,11 +38,12 @@ function assertSameCharacters(original, lightened, name) {
   throw new Error(`${name}: знаков стало ${lightened.characterSet.length}, было ${original.characterSet.length}`);
 }
 
-async function lighten({ source, output, axes }) {
+async function lighten({ source, output, axes, characters }) {
   const sourceBuffer = readFileSync(`${PACKAGES_DIR}/${source}`);
   const original = fontkit.create(sourceBuffer);
-  const lightBuffer = await subsetFont(sourceBuffer, allCharacters(original), { targetFormat: 'woff2', variationAxes: axes });
-  assertSameCharacters(original, fontkit.create(lightBuffer), output);
+  const kept = characters ?? allCharacters(original);
+  const lightBuffer = await subsetFont(sourceBuffer, kept, { targetFormat: 'woff2', variationAxes: axes });
+  if (!characters) assertSameCharacters(original, fontkit.create(lightBuffer), output);
   writeFileSync(`${OUTPUT_DIR}/${output}`, lightBuffer);
   return { file: output, 'было, КБ': toKb(sourceBuffer.length), 'стало, КБ': toKb(lightBuffer.length) };
 }

@@ -1,6 +1,6 @@
 // Разметка для поиска и ИИ-ассистентов (JSON-LD): сайт, страница и ресторан одним связным графом.
-// Только то, что есть в content/texts.md и меню: без оценок, координат и цен (валюта цен в оригинале
-// не указана). Одно исключение — код страны в адресе: решение John от 06.10.2026.
+// Только то, что есть в content/texts.md и меню: без оценок и координат. Два решения John от 06.10.2026
+// сверх текстов владелицы: код страны в адресе и валюта цен — тайский бат.
 import {
   ADDRESS_PARTS,
   ANCHORS,
@@ -16,7 +16,7 @@ import {
   type OpeningHours,
 } from '@/config/restaurant';
 import { PRODUCTION_SITE } from '@/config/site.mjs';
-import { getMenu, type MenuSection } from '@/data/menu';
+import { getMenu, MENU_CURRENCY, type MenuItem, type MenuSection } from '@/data/menu';
 import { RESTAURANT_NAME } from '@/data/restaurant-name';
 import { BUILD_LOCALES, DEFAULT_LOCALE, getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
 import { canonicalUrl } from '@/i18n/urls';
@@ -41,7 +41,16 @@ function toMenuSection(section: MenuSection) {
   return {
     '@type': 'MenuSection',
     name: section.title,
-    hasMenuItem: items.map((item) => ({ '@type': 'MenuItem', name: item.name, description: item.description })),
+    hasMenuItem: items.map(toMenuItem),
+  };
+}
+
+function toMenuItem(item: MenuItem) {
+  return {
+    '@type': 'MenuItem',
+    name: item.name,
+    description: item.description,
+    offers: { '@type': 'Offer', price: item.price, priceCurrency: MENU_CURRENCY.code },
   };
 }
 

@@ -1,8 +1,8 @@
 // Текст файла llms.txt — короткая карта сайта для ИИ-ассистентов: кто это, где, когда открыто,
 // как забронировать, что в меню. Собирается из английского словаря, меню и ссылок ресторана:
-// ни одной фразы, которой нет на странице (это проверяет сборка). Цен и буквы «V» здесь нет:
-// на странице они стоят без валюты и без расшифровки, а ИИ-ассистент додумал бы и то и другое сам.
-// Вернуть их можно, когда владелица ответит, в какой валюте цены и что значит «V».
+// ни одной фразы, которой нет на странице (это проверяет сборка). Цены — со знаком бата, как на странице.
+// Буквы «V» здесь нет: на странице она стоит без расшифровки, а ИИ-ассистент додумал бы её смысл сам.
+// Вернуть её можно, когда владелица ответит, что значит «V».
 import {
   FACEBOOK_URL,
   INSTAGRAM_URL,
@@ -13,7 +13,7 @@ import {
   TRIPADVISOR_URL,
   WHATSAPP_URL,
 } from '@/config/restaurant';
-import { getMenu, type MenuGroup, type MenuItem, type MenuSection } from '@/data/menu';
+import { formatPrice, getMenu, type MenuGroup, type MenuItem, type MenuSection } from '@/data/menu';
 import { RESTAURANT_NAME } from '@/data/restaurant-name';
 import { BUILD_LOCALES, DEFAULT_LOCALE, getDictionary, getLocaleInfo, type Dictionary } from '@/i18n';
 import shared from '@/i18n/shared.json';
@@ -48,7 +48,7 @@ function contactLines(t: Dictionary): string[] {
 }
 
 function menuItemLine(item: MenuItem): string {
-  return `- ${item.name}: ${item.description}`;
+  return `- ${item.name}, ${formatPrice(item.price)}: ${item.description}`;
 }
 
 function menuGroupBlock(group: MenuGroup): string {
