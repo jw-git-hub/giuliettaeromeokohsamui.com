@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "starters": {
+      "title": "อาหารเรียกน้ำย่อย",
+      "navLabel": "เรียกน้ำย่อย"
+    },
+    "pasta": {
+      "title": "พาสต้าสดโฮมเมด",
+      "navLabel": "พาสต้า"
+    },
+    "meat": {
+      "title": "เนื้อสัตว์",
+      "navLabel": "เนื้อ"
+    },
+    "pizza": {
+      "title": "พิซซ่ากูร์เมต์ของเรา แป้งหมักธรรมชาติ 72 ชั่วโมง",
+      "navLabel": "พิซซ่า"
+    },
+    "dessert": {
+      "title": "ของหวาน",
+      "navLabel": "ของหวาน"
+    }
+  },
+  "groups": {
+    "starters-cheese": "ชีส",
+    "starters-ham": "แฮม",
+    "starters-meat": "เนื้อ",
+    "starters-fish": "ปลา",
+    "starters-salad": "สลัด",
+    "starters-soup": "ซุป",
+    "pasta-fish": "...กับปลา..."
+  },
+  "items": {
+    "bruschette-con-pomodorini-e-basilico": "ขนมปังซาวร์โดว์ มะเขือเทศสด",
+    "giulietta-e-romeo-board-x-2": "พาร์มิจาโนบ่ม 24 เดือน พาร์มาแฮม บูร์ราตา เนื้อปลาแอนโชวี่ ผักรวม",
+    "burrata-di-andria": "ชีสบูร์ราตา มะเขือเทศ",
+    "burrata-di-andria-con-tartufo-di-norcia": "ชีสบูร์ราตา มะเขือเทศ เห็ดทรัฟเฟิลสด",
+    "caprese-platter": "มอสซาเรลลาฟิออร์ดิลัตเต มะเขือเทศอบและมะเขือเทศสด มะกอก ผลไม้แห้ง",
+    "cheese-board-x-2": "พาร์มิจาโน กอร์กอนโซลา เปโกริโน อาเซียโก มะกอก มะเขือเทศตากแห้ง ผลไม้แห้ง",
+    "scamorza-al-forno-con-tartufo-di-norcia": "ชีสสกามอร์ซาอบ เห็ดทรัฟเฟิลสด",
+    "feta-alla-mediterranea": "ชีสเฟตา มะเขือเทศเชอร์รี เคเปอร์ มะกอก",
+    "culatello-di-zibello": "คูลาเตลโล พาร์มาแฮม",
+    "bresaola-della-valtellina": "เนื้อวัวหมักเกลือตากแห้ง",
+    "cozze-marinara": "หอยแมลงภู่สดผัดซอสมารินารา – ตารันโต – ทะเลไอโอเนียน",
+    "vongole-in-guazzetto": "หอยลายสดผัดซอสกวัซเซตโต – ทะเลเอเดรียติก",
+    "trota-salmonata-affumicata": "ปลาเทราต์แซลมอนรมควัน",
+    "carpaccio-di-tonno-con-agrumi": "คาร์ปัชโชปลาทูน่า ส้ม เลมอน",
+    "insalata-greca": "ผักสลัด มะเขือเทศ หัวหอม แตงกวา มะกอกดำ ชีสเฟตา",
+    "insalata-mediterranea": "ส้ม ร็อกเก็ต เฟนเนล หอมแดง วอลนัต",
+    "zuppa-del-giorno": "ซุปประจำวัน",
+    "spaghetti-aglio-olio-e-peperoncino": "กระเทียม น้ำมันมะกอกเอ็กซ์ตราเวอร์จิน พริก",
+    "spaghetti-pomodoro-fresco-e-basilico": "มะเขือเทศเชอร์รี โหระพา",
+    "spaghetti-pomodoro-fresco-e-crema-di-burrata": "ครีม พริกหวาน มะเขือเทศ",
+    "maccheroni-carbonara": "กวนชาเล ไข่แดงสด ชีสเปโกริโน พริกไทยดำ",
+    "maccheroni-pomodorini-e-ricotta-salata": "มะเขือเทศเชอร์รี ชีสริคอตตาบ่มเนื้อร่วน",
+    "maccheroni-giulietta-e-romeo": "ซอสโรเซ่ครีมมี่กับมอสซาเรลลาละลาย",
+    "gnocchi-alla-sorrentina": "นอคคีอบในซอสมะเขือเทศกับมอสซาเรลลาละลาย",
+    "gnocchi-con-stracotto-di-manzo": "นอคคี เนื้อวัวตุ๋น",
+    "gnocchi-con-ragu-di-agnello": "นอคคี รากูเนื้อแกะ",
+    "tagliatelle-con-funghi": "เห็ด",
+    "tagliatelle-con-tartufo-di-norcia": "เห็ดทรัฟเฟิลดำ",
+    "tagliatelle-con-gorgonzola-e-pere": "ชีสกอร์กอนโซลา ลูกแพร์",
+    "ravioli-ricotta-e-spinaci": "ชีสริคอตตา ผักโขม เนย",
+    "spaghetti-alla-siciliana": "กับปลาทูน่าสดและบอตตาร์กา – ซิซิลี",
+    "spaghetti-vongole": "กับหอยลายสด – ทะเลเอเดรียติก",
+    "spaghetti-bottarga": "กับบอตตาร์กาปลากระบอก – เกาะซาร์ดิเนีย",
+    "stracotto-di-fassona-all-amarone": "เนื้อวัวตุ๋น โพเลนตา",
+    "costolette-di-agnello-scottadito": "ซี่โครงแกะย่าง",
+    "filetto-di-fassona": "เนื้อสันในวัวย่าง",
+    "pizza-napoletana-original-recipe": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต โหระพา",
+    "pizza-carmelo": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต มะเขือเทศเชอร์รี พาร์เมซาน",
+    "pizza-with-black-truffle-from-norcia": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต เห็ดทรัฟเฟิลดำสด",
+    "pizza-giulietta-e-romeo": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต เคเปอร์ มะกอก สตรัชชาเตลลา ร็อกเก็ตป่า",
+    "dolci-di-giulietta": "ของหวานโฮมเมด"
+  }
+}

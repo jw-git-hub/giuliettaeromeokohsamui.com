@@ -6,6 +6,7 @@ export type LocaleCode = keyof typeof registry.locales;
 export const VIEWPORTS = {
   phone: { width: 390, height: 844 },
   tablet: { width: 820, height: 1180 },
+  laptop: { width: 1024, height: 768 },
   desktop: { width: 1440, height: 900 },
 } as const;
 

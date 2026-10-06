@@ -4,7 +4,7 @@ h3 {
   font-family: var(--font-display);
   font-weight: var(--weight-display);
   line-height: var(--lh-heading);
-  text-wrap: balance;
+  text-wrap: var(--heading-wrap);
 }
 
 h1 {
@@ -28,8 +28,8 @@ h3 {
   font-weight: var(--weight-label);
   letter-spacing: var(--tracking-label);
   line-height: 1.4;
-  text-transform: uppercase;
-  text-wrap: balance;
+  text-transform: var(--label-case);
+  text-wrap: var(--heading-wrap);
 }
 
 /* Длинный текст: по левому краю, колонка не шире 62 знаков. */

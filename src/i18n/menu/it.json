@@ -1,0 +1,76 @@
+{
+  "sections": {
+    "starters": {
+      "title": "Antipasti",
+      "navLabel": "Antipasti"
+    },
+    "pasta": {
+      "title": "Pasta fresca fatta in casa",
+      "navLabel": "Pasta"
+    },
+    "meat": {
+      "title": "Carne",
+      "navLabel": "Carne"
+    },
+    "pizza": {
+      "title": "La nostra Pizza Gourmet: 72 ore di lievitazione naturale",
+      "navLabel": "Pizza"
+    },
+    "dessert": {
+      "title": "Dessert",
+      "navLabel": "Dessert"
+    }
+  },
+  "groups": {
+    "starters-cheese": "Formaggi",
+    "starters-ham": "Prosciutto",
+    "starters-meat": "Carne",
+    "starters-fish": "Pesce",
+    "starters-salad": "Insalata",
+    "starters-soup": "Zuppa",
+    "pasta-fish": "...Con pesce..."
+  },
+  "items": {
+    "bruschette-con-pomodorini-e-basilico": "Pane a lievitazione naturale, pomodori freschi",
+    "giulietta-e-romeo-board-x-2": "Parmigiano stagionato 24 mesi, prosciutto di Parma, burrata, filetto di acciuga, verdure miste",
+    "burrata-di-andria": "Burrata, pomodori",
+    "burrata-di-andria-con-tartufo-di-norcia": "Burrata, pomodori, tartufo fresco",
+    "caprese-platter": "Mozzarella fiordilatte, pomodori arrostiti e freschi, olive, frutta secca",
+    "cheese-board-x-2": "Parmigiano, Gorgonzola, Pecorino, Asiago, olive, pomodori secchi, frutta secca",
+    "scamorza-al-forno-con-tartufo-di-norcia": "Scamorza al forno, tartufo fresco",
+    "feta-alla-mediterranea": "Feta, pomodorini, capperi, olive",
+    "culatello-di-zibello": "Culatello, salume di Parma",
+    "bresaola-della-valtellina": "Manzo salato ed essiccato all’aria",
+    "cozze-marinara": "Cozze fresche saltate alla marinara – Taranto – Mar Ionio",
+    "vongole-in-guazzetto": "Vongole fresche saltate in guazzetto – Mare Adriatico",
+    "trota-salmonata-affumicata": "Trota salmonata affumicata",
+    "carpaccio-di-tonno-con-agrumi": "Carpaccio di tonno, arancia, limone",
+    "insalata-greca": "Insalata, pomodori, cipolla, cetriolo, olive nere, feta",
+    "insalata-mediterranea": "Arancia, rucola, finocchio, cipolla rossa, noci",
+    "zuppa-del-giorno": "Zuppa del giorno",
+    "spaghetti-aglio-olio-e-peperoncino": "Aglio, olio EVO, peperoncino",
+    "spaghetti-pomodoro-fresco-e-basilico": "Pomodorini, basilico",
+    "spaghetti-pomodoro-fresco-e-crema-di-burrata": "Panna, peperoni, pomodori",
+    "maccheroni-carbonara": "Guanciale, tuorli d’uovo freschi, Pecorino, pepe nero",
+    "maccheroni-pomodorini-e-ricotta-salata": "Pomodorini, ricotta stagionata friabile",
+    "maccheroni-giulietta-e-romeo": "Salsa rosé cremosa con mozzarella fusa",
+    "gnocchi-alla-sorrentina": "Gnocchi al forno in salsa di pomodoro con mozzarella fusa",
+    "gnocchi-con-stracotto-di-manzo": "Gnocchi, stracotto di manzo",
+    "gnocchi-con-ragu-di-agnello": "Gnocchi, ragù di agnello",
+    "tagliatelle-con-funghi": "Funghi",
+    "tagliatelle-con-tartufo-di-norcia": "Tartufo nero",
+    "tagliatelle-con-gorgonzola-e-pere": "Gorgonzola, pere",
+    "ravioli-ricotta-e-spinaci": "Ricotta, spinaci, burro",
+    "spaghetti-alla-siciliana": "Con tonno fresco e bottarga – Sicilia",
+    "spaghetti-vongole": "Con vongole fresche – Mare Adriatico",
+    "spaghetti-bottarga": "Con bottarga di muggine – Sardegna",
+    "stracotto-di-fassona-all-amarone": "Stracotto di manzo, polenta",
+    "costolette-di-agnello-scottadito": "Costolette di agnello alla griglia",
+    "filetto-di-fassona": "Filetto di manzo alla griglia",
+    "pizza-napoletana-original-recipe": "Pomodoro San Marzano, mozzarella fior di latte, basilico",
+    "pizza-carmelo": "Pomodoro San Marzano, mozzarella fior di latte, pomodorini, parmigiano",
+    "pizza-with-black-truffle-from-norcia": "Pomodoro San Marzano, mozzarella fior di latte, tartufo nero fresco",
+    "pizza-giulietta-e-romeo": "Pomodoro San Marzano, mozzarella fior di latte, capperi, olive, stracciatella, rucola selvatica",
+    "dolci-di-giulietta": "Dolce fatto in casa"
+  }
+}

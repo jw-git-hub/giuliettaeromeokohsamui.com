@@ -37,6 +37,8 @@
   --lh-tight: 1.05;
   --tracking-label: 0.16em;
   --tracking-button: 0.14em;
+  --label-case: uppercase;   /* надписи и кнопки прописными */
+  --heading-wrap: balance;   /* строки заголовков выравниваются по длине */
   --weight-display: 400;
   --weight-label: 600;
   --opsz-sturdy: 28;   /* крупные цифры Bodoni: при большом оптическом размере волосные линии рвутся */

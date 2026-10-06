@@ -1,0 +1,28 @@
+{
+  "_about": "Что в переводах разрешено оставлять как в оригинале.",
+  "latinInNonLatinLocales": [
+    "Giulietta e Romeo",
+    "La Dolce Vita",
+    "La Pasta",
+    "by",
+    "WhatsApp",
+    "Instagram",
+    "Facebook",
+    "Google",
+    "Tripadvisor",
+    "Grab",
+    "LINE MAN",
+    "QR",
+    "Paola Ferrari",
+    "Maps"
+  ],
+  "untranslatedKeys": [
+    "bar.whatsapp",
+    "reservations.address",
+    "family.dolce.title",
+    "family.pasta.title",
+    "hero.quoteTranslation",
+    "gallery.alts.6"
+  ],
+  "nonLatinLocales": ["ru", "th"]
+}

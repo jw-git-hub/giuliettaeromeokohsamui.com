@@ -13,12 +13,18 @@
     visibility var(--transition);
 }
 
+/* WhatsApp шире звонка; ширина считается от текста, чтобы длинные переводы не переносились. */
 .bottom-bar__whatsapp {
-  flex: 1.4;
+  flex: 1.4 1 auto;
 }
 
 .bottom-bar__call {
-  flex: 1;
+  flex: 1 1 auto;
+}
+
+.bottom-bar .button {
+  padding-inline: var(--sp-2);
+  white-space: nowrap;
 }
 
 /* Без скриптов панель видна всегда. Со скриптами — скрыта, пока скрипт не покажет. */

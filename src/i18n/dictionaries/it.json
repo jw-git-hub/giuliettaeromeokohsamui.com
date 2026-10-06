@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Giulietta e Romeo | Ristorante italiano romantico a Koh Samui",
+    "description": "Giulietta e Romeo è un ristorante italiano romantico a Chaweng, Koh Samui. A conduzione familiare dal 2015, guidato dalla Head Chef italiana, la signora Paola Ferrari."
+  },
+  "a11y": {
+    "skipToContent": "Vai al contenuto",
+    "language": "Lingua",
+    "close": "Chiudi"
+  },
+  "hero": {
+    "label": "Ristorante italiano romantico · Koh Samui",
+    "bookNow": "Prenota",
+    "viewMenu": "Vedi il menù",
+    "quoteLabel": "Citazione da Romeo e Giulietta",
+    "quoteTranslation": "“Did my heart love till now? ... I never saw true beauty till this night.”",
+    "imageAlt": "Esterno del ristorante Giulietta e Romeo"
+  },
+  "bar": {
+    "whatsapp": "WhatsApp",
+    "call": "Chiama ora"
+  },
+  "story": {
+    "label": "La nostra storia",
+    "title": "Ispirato da Shakespeare. Prende vita a Koh Samui.",
+    "paragraphs": [
+      "Giulietta e Romeo prende il nome da {cite}Romeo e Giulietta{/cite} di Shakespeare, una delle storie d’amore più senza tempo al mondo. Una storia di romanticismo, passione e devozione che dà il tono a un ristorante nato intorno al calore, all’atmosfera e a serate indimenticabili condivise davanti a ottimo cibo.",
+      "Dopo 12 anni a North Chaweng, Giulietta e Romeo apre un nuovo capitolo nel cuore di Chaweng, a Koh Samui, ai piedi del tempio dorato di Wat Khao Hua Jook. La nostra nuova casa offre tavoli all’interno e all’aperto accanto a una bella piscina, in un ambiente intimo per romantiche serate italiane. Il luogo è nuovo, ma la stessa famiglia, le stesse ricette e lo stesso spirito romantico italiano ne restano il cuore.",
+      "Accanto al ristorante serale, la nuova casa ci ha permesso di presentare due novità della famiglia Giulietta e Romeo. {dolce}La Dolce Vita{/dolce} porta colazioni, brunch e drink nel nostro bar a bordo piscina durante il giorno, mentre {pasta}La Pasta{/pasta} propone un menù accuratamente selezionato di piatti di pasta di qualità, consegnati comodamente a casa vostra o nel vostro alloggio.",
+      "A conduzione familiare, il ristorante è nato per far sentire gli ospiti accolti, coccolati e trasportati in Italia per una sera. Luce di candela, stile italiano classico, rose rosse, servizio caloroso e atmosfera intima riflettono il romanticismo che sta dietro al nome."
+    ],
+    "chef": "Il cuore del ristorante è la Head Chef italiana, la signora Paola Ferrari, la cui cucina porta sull’isola l’autentica tradizione italiana attraverso sapori classici, ingredienti accuratamente selezionati e prodotti importati dall’Italia."
+  },
+  "menu": {
+    "label": "Menù",
+    "title": "I grandi classici italiani, fatti con amore.",
+    "categories": {
+      "antipasti": {
+        "text": "Antipasti italiani, salumi, formaggi, bruschette e piatti da condividere.",
+        "alt": "Tagliere di antipasti italiani"
+      },
+      "pasta": {
+        "text": "Pasta fresca italiana con sughi ricchi, tartufo, frutti di mare e sapori classici.",
+        "alt": "Piatto di pasta italiana"
+      },
+      "seafood": {
+        "text": "Cozze, pasta ai frutti di mare, gamberi e piatti della costa italiana.",
+        "alt": "Cozze all’italiana"
+      },
+      "grill": {
+        "text": "Carni alla griglia servite con contorni italiani, verdure e salse.",
+        "alt": "Bistecca alla griglia"
+      },
+      "pizza": {
+        "text": "Pizza italiana classica con ingredienti freschi e crosta dorata.",
+        "alt": "Pizza italiana"
+      },
+      "dessert": {
+        "text": "Dolci italiani classici, cioccolato, frutta e dolci finali.",
+        "alt": "Dolce italiano"
+      }
+    },
+    "fullLabel": "Menù completo",
+    "fullTitle": "Il menù di Giulietta e Romeo"
+  },
+  "reviews": {
+    "label": "Recensioni",
+    "title": "Amato dagli ospiti.",
+    "text": "Uno storico punto di riferimento di Koh Samui, fondato su ospitalità familiare, romanticismo e autentica cucina italiana.",
+    "google": {
+      "count": "531 recensioni",
+      "link": "Recensioni su Google"
+    },
+    "tripadvisor": {
+      "count": "1.178 recensioni",
+      "link": "Recensioni su Tripadvisor"
+    }
+  },
+  "gallery": {
+    "label": "Galleria",
+    "title": "Cibo, luce di candela e fascino italiano.",
+    "text": "Uno sguardo da vicino ai piatti, ai dettagli e ai sapori della cucina di Giulietta e Romeo.",
+    "alts": [
+      "Crostini italiani",
+      "Antipasto di mare all’italiana",
+      "Pasta italiana",
+      "Dolce di pera cotta",
+      "Tagliere di bruschette italiane",
+      "Piatto di mare",
+      "Spaghetti alle vongole",
+      "Pesce e verdure grigliate",
+      "Antipasto italiano da condividere",
+      "Piatto di ravioli",
+      "Pasta italiana fatta in casa al tartufo",
+      "Pizza gourmet italiana"
+    ]
+  },
+  "reservations": {
+    "ariaLabel": "Prenota il tuo tavolo da Giulietta e Romeo",
+    "label": "Prenotazioni",
+    "title": "Prenota il tuo tavolo.",
+    "intro": "Che sia una cena romantica, una serata in famiglia o un’occasione speciale, saremo lieti di accogliervi.",
+    "howTo": "Inviateci la vostra richiesta di prenotazione su WhatsApp e il nostro team confermerà il tavolo il prima possibile.",
+    "hoursLabel": "Orari di apertura",
+    "hours": [
+      { "days": "Mercoledì – Domenica", "time": "18:00 – 22:00" },
+      { "days": "Lunedì e Martedì", "time": "Chiuso" }
+    ],
+    "note": "Per prenotazioni in giornata, contattateci direttamente su WhatsApp.",
+    "form": {
+      "name": { "label": "Nome", "placeholder": "Il tuo nome" },
+      "date": { "label": "Data", "placeholder": "Seleziona una data" },
+      "time": { "label": "Ora", "placeholder": "Seleziona un orario" },
+      "guests": { "label": "Numero di ospiti", "placeholder": "Seleziona gli ospiti" },
+      "requests": { "label": "Richieste speciali", "placeholder": "Anniversario, compleanno, allergie, tavolo preferito..." },
+      "submit": "Prenota via WhatsApp",
+      "hint": "La richiesta si aprirà direttamente in WhatsApp."
+    },
+    "call": "Chiama +66 (0) 61 197 1080",
+    "maps": "Apri Google Maps",
+    "addressLabel": "Indirizzo",
+    "address": "83, Bophut, 46 Moo 2, Bo Put, Ko Samui District, Surat Thani 84320",
+    "qr": {
+      "ariaLabel": "Codice QR per prenotare su WhatsApp",
+      "title": "QR WhatsApp",
+      "alt": "Codice QR per le prenotazioni WhatsApp di Giulietta e Romeo",
+      "linkLabel": "Apri le prenotazioni WhatsApp di Giulietta e Romeo",
+      "text": "Scansiona per scriverci direttamente su WhatsApp e prenotare."
+    }
+  },
+  "family": {
+    "ariaLabel": "Altro dalla famiglia Giulietta e Romeo",
+    "label": "La famiglia Giulietta e Romeo",
+    "title": "Dal mattino alla sera — e ora anche da asporto.",
+    "text": "La nostra nuova casa a Chaweng ha aperto la porta a due nuovi modi di gustare i sapori e lo spirito di Giulietta e Romeo.",
+    "dolce": {
+      "logoAlt": "Logo La Dolce Vita by Giulietta e Romeo",
+      "title": "La Dolce Vita by Giulietta e Romeo",
+      "tagline": "Colazione · Brunch · Pool Bar",
+      "hours": "Tutti i giorni | 7:30 – 17:00",
+      "text": "Di giorno, il nostro spazio a bordo piscina diventa La Dolce Vita: colazioni e brunch all’italiana in tutto relax, caffè come si deve, cocktail e bibite fresche accanto alla piscina.",
+      "button": "Scopri La Dolce Vita"
+    },
+    "pasta": {
+      "logoAlt": "Logo La Pasta by Giulietta e Romeo",
+      "title": "La Pasta by Giulietta e Romeo",
+      "tagline": "Consegna · Asporto",
+      "hours": "Autentiche ricette di famiglia, pensate per casa",
+      "text": "La Pasta porta la cucina di Giulietta e Romeo da voi, con le nostre ricette di famiglia disponibili in consegna tramite Grab e LINE MAN e da asporto dalla nostra casa di Chaweng.",
+      "button": "Scopri La Pasta"
+    },
+    "closing": "Stessa famiglia. Stessa qualità. Stesso cuore italiano."
+  },
+  "footer": {
+    "tagline": "Ristorante italiano romantico · Chaweng, Koh Samui"
+  }
+}

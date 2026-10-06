@@ -16,7 +16,7 @@
   line-height: 1.3;
   text-align: center;
   text-decoration: none;
-  text-transform: uppercase;
+  text-transform: var(--label-case);
   cursor: pointer;
   transition:
     background-color var(--transition),

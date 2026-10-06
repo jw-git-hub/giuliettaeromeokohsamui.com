@@ -45,7 +45,10 @@ async function loadLazyImages(page, pauseMs) {
     }
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, pauseMs);
-  await page.waitForFunction(() => Array.from(document.images).every((image) => image.complete));
+  // Скрытые фото (QR на телефоне) браузер не грузит вовсе — ждём только видимые.
+  await page.waitForFunction(() =>
+    Array.from(document.images).every((image) => image.offsetParent === null || image.complete),
+  );
 }
 
 async function openPage(browser, viewport, options) {

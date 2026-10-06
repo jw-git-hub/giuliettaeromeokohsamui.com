@@ -15,7 +15,7 @@
   font-style: italic;
   line-height: 1.35;
   text-align: center;
-  text-wrap: balance;
+  text-wrap: var(--heading-wrap);
 }
 
 /* Компьютер: карточки в ряд. */

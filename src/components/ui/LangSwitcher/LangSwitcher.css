@@ -34,3 +34,11 @@
 .lang-switcher__link[aria-current] {
   color: var(--text);
 }
+
+/* С мышью широкая область нажатия не нужна — переключатель занимает меньше места в шапке. */
+@media (pointer: fine) {
+  .lang-switcher__link {
+    min-width: 0;
+    padding-inline: var(--sp-2);
+  }
+}

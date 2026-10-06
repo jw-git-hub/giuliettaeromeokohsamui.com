@@ -57,7 +57,7 @@
 .hero__quote-translation {
   color: var(--muted);
   font-size: var(--fs-note);
-  text-wrap: balance;
+  text-wrap: var(--heading-wrap);
 }
 
 .hero__actions {
