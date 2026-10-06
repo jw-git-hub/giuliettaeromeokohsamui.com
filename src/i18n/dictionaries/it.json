@@ -1,7 +1,7 @@
 {
   "meta": {
     "title": "Giulietta e Romeo | Ristorante italiano romantico a Koh Samui",
-    "description": "Giulietta e Romeo è un ristorante italiano romantico a Chaweng, Koh Samui. A conduzione familiare dal 2015, guidato dalla Head Chef italiana, la signora Paola Ferrari."
+    "description": "Giulietta e Romeo è un ristorante italiano romantico a Chaweng, Koh Samui. A conduzione familiare dal 2015, guidato dalla chef italiana Paola Ferrari."
   },
   "a11y": {
     "skipToContent": "Vai al contenuto",
@@ -22,14 +22,14 @@
   },
   "story": {
     "label": "La nostra storia",
-    "title": "Ispirato da Shakespeare. Prende vita a Koh Samui.",
+    "title": "Ispirato a Shakespeare. Prende vita a Koh Samui.",
     "paragraphs": [
-      "Giulietta e Romeo prende il nome da {cite}Romeo e Giulietta{/cite} di Shakespeare, una delle storie d’amore più senza tempo al mondo. Una storia di romanticismo, passione e devozione che dà il tono a un ristorante nato intorno al calore, all’atmosfera e a serate indimenticabili condivise davanti a ottimo cibo.",
+      "Giulietta e Romeo prende il nome da {cite}Romeo e Giulietta{/cite} di Shakespeare, una delle storie d’amore più celebri di sempre. Una storia di romanticismo, passione e devozione che ispira un ristorante fatto di calore, atmosfera e serate indimenticabili davanti alla buona cucina.",
       "Dopo 12 anni a North Chaweng, Giulietta e Romeo apre un nuovo capitolo nel cuore di Chaweng, a Koh Samui, ai piedi del tempio dorato di Wat Khao Hua Jook. La nostra nuova casa offre tavoli all’interno e all’aperto accanto a una bella piscina, in un ambiente intimo per romantiche serate italiane. Il luogo è nuovo, ma la stessa famiglia, le stesse ricette e lo stesso spirito romantico italiano ne restano il cuore.",
-      "Accanto al ristorante serale, la nuova casa ci ha permesso di presentare due novità della famiglia Giulietta e Romeo. {dolce}La Dolce Vita{/dolce} porta colazioni, brunch e drink nel nostro bar a bordo piscina durante il giorno, mentre {pasta}La Pasta{/pasta} propone un menù accuratamente selezionato di piatti di pasta di qualità, consegnati comodamente a casa vostra o nel vostro alloggio.",
-      "A conduzione familiare, il ristorante è nato per far sentire gli ospiti accolti, coccolati e trasportati in Italia per una sera. Luce di candela, stile italiano classico, rose rosse, servizio caloroso e atmosfera intima riflettono il romanticismo che sta dietro al nome."
+      "Oltre al ristorante, aperto la sera, la nuova casa ci ha permesso di presentare due novità della famiglia Giulietta e Romeo. {dolce}La Dolce Vita{/dolce} porta colazioni, brunch e drink nel nostro bar a bordo piscina durante il giorno, mentre {pasta}La Pasta{/pasta} propone una selezione curata di primi di pasta, consegnati comodamente a casa vostra o dove alloggiate.",
+      "A conduzione familiare, il ristorante è nato per far sentire gli ospiti accolti, coccolati e trasportati in Italia per una sera. Lume di candela, stile italiano classico, rose rosse, servizio caloroso e atmosfera intima riflettono il romanticismo che sta dietro al nome."
     ],
-    "chef": "Il cuore del ristorante è la Head Chef italiana, la signora Paola Ferrari, la cui cucina porta sull’isola l’autentica tradizione italiana attraverso sapori classici, ingredienti accuratamente selezionati e prodotti importati dall’Italia."
+    "chef": "Il cuore del ristorante è la chef italiana Paola Ferrari, la cui cucina porta sull’isola l’autentica tradizione italiana attraverso sapori classici, ingredienti accuratamente selezionati e prodotti importati dall’Italia."
   },
   "menu": {
     "label": "Menù",
@@ -52,11 +52,11 @@
         "alt": "Bistecca alla griglia"
       },
       "pizza": {
-        "text": "Pizza italiana classica con ingredienti freschi e crosta dorata.",
+        "text": "Pizza italiana classica con ingredienti freschi e cornicione dorato.",
         "alt": "Pizza italiana"
       },
       "dessert": {
-        "text": "Dolci italiani classici, cioccolato, frutta e dolci finali.",
+        "text": "Dolci italiani classici, cioccolato e frutta: per chiudere in dolcezza.",
         "alt": "Dolce italiano"
       }
     },
@@ -78,7 +78,7 @@
   },
   "gallery": {
     "label": "Galleria",
-    "title": "Cibo, luce di candela e fascino italiano.",
+    "title": "Cibo, lume di candela e fascino italiano.",
     "text": "Uno sguardo da vicino ai piatti, ai dettagli e ai sapori della cucina di Giulietta e Romeo.",
     "alts": [
       "Crostini italiani",
@@ -96,25 +96,25 @@
     ]
   },
   "reservations": {
-    "ariaLabel": "Prenota il tuo tavolo da Giulietta e Romeo",
+    "ariaLabel": "Prenota un tavolo da Giulietta e Romeo",
     "label": "Prenotazioni",
-    "title": "Prenota il tuo tavolo.",
+    "title": "Prenota un tavolo.",
     "intro": "Che sia una cena romantica, una serata in famiglia o un’occasione speciale, saremo lieti di accogliervi.",
     "howTo": "Inviateci la vostra richiesta di prenotazione su WhatsApp e il nostro team confermerà il tavolo il prima possibile.",
     "hoursLabel": "Orari di apertura",
     "hours": [
-      { "days": "Mercoledì – Domenica", "time": "18:00 – 22:00" },
-      { "days": "Lunedì e Martedì", "time": "Chiuso" }
+      { "days": "Mercoledì – domenica", "time": "18:00 – 22:00" },
+      { "days": "Lunedì e martedì", "time": "Chiuso" }
     ],
     "note": "Per prenotazioni in giornata, contattateci direttamente su WhatsApp.",
     "form": {
-      "name": { "label": "Nome", "placeholder": "Il tuo nome" },
+      "name": { "label": "Nome", "placeholder": "Nome e cognome" },
       "date": { "label": "Data", "placeholder": "Seleziona una data" },
       "time": { "label": "Ora", "placeholder": "Seleziona un orario" },
-      "guests": { "label": "Numero di ospiti", "placeholder": "Seleziona gli ospiti" },
+      "guests": { "label": "Numero di persone", "placeholder": "Seleziona il numero di persone" },
       "requests": { "label": "Richieste speciali", "placeholder": "Anniversario, compleanno, allergie, tavolo preferito..." },
       "submit": "Prenota via WhatsApp",
-      "hint": "La richiesta si aprirà direttamente in WhatsApp."
+      "hint": "La richiesta si aprirà direttamente su WhatsApp."
     },
     "call": "Chiama +66 (0) 61 197 1080",
     "maps": "Apri Google Maps",
@@ -146,7 +146,7 @@
       "title": "La Pasta by Giulietta e Romeo",
       "tagline": "Consegna · Asporto",
       "hours": "Autentiche ricette di famiglia, pensate per casa",
-      "text": "La Pasta porta la cucina di Giulietta e Romeo da voi, con le nostre ricette di famiglia disponibili in consegna tramite Grab e LINE MAN e da asporto dalla nostra casa di Chaweng.",
+      "text": "La Pasta porta la cucina di Giulietta e Romeo da voi, con le nostre ricette di famiglia: consegna a domicilio tramite Grab e LINE MAN oppure asporto nella nostra sede di Chaweng.",
       "button": "Scopri La Pasta"
     },
     "closing": "Stessa famiglia. Stessa qualità. Stesso cuore italiano."

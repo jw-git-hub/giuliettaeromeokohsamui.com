@@ -13,7 +13,7 @@
       "navLabel": "Мясо"
     },
     "pizza": {
-      "title": "Наша пицца гурме: 72 часа естественного брожения",
+      "title": "Наша гурме-пицца: тесто 72 часа на естественной закваске",
       "navLabel": "Пицца"
     },
     "dessert": {
@@ -28,21 +28,21 @@
     "starters-fish": "Рыба",
     "starters-salad": "Салат",
     "starters-soup": "Суп",
-    "pasta-fish": "...С рыбой..."
+    "pasta-fish": "…С рыбой…"
   },
   "items": {
     "bruschette-con-pomodorini-e-basilico": "Хлеб на закваске, свежие томаты",
     "giulietta-e-romeo-board-x-2": "Пармиджано 24-месячной выдержки, пармская ветчина, буррата, филе анчоуса, овощное ассорти",
     "burrata-di-andria": "Сыр буррата, томаты",
     "burrata-di-andria-con-tartufo-di-norcia": "Сыр буррата, томаты, свежий трюфель",
-    "caprese-platter": "Моцарелла фьордилатте, запечённые и свежие томаты, оливки, сухофрукты",
+    "caprese-platter": "Моцарелла фьор ди латте, запечённые и свежие томаты, оливки, сухофрукты",
     "cheese-board-x-2": "Пармиджано, горгонзола, пекорино, азиаго, оливки, вяленые томаты, сухофрукты",
     "scamorza-al-forno-con-tartufo-di-norcia": "Запечённый сыр скаморца, свежий трюфель",
     "feta-alla-mediterranea": "Сыр фета, томаты черри, каперсы, оливки",
     "culatello-di-zibello": "Пармская ветчина кулателло",
-    "bresaola-della-valtellina": "Вяленая солёная говядина",
-    "cozze-marinara": "Свежие мидии соте «маринара» – Таранто – Ионическое море",
-    "vongole-in-guazzetto": "Свежие вонголе соте «гуадзетто» – Адриатическое море",
+    "bresaola-della-valtellina": "Сыровяленая говядина",
+    "cozze-marinara": "Свежие мидии соте «маринара» — Таранто — Ионическое море",
+    "vongole-in-guazzetto": "Свежие вонголе соте «гуаццетто» — Адриатическое море",
     "trota-salmonata-affumicata": "Копчёная лососёвая форель",
     "carpaccio-di-tonno-con-agrumi": "Карпаччо из тунца, апельсин, лимон",
     "insalata-greca": "Салат, томаты, лук, огурец, чёрные оливки, сыр фета",
@@ -61,9 +61,9 @@
     "tagliatelle-con-tartufo-di-norcia": "Чёрный трюфель",
     "tagliatelle-con-gorgonzola-e-pere": "Сыр горгонзола, груши",
     "ravioli-ricotta-e-spinaci": "Сыр рикотта, шпинат, сливочное масло",
-    "spaghetti-alla-siciliana": "Со свежим тунцом и боттаргой – Сицилия",
-    "spaghetti-vongole": "Со свежими вонголе – Адриатическое море",
-    "spaghetti-bottarga": "С боттаргой из кефали – остров Сардиния",
+    "spaghetti-alla-siciliana": "Со свежим тунцом и боттаргой — Сицилия",
+    "spaghetti-vongole": "Со свежими вонголе — Адриатическое море",
+    "spaghetti-bottarga": "С боттаргой из кефали — остров Сардиния",
     "stracotto-di-fassona-all-amarone": "Тушёная говядина, полента",
     "costolette-di-agnello-scottadito": "Отбивные из ягнёнка на гриле",
     "filetto-di-fassona": "Говяжья вырезка на гриле",

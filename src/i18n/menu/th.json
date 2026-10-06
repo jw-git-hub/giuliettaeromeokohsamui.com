@@ -25,10 +25,10 @@
     "starters-cheese": "ชีส",
     "starters-ham": "แฮม",
     "starters-meat": "เนื้อ",
-    "starters-fish": "ปลา",
+    "starters-fish": "อาหารทะเล",
     "starters-salad": "สลัด",
     "starters-soup": "ซุป",
-    "pasta-fish": "...กับปลา..."
+    "pasta-fish": "...กับอาหารทะเล..."
   },
   "items": {
     "bruschette-con-pomodorini-e-basilico": "ขนมปังซาวร์โดว์ มะเขือเทศสด",
@@ -46,7 +46,7 @@
     "trota-salmonata-affumicata": "ปลาเทราต์แซลมอนรมควัน",
     "carpaccio-di-tonno-con-agrumi": "คาร์ปัชโชปลาทูน่า ส้ม เลมอน",
     "insalata-greca": "ผักสลัด มะเขือเทศ หัวหอม แตงกวา มะกอกดำ ชีสเฟตา",
-    "insalata-mediterranea": "ส้ม ร็อกเก็ต เฟนเนล หอมแดง วอลนัต",
+    "insalata-mediterranea": "ส้ม ผักร็อกเก็ต เฟนเนล หอมใหญ่แดง วอลนัต",
     "zuppa-del-giorno": "ซุปประจำวัน",
     "spaghetti-aglio-olio-e-peperoncino": "กระเทียม น้ำมันมะกอกเอ็กซ์ตราเวอร์จิน พริก",
     "spaghetti-pomodoro-fresco-e-basilico": "มะเขือเทศเชอร์รี โหระพา",
@@ -70,7 +70,7 @@
     "pizza-napoletana-original-recipe": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต โหระพา",
     "pizza-carmelo": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต มะเขือเทศเชอร์รี พาร์เมซาน",
     "pizza-with-black-truffle-from-norcia": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต เห็ดทรัฟเฟิลดำสด",
-    "pizza-giulietta-e-romeo": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต เคเปอร์ มะกอก สตรัชชาเตลลา ร็อกเก็ตป่า",
+    "pizza-giulietta-e-romeo": "มะเขือเทศซานมาร์ซาโน มอสซาเรลลาฟิออร์ดิลัตเต เคเปอร์ มะกอก สตรัชชาเตลลา ผักร็อกเก็ตป่า",
     "dolci-di-giulietta": "ของหวานโฮมเมด"
   }
 }
