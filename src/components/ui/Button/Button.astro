@@ -15,8 +15,6 @@ interface Props {
   goal?: string;
   /** Внешняя ссылка — в новой вкладке. */
   external?: boolean;
-  /** Текстовая на телефоне, вторичная на компьютере (View Menu). */
-  secondaryOnDesktop?: boolean;
   class?: string;
   [dataAttribute: `data-${string}`]: string | boolean | undefined;
 }
@@ -29,19 +27,12 @@ const {
   icon,
   goal,
   external = false,
-  secondaryOnDesktop = false,
   class: className,
   ...dataAttributes
 } = Astro.props;
 
 const Tag = href ? 'a' : 'button';
-const classList = [
-  'button',
-  `button--${variant}`,
-  `button--size-${size}`,
-  { 'button--secondary-on-desktop': secondaryOnDesktop },
-  className,
-];
+const classList = ['button', `button--${variant}`, `button--size-${size}`, className];
 const linkAttributes = external ? EXTERNAL_LINK : {};
 const buttonAttributes = href ? { href, ...linkAttributes } : { type };
 ---

@@ -1,17 +1,16 @@
-/* Телефон и планшет: одна колонка — заголовок, под ним фото, дальше текст. */
+/* Телефон и планшет: одна колонка — заголовок, под ним фото, дальше текст.
+   У всех трёх одна ширина, и колонка стоит по центру: на планшете ничего не жмётся к левому краю. */
 .story__inner {
   display: grid;
   gap: var(--sp-3);
 }
 
-.story__heading,
-.story__paragraph--lead,
-.story__body {
-  max-width: var(--measure);
+/* Два класса в селекторе: ширина колонки должна быть сильнее общей ширины .container. */
+.story .story__inner {
+  max-width: calc(var(--story-column) + 2 * var(--gutter));
 }
 
 .story__photo {
-  max-width: var(--facade-max);
   margin-block: var(--sp-2);
 }
 
@@ -48,6 +47,10 @@
     gap: var(--sp-4) var(--sp-6);
   }
 
+  .story .story__inner {
+    max-width: calc(var(--container) + 2 * var(--gutter));
+  }
+
   .story__heading {
     grid-area: heading;
     align-self: end;
@@ -66,7 +69,6 @@
 
   .story__body {
     grid-area: body;
-    max-width: none;
     margin-top: var(--sp-5);
     columns: 2;
     column-gap: var(--sp-6);

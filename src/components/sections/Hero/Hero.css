@@ -55,10 +55,19 @@
   text-wrap: var(--heading-wrap);
 }
 
+/* Две кнопки в ряд, как на компьютере. На телефоне поля кнопок уже, чтобы длинные русские
+   подписи поместились рядом; если экран совсем узкий, вторая кнопка переносится под первую. */
 .hero__actions {
-  display: grid;
+  display: flex;
+  flex-wrap: wrap;
   gap: var(--sp-2);
-  justify-items: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.hero__actions .button {
+  padding-inline: calc(var(--sp-2) + var(--sp-1));
+  white-space: nowrap;
 }
 
 @media (width >= 768px) {
@@ -115,8 +124,11 @@
   }
 
   .hero__actions {
-    display: flex;
     gap: var(--sp-3);
-    align-items: center;
+    justify-content: start;
+  }
+
+  .hero__actions .button {
+    padding-inline: var(--sp-4);
   }
 }

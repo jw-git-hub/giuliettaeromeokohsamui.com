@@ -74,28 +74,6 @@
   padding-inline: var(--sp-3);
 }
 
-@media (width >= 1024px) {
-  .button--secondary-on-desktop {
-    min-height: var(--button-height);
-    padding-inline: var(--sp-4);
-    border-color: var(--line-strong);
-    color: var(--text);
-  }
-
-  .button--secondary-on-desktop:hover {
-    border-color: var(--gold);
-    background: var(--gold-wash);
-  }
-
-  .button--secondary-on-desktop:hover .button__label {
-    text-decoration: none;
-  }
-
-  .button--secondary-on-desktop .icon {
-    display: none;
-  }
-}
-
 /* Сдвиг ровно на одну полосу градиента — блик идёт по кругу без шва. */
 @keyframes button-shimmer {
   to {

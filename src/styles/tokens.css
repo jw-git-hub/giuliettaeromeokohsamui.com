@@ -93,6 +93,7 @@
   --menu-item-gap: 20px;
   --form-gap: 20px;
   --facade-max: 700px;
+  --story-column: 38rem;   /* телефон и планшет: общая ширина заголовка, фото и текста истории */
   --facade-max-desktop: 600px;
   --logo-size: 96px;
   --logo-size-desktop: 128px;
