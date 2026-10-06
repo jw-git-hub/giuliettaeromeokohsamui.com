@@ -1,0 +1,78 @@
+/* Токены из DESIGN.md, раздел 3. Цвета задаются только здесь. */
+:root {
+  /* цвета */
+  --bg: #0B0705;
+  --surface: #17100B;
+  --line: #3A2A1A;
+  --line-strong: #7A5E3A;
+  --text: #FFF1D9;
+  --muted: #DFC59C;
+  --gold: #C7964E;
+  --bordeaux: #8C1E18;
+  --bordeaux-hover: #A3261E;
+  --gold-wash: rgb(199 150 78 / 12%);   /* золотая заливка 12 % — наведение на вторичную кнопку */
+  --mask-solid: #000;                    /* непрозрачная часть маски фото */
+  --backdrop: rgb(11 7 5 / 94%);         /* подложка увеличенного фото — фон страницы */
+
+  /* шрифты: латиница — Bodoni и Source Serif; кириллица и тайский — DESIGN.md, раздел 10 */
+  --font-display: "Bodoni Moda Variable", "Prata", "Noto Serif Thai Variable", "Bodoni 72", Didot, Georgia, serif;
+  --font-text: "Source Serif 4 Variable", "Noto Serif Thai Variable", Georgia, "Times New Roman", serif;
+
+  /* размеры текста: телефон → компьютер */
+  --fs-label: 0.75rem;
+  --fs-button: 0.8125rem;
+  --fs-small: 0.875rem;
+  --fs-note: 1rem;
+  --fs-body: clamp(1.0625rem, 0.3vw + 1rem, 1.125rem);
+  --fs-item: clamp(1.25rem, 0.3vw + 1.18rem, 1.375rem);
+  --fs-h3: clamp(1.375rem, 0.6vw + 1.2rem, 1.625rem);
+  --fs-h2: clamp(1.875rem, 2.2vw + 1.2rem, 2.75rem);
+  --fs-h1: clamp(2.75rem, 5vw + 1.4rem, 4.5rem);
+  --fs-header-name: 1.375rem;
+
+  --lh-text: 1.6;
+  --lh-heading: 1.15;
+  --lh-tight: 1.05;
+  --tracking-label: 0.16em;
+  --tracking-button: 0.14em;
+  --weight-display: 400;
+  --weight-label: 600;
+
+  /* отступы */
+  --sp-1: 4px;
+  --sp-2: 8px;
+  --sp-3: 16px;
+  --sp-4: 24px;
+  --sp-5: 40px;
+  --sp-6: 72px;
+  --sp-7: 120px;
+  --section-y: clamp(72px, 9vw, 120px);
+  --container: 1200px;
+  --gutter: clamp(20px, 4vw, 48px);
+  --measure: 62ch;
+  --radius: 2px;
+
+  /* компоненты */
+  --button-height: 52px;
+  --button-height-header: 40px;
+  --button-height-bar: 48px;
+  --field-height: 52px;
+  --tap-min: 44px;
+  --header-height: 72px;
+  --bar-pad-y: 10px;
+  --bar-pad-x: 16px;
+  --icon-size: 18px;
+  --focus-width: 2px;
+  --focus-offset: 3px;
+  --transition: 200ms;
+  --tile-gap: 8px;
+
+  /* главное фото */
+  --hero-photo-max: 520px;
+  --hero-photo-max-desktop: 560px;
+  --hero-photo-svh: 46svh;
+  --hero-quote-max: 30rem;
+  --hero-fade-circle: 90%;   /* до этого радиуса квадрат фото непрозрачен — круг окна виден целиком */
+  --hero-fade-x: 5%;
+  --hero-fade-y: 12%;
+}

@@ -1,0 +1,43 @@
+---
+import { buildFallback, buildSources, type PictureVariant } from '@/data/picture';
+
+interface Props {
+  /** Варианты с условием media — первыми, основной — последним. */
+  variants: PictureVariant[];
+  alt: string;
+  /** Главное фото: грузится сразу и с высоким приоритетом. */
+  priority?: boolean;
+  class?: string;
+}
+
+const { variants, alt, priority = false, class: className } = Astro.props;
+const defaultVariant = variants[variants.length - 1];
+const sources = await buildSources(variants);
+const fallback = await buildFallback(defaultVariant);
+---
+
+<picture class={className}>
+  {
+    sources.map((source) => (
+      <source
+        type={source.type}
+        srcset={source.srcset}
+        sizes={source.sizes}
+        media={source.media}
+        width={source.width}
+        height={source.height}
+      />
+    ))
+  }
+  <img
+    src={fallback.src}
+    srcset={fallback.srcset}
+    sizes={fallback.sizes}
+    width={fallback.width}
+    height={fallback.height}
+    alt={alt}
+    loading={priority ? 'eager' : 'lazy'}
+    fetchpriority={priority ? 'high' : undefined}
+    decoding="async"
+  />
+</picture>

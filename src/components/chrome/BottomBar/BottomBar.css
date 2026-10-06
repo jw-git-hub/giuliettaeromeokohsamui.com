@@ -1,0 +1,49 @@
+/* Непрозрачная, без щелей: фон панели закрывает и безопасную зону внизу экрана. */
+.bottom-bar {
+  position: fixed;
+  inset: auto 0 0;
+  z-index: 30;
+  display: flex;
+  gap: var(--sp-2);
+  padding: var(--bar-pad-y) var(--bar-pad-x) calc(var(--bar-pad-y) + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: var(--surface);
+  transition:
+    transform var(--transition),
+    visibility var(--transition);
+}
+
+.bottom-bar__whatsapp {
+  flex: 1.4;
+}
+
+.bottom-bar__call {
+  flex: 1;
+}
+
+/* Без скриптов панель видна всегда. Со скриптами — скрыта, пока скрипт не покажет. */
+@media (scripting: enabled) {
+  .bottom-bar:not([data-visible]) {
+    visibility: hidden;
+    transform: translateY(100%);
+  }
+}
+
+/* Запас под панель, чтобы она не закрывала подвал. */
+@media (width < 768px) {
+  body {
+    padding-bottom: calc(var(--button-height-bar) + 2 * var(--bar-pad-y) + env(safe-area-inset-bottom));
+  }
+}
+
+@media (width >= 768px) {
+  .bottom-bar {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bottom-bar {
+    transition: none;
+  }
+}

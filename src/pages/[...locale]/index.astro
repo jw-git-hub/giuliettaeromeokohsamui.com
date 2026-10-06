@@ -1,0 +1,20 @@
+---
+import HomePage from '@/components/HomePage.astro';
+import { BUILD_LOCALES, DEFAULT_LOCALE, type LocaleCode } from '@/i18n';
+
+// Один шаблон на все языки: основной язык — в корне, остальные — в /<язык>/.
+export function getStaticPaths() {
+  return BUILD_LOCALES.map((locale) => ({
+    params: { locale: locale === DEFAULT_LOCALE ? undefined : locale },
+    props: { locale },
+  }));
+}
+
+interface Props {
+  locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+---
+
+<HomePage locale={locale} />

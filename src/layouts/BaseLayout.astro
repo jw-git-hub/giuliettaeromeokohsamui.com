@@ -1,0 +1,41 @@
+---
+import '@/styles/tokens.css';
+import '@/styles/base.css';
+import '@/styles/typography.css';
+import '@/styles/lang.css';
+import BottomBar from '@/components/chrome/BottomBar/BottomBar.astro';
+import SiteHeader from '@/components/chrome/SiteHeader/SiteHeader.astro';
+import FontFaces from '@/components/head/FontFaces.astro';
+import Seo from '@/components/head/Seo.astro';
+import { ANCHORS } from '@/config/restaurant';
+import { getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
+
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+---
+
+<!doctype html>
+<html lang={getLocaleInfo(locale).htmlLang}>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <Seo locale={locale} t={t} />
+    <FontFaces locale={locale} />
+  </head>
+  <body>
+    <a class="skip-link" href={`#${ANCHORS.main}`}>{t.a11y.skipToContent}</a>
+    <SiteHeader locale={locale} t={t} />
+    <main id={ANCHORS.main}>
+      <slot />
+    </main>
+    <slot name="footer" />
+    <BottomBar t={t} />
+    <script>
+      import '@/scripts/bottom-bar.ts';
+    </script>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+.lang-switcher__list {
+  display: flex;
+  align-items: center;
+}
+
+.lang-switcher__item {
+  display: flex;
+  align-items: center;
+}
+
+.lang-switcher__item + .lang-switcher__item::before {
+  color: var(--line-strong);
+  content: "·";
+}
+
+.lang-switcher__link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: var(--tap-min);
+  min-height: var(--tap-min);
+  color: var(--gold);
+  font-size: var(--fs-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+  text-decoration: none;
+}
+
+.lang-switcher__link:hover {
+  text-decoration: underline;
+  text-underline-offset: 0.3em;
+}
+
+.lang-switcher__link[aria-current] {
+  color: var(--text);
+}

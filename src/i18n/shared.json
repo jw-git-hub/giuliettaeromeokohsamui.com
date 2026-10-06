@@ -1,0 +1,17 @@
+{
+  "name": { "first": "Giulietta", "conjunction": "e", "last": "Romeo" },
+  "quoteItalian": "“Il mio cuore ha mai amato prima d'ora? ... Non ho mai visto la vera bellezza fino a questa notte.”",
+  "categories": {
+    "antipasti": "Antipasti",
+    "pasta": "Pasta",
+    "seafood": "Seafood",
+    "grill": "Grill",
+    "pizza": "Pizza",
+    "dessert": "Dessert"
+  },
+  "reviews": {
+    "google": { "platform": "Google", "score": "4.8" },
+    "tripadvisor": { "platform": "Tripadvisor", "score": "4.8" }
+  },
+  "social": { "instagram": "Instagram", "facebook": "Facebook" }
+}

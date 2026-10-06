@@ -1,0 +1,16 @@
+---
+import { getFontFaces, toFontFaceCss } from '@/data/fonts';
+import type { LocaleCode } from '@/i18n';
+
+// Шрифты языка подключаются только на его странице.
+interface Props {
+  locale: LocaleCode;
+}
+
+const fontFaces = getFontFaces(Astro.props.locale);
+const preloadedFaces = fontFaces.filter((face) => face.preload);
+const fontFaceCss = fontFaces.map(toFontFaceCss).join('');
+---
+
+{preloadedFaces.map((face) => <link rel="preload" as="font" type="font/woff2" href={face.url} crossorigin />)}
+<style is:inline set:html={fontFaceCss}></style>

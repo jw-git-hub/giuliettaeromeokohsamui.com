@@ -1,0 +1,52 @@
+---
+import Icon, { type IconName } from '../Icon/Icon.astro';
+import './Button.css';
+
+// Три вида кнопок на весь сайт — DESIGN.md, раздел 5.
+interface Props {
+  variant: 'primary' | 'secondary' | 'text';
+  /** Ссылка; без неё получается <button>. */
+  href?: string;
+  type?: 'submit' | 'button';
+  size?: 'default' | 'header' | 'bar';
+  icon?: IconName;
+  /** Имя цели для будущего счётчика. */
+  goal?: string;
+  /** Внешняя ссылка — в новой вкладке. */
+  external?: boolean;
+  /** Текстовая на телефоне, вторичная на компьютере (View Menu). */
+  secondaryOnDesktop?: boolean;
+  class?: string;
+  [dataAttribute: `data-${string}`]: string | boolean | undefined;
+}
+
+const {
+  variant,
+  href,
+  type = 'button',
+  size = 'default',
+  icon,
+  goal,
+  external = false,
+  secondaryOnDesktop = false,
+  class: className,
+  ...dataAttributes
+} = Astro.props;
+
+const Tag = href ? 'a' : 'button';
+const classList = [
+  'button',
+  `button--${variant}`,
+  `button--size-${size}`,
+  { 'button--secondary-on-desktop': secondaryOnDesktop },
+  className,
+];
+const linkAttributes = external ? { target: '_blank', rel: 'noopener noreferrer' } : {};
+const buttonAttributes = href ? { href, ...linkAttributes } : { type };
+---
+
+<Tag class:list={classList} data-goal={goal} {...buttonAttributes} {...dataAttributes}>
+  {icon && <Icon name={icon} />}
+  <span class="button__label"><slot /></span>
+  {variant === 'text' && <Icon name="arrow" />}
+</Tag>

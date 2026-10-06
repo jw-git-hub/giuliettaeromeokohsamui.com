@@ -1,0 +1,31 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import { PHONE_HREF, WHATSAPP_URL } from '@/config/restaurant';
+import type { Dictionary } from '@/i18n';
+import './BottomBar.css';
+
+// Нижняя панель на телефоне. Показом управляет src/scripts/bottom-bar.ts:
+// панель видна, пока на экране нет ни кнопки Book Now первого экрана, ни формы брони.
+interface Props {
+  t: Dictionary;
+}
+
+const { t } = Astro.props;
+---
+
+<div class="bottom-bar" data-bottom-bar>
+  <Button
+    class="bottom-bar__whatsapp"
+    variant="primary"
+    size="bar"
+    icon="whatsapp"
+    href={WHATSAPP_URL}
+    goal="whatsapp-bar"
+    external
+  >
+    {t.bar.whatsapp}
+  </Button>
+  <Button class="bottom-bar__call" variant="secondary" size="bar" icon="phone" href={PHONE_HREF} goal="call-bar">
+    {t.bar.call}
+  </Button>
+</div>

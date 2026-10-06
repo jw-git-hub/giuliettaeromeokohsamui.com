@@ -1,0 +1,18 @@
+---
+import { IS_DEMO } from '@/config/env';
+import type { Dictionary, LocaleCode } from '@/i18n';
+import { alternateLinks, canonicalUrl } from '@/i18n/urls';
+
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+---
+
+<title>{t.meta.title}</title>
+<meta name="description" content={t.meta.description} />
+<link rel="canonical" href={canonicalUrl(locale)} />
+{alternateLinks().map((link) => <link rel="alternate" hreflang={link.hreflang} href={link.href} />)}
+{IS_DEMO && <meta name="robots" content="noindex, nofollow" />}

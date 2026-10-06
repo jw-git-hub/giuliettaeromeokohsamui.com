@@ -1,0 +1,157 @@
+{
+  "meta": {
+    "title": "Giulietta e Romeo | Romantic Italian Restaurant Koh Samui",
+    "description": "Giulietta e Romeo is a romantic Italian restaurant in Chaweng, Koh Samui. Family-owned since 2015, led by Italian Head Chef Mrs Paola Ferrari."
+  },
+  "a11y": {
+    "skipToContent": "Skip to content",
+    "language": "Language",
+    "close": "Close"
+  },
+  "hero": {
+    "label": "Romantic Italian Restaurant · Koh Samui",
+    "bookNow": "Book Now",
+    "viewMenu": "View Menu",
+    "quoteLabel": "Romeo and Juliet quote",
+    "quoteTranslation": "“Did my heart love till now? ... I never saw true beauty till this night.”",
+    "imageAlt": "Giulietta e Romeo restaurant exterior"
+  },
+  "bar": {
+    "whatsapp": "WhatsApp",
+    "call": "Call Now"
+  },
+  "story": {
+    "label": "Our Story",
+    "title": "Inspired by Shakespeare. Brought to life in Koh Samui.",
+    "paragraphs": [
+      "Giulietta e Romeo takes its name from Shakespeare’s {cite}Romeo and Juliet{/cite}, one of the world’s most timeless love stories. A story of romance, passion and devotion, it sets the tone for a restaurant created around warmth, atmosphere and memorable evenings shared over beautiful food.",
+      "After 12 years in North Chaweng, Giulietta e Romeo begins a new chapter in the heart of Chaweng, Koh Samui, beneath the golden Temple of Wat Khao Hua Jook. Our new home offers both indoor and outdoor dining beside a beautiful pool, creating an intimate setting for romantic Italian evenings. The setting may be new, but the same family, recipes and romantic Italian spirit remain at its heart.",
+      "Alongside our evening restaurant, our new home has also allowed us to introduce two new offerings from the Giulietta e Romeo family. {dolce}La Dolce Vita{/dolce} brings breakfast, brunch and drinks to our poolside bar during the day, while {pasta}La Pasta{/pasta} offers a carefully selected menu of quality pasta dishes, delivered to the comfort of your home or accommodation.",
+      "Family-owned and run, the restaurant was created to make guests feel welcomed, cared for and transported to Italy for the evening. Candlelight, classic Italian styling, red roses, warm service and intimate atmosphere all reflect the romance behind the name."
+    ],
+    "chef": "At the heart of the restaurant is Italian Head Chef Mrs Paola Ferrari, whose cooking brings authentic Italian tradition to the island through classic flavours, carefully selected ingredients and imported Italian products."
+  },
+  "menu": {
+    "label": "Menu",
+    "title": "Italian favourites, made with love.",
+    "categories": {
+      "antipasti": {
+        "text": "Italian starters, cured meats, cheeses, bruschetta and sharing plates.",
+        "alt": "Italian antipasti platter"
+      },
+      "pasta": {
+        "text": "Fresh Italian pasta with rich sauces, truffle, seafood and classic flavours.",
+        "alt": "Italian pasta dish"
+      },
+      "seafood": {
+        "text": "Mussels, seafood pasta, prawns and coastal Italian dishes.",
+        "alt": "Italian seafood mussels"
+      },
+      "grill": {
+        "text": "Grilled meats served with Italian sides, vegetables and sauces.",
+        "alt": "Italian grill steak"
+      },
+      "pizza": {
+        "text": "Classic Italian pizza with fresh toppings and a golden crust.",
+        "alt": "Italian pizza"
+      },
+      "dessert": {
+        "text": "Classic Italian desserts, chocolate, fruit and sweet finishes.",
+        "alt": "Italian dessert"
+      }
+    },
+    "fullLabel": "Full Menu",
+    "fullTitle": "Giulietta e Romeo Menu"
+  },
+  "reviews": {
+    "label": "Reviews",
+    "title": "Loved by guests.",
+    "text": "A long-standing Koh Samui favourite, built on family hospitality, romance and authentic Italian dining.",
+    "google": {
+      "count": "531 reviews",
+      "link": "Google Reviews"
+    },
+    "tripadvisor": {
+      "count": "1,178 reviews",
+      "link": "Tripadvisor Reviews"
+    }
+  },
+  "gallery": {
+    "label": "Gallery",
+    "title": "Food, candlelight and Italian charm.",
+    "text": "A closer look at the dishes, details and flavours from the Giulietta e Romeo kitchen.",
+    "alts": [
+      "Italian crostini",
+      "Italian seafood starter",
+      "Italian pasta",
+      "Poached pear dessert",
+      "Italian bruschetta board",
+      "Seafood dish",
+      "Spaghetti alle vongole",
+      "Fish and grilled vegetables",
+      "Italian sharing starter",
+      "Ravioli dish",
+      "Homemade Italian pasta with truffle",
+      "Gourmet Italian pizza"
+    ]
+  },
+  "reservations": {
+    "ariaLabel": "Book your table at Giulietta e Romeo",
+    "label": "Reservations",
+    "title": "Book your table.",
+    "intro": "Whether it’s a romantic dinner, a family evening, or a special celebration, we’d be delighted to welcome you.",
+    "howTo": "Send us your reservation request on WhatsApp and our team will confirm your table as soon as possible.",
+    "hoursLabel": "Opening hours",
+    "hours": [
+      { "days": "Wednesday – Sunday", "time": "6:00 PM – 10:00 PM" },
+      { "days": "Monday & Tuesday", "time": "Closed" }
+    ],
+    "note": "For same-day reservations, please contact us directly on WhatsApp.",
+    "form": {
+      "name": { "label": "Name", "placeholder": "Your name" },
+      "date": { "label": "Date", "placeholder": "Select a date" },
+      "time": { "label": "Time", "placeholder": "Select a time" },
+      "guests": { "label": "Number of Guests", "placeholder": "Select guests" },
+      "requests": { "label": "Special Requests", "placeholder": "Anniversary, birthday, allergies, preferred seating..." },
+      "submit": "Reserve via WhatsApp",
+      "hint": "Your request will open directly in WhatsApp."
+    },
+    "call": "Call +66 (0) 61 197 1080",
+    "maps": "Open Google Maps",
+    "addressLabel": "Address",
+    "address": "83, Bophut, 46 Moo 2, Bo Put, Ko Samui District, Surat Thani 84320",
+    "qr": {
+      "ariaLabel": "WhatsApp reservation QR code",
+      "title": "WhatsApp QR",
+      "alt": "Giulietta e Romeo WhatsApp Reservations QR code",
+      "linkLabel": "Open Giulietta e Romeo WhatsApp reservations",
+      "text": "Scan to message us directly on WhatsApp for reservations."
+    }
+  },
+  "family": {
+    "ariaLabel": "More from the Giulietta e Romeo family",
+    "label": "The Giulietta e Romeo Family",
+    "title": "From morning to night — and now to go.",
+    "text": "Our new Chaweng home has opened the door to two new ways to enjoy the flavours and spirit of Giulietta e Romeo.",
+    "dolce": {
+      "logoAlt": "La Dolce Vita by Giulietta e Romeo logo",
+      "title": "La Dolce Vita by Giulietta e Romeo",
+      "tagline": "Breakfast · Brunch · Pool Bar",
+      "hours": "Daily | 7:30 AM – 5:00 PM",
+      "text": "By day, our poolside space becomes La Dolce Vita — relaxed Italian breakfasts and brunch, proper coffee, cocktails and cold drinks beside the pool.",
+      "button": "Discover La Dolce Vita"
+    },
+    "pasta": {
+      "logoAlt": "La Pasta by Giulietta e Romeo logo",
+      "title": "La Pasta by Giulietta e Romeo",
+      "tagline": "Delivery · To Go",
+      "hours": "Authentic family recipes, made for home",
+      "text": "La Pasta brings the Giulietta e Romeo kitchen to you, with our family recipes available for delivery via Grab & LINE MAN and for takeaway from our Chaweng home.",
+      "button": "Discover La Pasta"
+    },
+    "closing": "Same family. Same quality. Same Italian heart."
+  },
+  "footer": {
+    "tagline": "Romantic Italian Restaurant · Chaweng, Koh Samui"
+  }
+}

@@ -1,0 +1,9 @@
+---
+import shared from '@/i18n/shared.json';
+import './RestaurantName.css';
+
+// Название ресторана: союз «e» — золотым курсивом. Везде латиницей.
+const { first, conjunction, last } = shared.name;
+---
+
+<span class="restaurant-name" lang="it">{first} <em class="restaurant-name__e">{conjunction}</em> {last}</span>

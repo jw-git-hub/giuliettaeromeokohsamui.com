@@ -1,0 +1,23 @@
+/* Правила для нелатинских версий — DESIGN.md, раздел 10. */
+
+/* Тайский: прописных нет, разрядка рвёт слоги; строке нужно больше высоты. */
+:lang(th) {
+  --tracking-label: 0;
+  --tracking-button: 0;
+  --fs-label: 0.875rem;
+  --fs-button: 0.9375rem;
+  --lh-text: 1.8;
+  --lh-heading: 1.4;
+  --lh-tight: 1.4;
+}
+
+/* Латиница внутри тайской страницы (название, блюда, цитата, EN · IT · RU · TH) — по обычным правилам. */
+:lang(th) :is(:lang(en), :lang(it)) {
+  --tracking-label: 0.16em;
+  --tracking-button: 0.14em;
+  --fs-label: 0.75rem;
+  --fs-button: 0.8125rem;
+  --lh-text: 1.6;
+  --lh-heading: 1.15;
+  --lh-tight: 1.05;
+}

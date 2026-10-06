@@ -1,0 +1,50 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import LangSwitcher from '@/components/ui/LangSwitcher/LangSwitcher.astro';
+import Picture from '@/components/ui/Picture/Picture.astro';
+import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import { ANCHORS } from '@/config/restaurant';
+import { heroVariants } from '@/data/images';
+import { getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
+import shared from '@/i18n/shared.json';
+import './Hero.css';
+
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+// На итальянской странице вторая строка цитаты повторяла бы первую.
+const showsQuoteTranslation = getLocaleInfo(locale).htmlLang !== 'it';
+---
+
+<section class="hero">
+  <div class="container hero__inner">
+    <div class="hero__switcher">
+      <LangSwitcher current={locale} t={t} />
+    </div>
+
+    <div class="hero__intro">
+      <p class="label">{t.hero.label}</p>
+      <h1 class="hero__title" lang="it"><RestaurantName /></h1>
+    </div>
+
+    <Picture class="hero__photo" variants={heroVariants} alt={t.hero.imageAlt} priority />
+
+    <div class="hero__body">
+      <blockquote class="hero__quote" aria-label={t.hero.quoteLabel}>
+        <p class="hero__quote-italian" lang="it">{shared.quoteItalian}</p>
+        {showsQuoteTranslation && <p class="hero__quote-translation">{t.hero.quoteTranslation}</p>}
+      </blockquote>
+      <div class="hero__actions">
+        <Button variant="primary" href={`#${ANCHORS.reservations}`} goal="book-hero" data-bar-hide="full">
+          {t.hero.bookNow}
+        </Button>
+        <Button variant="text" href={`#${ANCHORS.fullMenu}`} goal="menu-hero" secondaryOnDesktop>
+          {t.hero.viewMenu}
+        </Button>
+      </div>
+    </div>
+  </div>
+</section>

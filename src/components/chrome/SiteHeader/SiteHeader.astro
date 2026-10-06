@@ -1,0 +1,49 @@
+---
+import Button from '@/components/ui/Button/Button.astro';
+import LangSwitcher from '@/components/ui/LangSwitcher/LangSwitcher.astro';
+import RestaurantName from '@/components/ui/RestaurantName/RestaurantName.astro';
+import { ANCHORS } from '@/config/restaurant';
+import type { Dictionary, LocaleCode } from '@/i18n';
+import { localeUrl } from '@/i18n/urls';
+import './SiteHeader.css';
+
+// Шапка только на компьютере (от 1024 px). Якоря — существующие надписи секций.
+interface Props {
+  locale: LocaleCode;
+  t: Dictionary;
+}
+
+const { locale, t } = Astro.props;
+const navLinks = [
+  { anchor: ANCHORS.story, label: t.story.label },
+  { anchor: ANCHORS.menu, label: t.menu.label },
+  { anchor: ANCHORS.reviews, label: t.reviews.label },
+  { anchor: ANCHORS.gallery, label: t.gallery.label },
+  { anchor: ANCHORS.reservations, label: t.reservations.label },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="site-header__name" href={localeUrl(locale)}><RestaurantName /></a>
+    <nav class="site-header__nav">
+      <ul class="site-header__links">
+        {
+          navLinks.map((link) => (
+            <li>
+              <a class="site-header__link" href={`#${link.anchor}`}>
+                {link.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+    <div class="site-header__actions">
+      <LangSwitcher current={locale} t={t} />
+      <Button variant="primary" size="header" href={`#${ANCHORS.reservations}`} goal="book-header">
+        {t.hero.bookNow}
+      </Button>
+    </div>
+  </div>
+</header>

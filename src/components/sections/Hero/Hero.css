@@ -1,0 +1,131 @@
+/* Телефон и планшет: одна колонка по центру. */
+.hero {
+  padding-bottom: var(--sp-6);
+  text-align: center;
+}
+
+.hero__inner {
+  display: grid;
+  justify-items: center;
+}
+
+.hero__switcher {
+  min-height: var(--tap-min);
+  margin-top: var(--sp-1);
+}
+
+.hero__intro {
+  margin-top: var(--sp-3);
+}
+
+.hero__title {
+  margin-top: var(--sp-2);
+}
+
+/* Квадрат; круглое окно видно целиком, углы растворены в фон. */
+.hero__photo {
+  width: min(100%, var(--hero-photo-max), var(--hero-photo-svh));
+  margin-top: var(--sp-4);
+  mask-image: radial-gradient(circle closest-side, var(--mask-solid) var(--hero-fade-circle), transparent 100%);
+}
+
+.hero__photo img {
+  width: 100%;
+}
+
+.hero__body {
+  display: grid;
+  gap: var(--sp-5);
+  justify-items: center;
+  margin-top: var(--sp-4);
+}
+
+.hero__quote {
+  display: grid;
+  gap: var(--sp-3);
+  max-width: var(--hero-quote-max);
+}
+
+.hero__quote-italian {
+  font-family: var(--font-display);
+  font-size: var(--fs-h3);
+  font-style: italic;
+  line-height: 1.35;
+  text-wrap: balance;
+}
+
+.hero__quote-translation {
+  color: var(--muted);
+  font-size: var(--fs-note);
+  text-wrap: balance;
+}
+
+.hero__actions {
+  display: grid;
+  gap: var(--sp-2);
+  justify-items: center;
+}
+
+@media (width >= 768px) {
+  .hero {
+    --hero-photo-svh: 52svh;
+  }
+}
+
+/* Компьютер: две колонки, фото целиком справа. */
+@media (width >= 1024px) {
+  .hero {
+    display: grid;
+    align-items: center;
+    min-height: calc(100svh - var(--header-height));
+    padding-block: var(--sp-5);
+    text-align: left;
+  }
+
+  .hero__inner {
+    grid-template-rows: 1fr auto auto 1fr;
+    grid-template-columns: minmax(0, 1fr) auto;
+    column-gap: var(--sp-6);
+    justify-items: start;
+  }
+
+  .hero__switcher {
+    display: none;
+  }
+
+  .hero__intro {
+    grid-area: 2 / 1;
+    margin-top: 0;
+  }
+
+  .hero__body {
+    grid-area: 3 / 1;
+    gap: var(--sp-5);
+    justify-items: start;
+    margin-top: var(--sp-5);
+  }
+
+  .hero__photo {
+    grid-area: 1 / 2 / -1 / 3;
+    align-self: center;
+    width: auto;
+    margin-top: 0;
+    mask-image:
+      linear-gradient(to right, transparent, var(--mask-solid) var(--hero-fade-x), var(--mask-solid) calc(100% - var(--hero-fade-x)), transparent),
+      linear-gradient(to bottom, transparent, var(--mask-solid) var(--hero-fade-y), var(--mask-solid) calc(100% - var(--hero-fade-y)), transparent);
+    mask-composite: intersect;
+  }
+
+  .hero__photo img {
+    width: auto;
+    max-width: var(--hero-photo-max-desktop);
+    height: auto;
+    max-height: calc(100svh - var(--header-height) - 2 * var(--sp-5));
+  }
+
+  .hero__actions {
+    display: flex;
+    gap: var(--sp-3);
+    align-items: center;
+  }
+}

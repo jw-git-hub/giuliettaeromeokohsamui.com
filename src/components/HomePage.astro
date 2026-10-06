@@ -1,0 +1,17 @@
+---
+import Hero from '@/components/sections/Hero/Hero.astro';
+import { getDictionary, type LocaleCode } from '@/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+
+// Единственная страница сайта. Порядок секций — как в оригинале.
+interface Props {
+  locale: LocaleCode;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<BaseLayout locale={locale} t={t}>
+  <Hero locale={locale} t={t} />
+</BaseLayout>

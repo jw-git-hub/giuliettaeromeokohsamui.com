@@ -1,0 +1,53 @@
+h1,
+h2,
+h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-display);
+  line-height: var(--lh-heading);
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: var(--fs-h1);
+  line-height: var(--lh-tight);
+}
+
+h2 {
+  font-size: var(--fs-h2);
+}
+
+h3 {
+  font-size: var(--fs-h3);
+}
+
+/* Мелкая золотая надпись прописными — над заголовками секций, у полей формы. */
+.label {
+  color: var(--gold);
+  font-family: var(--font-text);
+  font-size: var(--fs-label);
+  font-weight: var(--weight-label);
+  letter-spacing: var(--tracking-label);
+  line-height: 1.4;
+  text-transform: uppercase;
+  text-wrap: balance;
+}
+
+/* Длинный текст: по левому краю, колонка не шире 62 знаков. */
+.prose {
+  max-width: var(--measure);
+}
+
+.prose > * + * {
+  margin-top: var(--sp-3);
+}
+
+.text-link {
+  color: var(--gold);
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 0.2em;
+}
+
+.text-link:hover {
+  color: var(--text);
+}

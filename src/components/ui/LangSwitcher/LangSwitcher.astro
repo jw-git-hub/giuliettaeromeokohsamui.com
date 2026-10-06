@@ -1,0 +1,37 @@
+---
+import { BUILD_LOCALES, getLocaleInfo, type Dictionary, type LocaleCode } from '@/i18n';
+import { localeUrl } from '@/i18n/urls';
+import './LangSwitcher.css';
+
+// Обычные ссылки на ту же страницу другого языка: работают без скриптов.
+// Показывает только языки текущей сборки; если язык один — переключателя нет.
+interface Props {
+  current: LocaleCode;
+  t: Dictionary;
+}
+
+const { current, t } = Astro.props;
+const hasChoice = BUILD_LOCALES.length > 1;
+---
+
+{
+  hasChoice && (
+    <nav class="lang-switcher" aria-label={t.a11y.language}>
+      <ul class="lang-switcher__list">
+        {BUILD_LOCALES.map((code) => (
+          <li class="lang-switcher__item">
+            <a
+              class="lang-switcher__link"
+              href={localeUrl(code)}
+              hreflang={getLocaleInfo(code).htmlLang}
+              lang="en"
+              aria-current={code === current ? 'true' : undefined}
+            >
+              {getLocaleInfo(code).label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

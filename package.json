@@ -1,0 +1,41 @@
+{
+  "name": "giuliettaeromeokohsamui.com",
+  "private": true,
+  "type": "module",
+  "version": "1.0.0",
+  "engines": {
+    "node": ">=22.12"
+  },
+  "scripts": {
+    "dev": "astro dev --host",
+    "build": "astro build",
+    "build:demo": "astro build --mode demo",
+    "preview": "astro preview",
+    "check": "astro check",
+    "lint": "eslint . && stylelint \"src/**/*.css\"",
+    "test:unit": "node --test tests/unit/",
+    "test:e2e": "playwright test",
+    "shots": "playwright test tests/e2e/screenshots.spec.ts",
+    "make:og": "node scripts/make-og.mjs",
+    "make:favicon": "node scripts/make-favicon.mjs"
+  },
+  "dependencies": {
+    "@fontsource-variable/bodoni-moda": "^5.3.0",
+    "@fontsource-variable/noto-serif-thai": "^5.3.0",
+    "@fontsource-variable/source-serif-4": "^5.3.0",
+    "@fontsource/prata": "^5.3.0",
+    "@fontsource/trirong": "^5.3.0",
+    "astro": "^7.3.5",
+    "sharp": "^0.35.5"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.10",
+    "@playwright/test": "^1.63.0",
+    "eslint": "^10.12.0",
+    "node-html-parser": "^9.0.4",
+    "stylelint": "^17.16.0",
+    "stylelint-config-standard": "^40.0.0",
+    "typescript": "^6.0.3",
+    "typescript-eslint": "^8.71.1"
+  }
+}
