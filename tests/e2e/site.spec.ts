@@ -1,10 +1,18 @@
 import { expect, test, type Page } from '@playwright/test';
+import { DEMO_CONTACTS } from '../../src/config/demo-contacts.mjs';
 import { BUILT_LOCALES, LOW_SCREEN, NARROWEST, PHONE_FIRST_SCREENS, VIEWPORTS, htmlLang, pagePath } from './locales';
 
 // Приёмка из DESIGN.md, раздел 9 — то, что можно проверить автоматически.
 
 const MIN_TAP_SIZE = 44;
 const SCROLL_SETTLE_MS = 500;
+const RESTAURANT_WHATSAPP_URL = 'https://wa.me/66611971080';
+
+/** Куда ведёт WhatsApp: в демо — заглушка без номера, в боевой сборке — номер ресторана. */
+async function expectedWhatsAppUrl(page: Page): Promise<string> {
+  const isDemo = (await page.locator('meta[name="robots"]').count()) > 0;
+  return isDemo ? DEMO_CONTACTS.whatsappUrl : RESTAURANT_WHATSAPP_URL;
+}
 const EXPECTED_MESSAGE = (date: string) =>
   [
     'Ciao Giulietta e Romeo,',
@@ -108,7 +116,7 @@ for (const locale of BUILT_LOCALES) {
       const whatsappTab = context.waitForEvent('page');
       await page.locator('.reservation-form button[type="submit"]').click();
       const openedUrl = new URL((await whatsappTab).url());
-      expect(openedUrl.origin + openedUrl.pathname).toBe('https://wa.me/66611971080');
+      expect(openedUrl.origin + openedUrl.pathname).toBe(await expectedWhatsAppUrl(page));
       expect(openedUrl.searchParams.get('text')).toBe(EXPECTED_MESSAGE(chosenDate));
       expect(chosenDate).toMatch(/^[A-Z][a-z]+day, \d{1,2} [A-Z][a-z]+ 20\d\d$/);
       await page.waitForTimeout(SCROLL_SETTLE_MS);
@@ -255,7 +263,7 @@ test('без скриптов страница читается, форма ве
   await page.goto('/');
   await expect(page.locator('h1')).toBeVisible();
   await expect(page.locator('.menu-item')).toHaveCount(41);
-  await expect(page.locator('.reservation-form')).toHaveAttribute('action', 'https://wa.me/66611971080');
+  await expect(page.locator('.reservation-form')).toHaveAttribute('action', await expectedWhatsAppUrl(page));
   await expect(page.locator('[data-bottom-bar]')).toBeVisible();
   await expect(page.locator('#booking-date')).toBeHidden();
   // Кнопка «Menu» без скриптов ведёт к списку разделов в подвале.

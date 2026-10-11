@@ -1,9 +1,13 @@
 // Постоянные данные ресторана: ссылки, телефон, часы, правила брони.
 // Источник — content/texts.md. Метки отслеживания у ссылок на соцсети убраны.
+import { DEMO_CONTACTS } from './demo-contacts.mjs';
+import { IS_DEMO } from './env';
 
-export const PHONE_HREF = 'tel:+66611971080';
-export const PHONE_E164 = '+66611971080';
-export const WHATSAPP_URL = 'https://wa.me/66611971080';
+// Телефон и WhatsApp ресторана — только в боевой сборке на его домене. В демо — заглушки
+// (demo-contacts.mjs): пробная версия открыта всем, и бронь с неё не должна уходить в ресторан.
+export const PHONE_HREF = IS_DEMO ? `tel:${DEMO_CONTACTS.phoneE164}` : 'tel:+66611971080';
+export const PHONE_E164 = IS_DEMO ? DEMO_CONTACTS.phoneE164 : '+66611971080';
+export const WHATSAPP_URL = IS_DEMO ? DEMO_CONTACTS.whatsappUrl : 'https://wa.me/66611971080';
 export const MAPS_URL =
   'https://www.google.com/maps/search/?api=1&query=Giulietta%20e%20Romeo%2C%2083%2F46%20Moo%202%2C%20Chaweng%20Beach%2C%20Bophut%2C%20Koh%20Samui%2C%20Surat%20Thani%2084320';
 export const TRIPADVISOR_URL =

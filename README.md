@@ -26,6 +26,11 @@ Giulietta e Romeo — семейный итальянский ресторан �
 русская и тайская версии — черновики: они выйдут на адрес ресторана после
 вычитки носителем языка.
 
+На пробной версии вместо телефона и WhatsApp ресторана стоят заглушки:
+форма брони открывает WhatsApp с готовым сообщением, но без получателя,
+а кнопка звонка никуда не звонит. Настоящие контакты — только в сборке
+для адреса ресторана.
+
 ### Что получает ресторан
 
 - **Название — на первом экране.** Под фото сразу две кнопки: забронировать
@@ -88,7 +93,7 @@ content/menu.json       меню: 41 позиция, названия и цен�
 src/i18n/dictionaries/  тексты страницы, по файлу на язык (en.json сверяется с texts.md)
 src/i18n/menu/          переводы описаний и заголовков разделов меню
 src/i18n/registry.json  языки и их статус
-src/config/             ссылки, телефон, часы, адрес по частям, правила формы брони
+src/config/             ссылки, телефон, часы, адрес по частям, правила формы брони; заглушки контактов для демо
 src/components/         секции страницы, шапка, подвал, нижняя панель, элементы
 src/scripts/            форма брони, нижняя панель, увеличение фото, меню на телефоне
 src/assets/             фото и облегчённые шрифты
@@ -116,7 +121,7 @@ Open Graph с картинкой 1200×630, иконка сайта. `public/.ht
 |---|---|
 | `npm run dev` | Локальный сервер, все четыре языка |
 | `npm run build` | Боевая сборка в `dist/`: только опубликованные языки; до неё сверяются тексты, после — страницы и чистота сборки |
-| `npm run build:demo` | Демо для GitHub Pages: закрыто от поиска, адрес и языки — из `.env.demo` |
+| `npm run build:demo` | Демо для GitHub Pages: закрыто от поиска, адрес и языки — из `.env.demo`, телефон и WhatsApp — заглушки |
 | `npm run build:test` | Сборка для тестов: все языки, сайт в корне `localhost:4322` |
 | `npm run preview` | Отдаёт `dist/` на `localhost:4322`, как хостинг |
 | `npm run check:budget` | Вес первого экрана (до 450 КБ), всей страницы (до 2,5 МБ) и скриптов (до 10 КБ) — после сборки |
@@ -149,6 +154,11 @@ from scratch to be easy to use on a phone.
 For now, the site runs at a test address and is closed to search engines.
 The Italian, Russian, and Thai versions are drafts: they will go live at the
 restaurant’s address after a native speaker proofreads them.
+
+On the test version, the restaurant’s phone number and WhatsApp are replaced
+with placeholders: the booking form opens WhatsApp with a ready-to-send
+message but no recipient, and the call button doesn’t call anyone. The real
+contact details are only in the build for the restaurant’s address.
 
 ### What the restaurant gets
 
@@ -218,7 +228,7 @@ content/menu.json       the menu: 41 items, names and prices shared by all langu
 src/i18n/dictionaries/  page text, one file per language (en.json is checked against texts.md)
 src/i18n/menu/          translated dish descriptions and menu section headings
 src/i18n/registry.json  languages and their status
-src/config/             links, phone, hours, address in parts, booking form rules
+src/config/             links, phone, hours, address in parts, booking form rules; placeholder contacts for the demo
 src/components/         page sections, header, footer, bottom bar, UI elements
 src/scripts/            booking form, bottom bar, photo zoom, phone menu
 src/assets/             photos and lightweight fonts
@@ -247,7 +257,7 @@ with a hash in the name.
 |---|---|
 | `npm run dev` | Local server, all four languages |
 | `npm run build` | Production build into `dist/`: published languages only; text is checked before, pages and build cleanliness after |
-| `npm run build:demo` | Demo for GitHub Pages: closed to search engines, address and languages from `.env.demo` |
+| `npm run build:demo` | Demo for GitHub Pages: closed to search engines, address and languages from `.env.demo`, placeholder phone and WhatsApp |
 | `npm run build:test` | Build for tests: all languages, site at the root of `localhost:4322` |
 | `npm run preview` | Serves `dist/` on `localhost:4322`, like a host would |
 | `npm run check:budget` | Weight of the first screen (up to 450 KB), the whole page (up to 2.5 MB), and scripts (up to 10 KB), after the build |

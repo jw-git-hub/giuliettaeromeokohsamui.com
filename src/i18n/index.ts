@@ -1,3 +1,5 @@
+import { IS_DEMO } from '@/config/env';
+import { withDemoPhone } from '@/config/demo-contacts.mjs';
 import english from './dictionaries/en.json';
 import registry from './registry.json';
 import { assertSameShape, mergeOverReference } from './shape';
@@ -42,8 +44,13 @@ function loadRawDictionary(locale: LocaleCode): unknown {
 }
 
 export function getDictionary(locale: LocaleCode): Dictionary {
-  if (locale === DEFAULT_LOCALE) return english;
-  return withTypography(locale, loadCheckedDictionary(locale));
+  if (locale === DEFAULT_LOCALE) return withContacts(english);
+  return withTypography(locale, withContacts(loadCheckedDictionary(locale)));
+}
+
+/** В демо номер ресторана в подписях заменён заглушкой (src/config/demo-contacts.mjs). */
+function withContacts(dictionary: Dictionary): Dictionary {
+  return IS_DEMO ? (withDemoPhone(dictionary) as Dictionary) : dictionary;
 }
 
 function loadCheckedDictionary(locale: LocaleCode): Dictionary {

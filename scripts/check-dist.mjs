@@ -10,6 +10,7 @@
 // 7. В llms.txt (карта сайта для ИИ) нет слов сверх английского словаря и меню.
 import { existsSync, readdirSync } from 'node:fs';
 import { parse } from 'node-html-parser';
+import { withDemoPhone } from '../src/config/demo-contacts.mjs';
 import { mergeOverReference } from '../src/i18n/shape.ts';
 import {
   collapseSpaces,
@@ -37,6 +38,8 @@ const SCHEMA_SELECTOR = 'script[type="application/ld+json"]';
 const PREVIEW_LENGTH = 200;
 const INTERNAL_MARKERS = ['_about', 'corrections', 'sourcePage', '<!--'];
 const LLMS_FILE = `${DIST}/llms.txt`;
+const ROBOTS_FILE = `${DIST}/robots.txt`;
+const DEMO_ROBOTS_RULE = 'Disallow: /';
 const MARKDOWN_LINK_TARGET = /\]\([^)]*\)/g;
 
 const registry = readJson('src/i18n/registry.json');
@@ -51,10 +54,14 @@ function pagePath(locale) {
   return locale === registry.defaultLocale ? `${DIST}/index.html` : `${DIST}/${locale}/index.html`;
 }
 
+/** Демо-сборка закрыта от поиска целиком — по robots.txt её и узнаём. */
+const isDemoBuild = existsSync(ROBOTS_FILE) && readText(ROBOTS_FILE).split('\n').includes(DEMO_ROBOTS_RULE);
+
+/** Словарь так, как его видит страница: в демо номер ресторана в подписях заменён заглушкой. */
 function loadDictionary(locale) {
-  if (locale === registry.defaultLocale) return english;
-  const raw = readJson(`src/i18n/dictionaries/${locale}.json`);
-  return registry.locales[locale].status === TRIAL ? mergeOverReference(english, raw, locale) : raw;
+  const raw = locale === registry.defaultLocale ? english : readJson(`src/i18n/dictionaries/${locale}.json`);
+  const dictionary = locale !== registry.defaultLocale && registry.locales[locale].status === TRIAL ? mergeOverReference(english, raw, locale) : raw;
+  return isDemoBuild ? withDemoPhone(dictionary) : dictionary;
 }
 
 function loadMenuTranslation(locale) {
@@ -238,7 +245,7 @@ function findCssText() {
 function findLlmsExtraWords() {
   if (!existsSync(LLMS_FILE)) return ['в dist нет llms.txt'];
   const text = readText(LLMS_FILE).replace(MARKDOWN_LINK_TARGET, ' ');
-  const rest = collapseSpaces(removeKnown(text, knownStrings(registry.defaultLocale, english)));
+  const rest = collapseSpaces(removeKnown(text, knownStrings(registry.defaultLocale, loadDictionary(registry.defaultLocale))));
   return HAS_WORD_OR_CURRENCY.test(rest) ? [`в llms.txt есть текст вне словаря: «${rest.slice(0, PREVIEW_LENGTH)}»`] : [];
 }
 
